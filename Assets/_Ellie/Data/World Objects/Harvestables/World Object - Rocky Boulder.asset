@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e38ac4abfd8d504eacf43f2da130496, type: 3}
+  m_Name: World Object - Rocky Boulder
+  m_EditorClassIdentifier: CarGame::CarGame.WorldObjectData
+  Id: ec2bcbd6-4b86-4c85-9697-5867b441d9fb
+  variants:
+  - {fileID: 3509101911078871453, guid: 3a6dde19a0ec7534dbb0c7ffeca23776, type: 3}
+  - {fileID: 3509101911078871453, guid: a785606d2b255aa4ca576868dbac84c4, type: 3}

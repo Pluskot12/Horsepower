@@ -1,0 +1,389 @@
+using System;
+using System.Linq;
+using UnityEngine;
+
+namespace CarGame
+{
+    public class InventoryItem
+    {
+        public string Id;
+        [NonSerialized] public ItemData ItemData;
+        public int Quantity;
+        public int Durability;
+
+        /*
+        public static InventoryItem CreateFrom(ItemData data, int quantity = 1, int durability = 69)
+        {
+            return data switch
+            {
+                GadgetItem equippable => EquippableItem.CreateFrom(equippable, quantity),
+                UsableItemData usable => UsableItem.CreateFrom(usable, quantity),
+                _ => ItemData.CreateFrom(data, quantity)
+            };
+        }
+        */
+
+        public InventoryItem(ItemData itemData, int quantity, int durability)
+        {
+            if (itemData != null)
+            {
+                Id = itemData.Id;
+            }
+
+            ItemData = itemData;
+            Quantity = quantity;
+            Durability = durability;
+
+            /* This resets item durability
+            if (itemData is IBreakable breakable) 
+            {
+                Durability = breakable.MaxDurability;
+            }
+            */
+        }
+    }
+
+    public class Inventory
+    {
+        private InventoryItem[] items;
+        public InventoryItem[] Items => items;
+
+        public Action OnInventoryCleared;
+
+        public event Action<InventoryItem[]> AnyValueChanged = delegate { };
+        public event Action<InventoryItem> SlotChanged = delegate { };
+        public event Action OnItemDestroyed = delegate { };
+
+        public Inventory(int slots)
+        {
+            items = new InventoryItem[slots];
+        }
+
+        public int TryAdd(InventoryItem item)
+        {
+            return TryAdd(item.ItemData, item.Quantity, item.Durability);
+        }
+
+        public int TryAdd(ItemData item, int quantity, int durability)
+        {
+            int remaining = quantity;
+
+            #region Special Case for Weapons
+
+            if (item.GetType() == typeof(WeaponItemData))
+            {
+                for (int i = 0; i < items.Length && remaining >= 0; i++)
+                {
+                    if (items[i] != null)
+                        continue;
+
+                    items[i] = new InventoryItem(item, quantity, durability);
+                    remaining = -1;
+                }
+
+                AnyValueChanged?.Invoke(items);
+                return remaining;
+            }
+
+            #endregion
+
+            if (item.maxStackSize == 1)
+            {
+                for (int i = 0; i < items.Length && remaining > 0; i++)
+                {
+                    if (items[i] != null)
+                        continue;
+
+                    items[i] = new InventoryItem(item, 1, durability);
+                    remaining -= 1;
+                }
+
+                AnyValueChanged?.Invoke(items);
+                return remaining;
+            }
+
+            for (int i = 0; i < items.Length && remaining > 0; i++)
+            {
+                if (items[i] == null)
+                    continue;
+
+                if (items[i].ItemData != item)
+                    continue;
+
+                int space = items[i].ItemData.maxStackSize - items[i].Quantity;
+                if (space <= 0)
+                    continue;
+
+                int addAmount = Mathf.Min(space, remaining);
+                items[i].Quantity += addAmount;
+                items[i].Durability = durability;
+                remaining -= addAmount;
+            }
+
+            for (int i = 0; i < items.Length && remaining > 0; i++)
+            {
+                if (items[i] != null)
+                    continue;
+
+                int addAmount = Mathf.Min(item.maxStackSize, remaining);
+                items[i] = new InventoryItem(item, addAmount, durability);
+                remaining -= addAmount;
+            }
+
+            AnyValueChanged?.Invoke(items);
+
+            return remaining;
+        }
+
+        public InventoryItem TryAddAtIndex(int index, ItemData item, int quantity, int durability)
+        {
+            int remaining = quantity;
+
+            if (items[index] == null)
+            {
+                int addAmount = Mathf.Min(item.maxStackSize, remaining);
+                remaining -= addAmount;
+                items[index] = new InventoryItem(item, addAmount, durability);
+                AnyValueChanged.Invoke(items);
+                return new InventoryItem(item, remaining, durability);
+            }
+            else if (items[index].ItemData == item)
+            {
+                int maxStack = item.maxStackSize;
+                int total = quantity + items[index].Quantity;
+                int newQuantity = Mathf.Min(total, maxStack);
+                int remainder = total - newQuantity;
+
+                var current = items[index];
+                items[index] = new InventoryItem(item, newQuantity, durability);
+
+                AnyValueChanged?.Invoke(items);
+                return new InventoryItem(item, remainder, current.Durability);
+            }
+
+            else if (items[index].ItemData != item)
+            {
+                var temp = items[index];
+                items[index] = new InventoryItem(item, remaining, durability);
+
+                AnyValueChanged.Invoke(items);
+                return temp;
+            }
+
+            return null;
+        }
+
+        public bool CanFit(ItemData item, int quantity)
+        {
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] == null) continue;
+                if (items[i].ItemData != item) continue;
+                if (item.maxStackSize == 1) continue;
+                if (item.GetType() == typeof(WeaponItemData)) continue;
+
+                int space = item.maxStackSize - items[i].Quantity;
+                if (space > 0)
+                    return true;
+            }
+
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] == null)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public bool TryRemove(ItemData item)
+        {
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] == null || items[i].ItemData != item)
+                    continue;
+
+                items[i] = null;
+                AnyValueChanged.Invoke(items);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool TryRemoveAtIndex(int index)
+        {
+            if (items[index] != null)
+            {
+                items[index] = null;
+                AnyValueChanged.Invoke(items);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool TryRemoveQuantityAtIndex(int index, int quantityToRemove)
+        {
+            if (items[index] != null)
+            {
+                items[index].Quantity -= quantityToRemove;
+                if (items[index].Quantity <= 0 && items[index].ItemData.GetType() != typeof(WeaponItemData)) // TODO: Fix this
+                {
+                    items[index] = null;
+                }
+
+                AnyValueChanged.Invoke(items);
+                return true;
+            }
+
+            return false;
+        }
+
+
+        public void Swap(int index1, int index2)
+        {
+            (items[index1], items[index2]) = (items[index2], items[index1]);
+
+            AnyValueChanged.Invoke(items);
+        }
+
+        public int Combine(int index1, int index2)
+        {
+            var total = items[index1].Quantity + items[index2].Quantity;
+            items[index2].Quantity = total;
+            TryRemoveAtIndex(index1);
+
+            AnyValueChanged.Invoke(items);
+            return total;
+        }
+
+        public int GetItemCount(ItemData item)
+        {
+            int total = 0;
+
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] == null)
+                    continue;
+
+                if (items[i].ItemData == item)
+                    total += items[i].Quantity;
+            }
+
+            return total;
+        }
+
+        public int RemoveItems(ItemData item, int amount)
+        {
+            int remaining = amount;
+
+            for (int i = 0; i < items.Length; i++)
+            {
+                var invItem = items[i];
+                if (invItem == null)
+                    continue;
+                if (invItem.ItemData != item)
+                    continue;
+
+                if (invItem.Quantity > remaining)
+                {
+                    invItem.Quantity -= remaining;
+                    remaining = 0;
+                    break;
+                }
+                else
+                {
+                    remaining -= invItem.Quantity;
+                    items[i] = null;
+                }
+            }
+
+            AnyValueChanged.Invoke(items);
+            return remaining;
+        }
+
+        public void DamageItem(InventoryItem invItem, int amount)
+        {
+            if (invItem.ItemData is IBreakable breakable)
+            {
+                invItem.Durability -= amount;
+                if (invItem.Durability <= 0)
+                {
+                    GameManager.Instance.Player.Attachments.OnBreak();
+                    // Item breaks
+                }
+            }
+
+            AnyValueChanged.Invoke(items);
+        }
+
+        public bool TryDamageItemAtIndex(int index, int quantityToRemove)
+        {
+            if (items[index] != null)
+            {
+                if (items[index].ItemData is IBreakable breakable)
+                {
+                    items[index].Durability -= quantityToRemove;
+
+                    if (items[index].Durability <= 0)
+                    {
+                        GameManager.Instance.Player.Attachments.OnBreak();
+                        if (TryRemoveAtIndex(index))
+                        {
+                            OnItemDestroyed.Invoke();
+                        }
+                    }
+                }
+
+                AnyValueChanged.Invoke(items);
+                return true;
+            }
+
+            return false;
+        }
+
+        public void Clear()
+        {
+            Array.Clear(items, 0, items.Length);
+            OnInventoryCleared.Invoke();
+            AnyValueChanged.Invoke(items);
+        }
+
+        public int ItemsCount()
+        {
+            int count = 0;
+
+            foreach (var item in items)
+            {
+                if (item != null)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public async void Set(InventoryItem[] loadedItems, bool fireEvent = true)
+        {
+            foreach (var item in loadedItems)
+            {
+                if (item == null)
+                {
+                    continue;
+                }
+
+                item.ItemData = GameManager.Instance.ItemDatabase.GetById(item.Id);
+            }
+
+            Array.Clear(this.items, 0, loadedItems.Length);
+            this.items = loadedItems.ToArray();
+
+            await Awaitable.NextFrameAsync();
+
+            //if (fireEvent)
+            AnyValueChanged.Invoke(loadedItems);
+        }
+    }
+}

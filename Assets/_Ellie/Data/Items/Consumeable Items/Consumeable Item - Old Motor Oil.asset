@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4935520b44ad541958b35de8d9afb2, type: 3}
+  m_Name: Consumeable Item - Old Motor Oil
+  m_EditorClassIdentifier: CarGame::CarGame.ConsumeableItemData
+  Id: e4c1c3b3-cc12-4093-9c50-ddae83f7d15c
+  displayName: Old Motor Oil
+  sprite: {fileID: 21300000, guid: 1b19db77044c023419e34941d12555dc, type: 3}
+  maxStackSize: 10
+  useClip: {fileID: 8300000, guid: 54926f8e792a2cf4ba2b51f91634d71c, type: 3}
+  effects:
+  - type: 1
+    amount: 5

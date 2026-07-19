@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646423e13eabb674985e8580af31d4dd, type: 3}
+  m_Name: Witherville Biome
+  m_EditorClassIdentifier: CarGame::CarGame.BiomeData
+  icon: {fileID: 21300000, guid: 66a80ea407aee284fa2fba7a53bcfa84, type: 3}
+  pauseSound: {fileID: 8300000, guid: 326e91d7ab553c54980eb9fd184bc2ca, type: 3}
+  biomeType: 2
+  chunkPrefab: {fileID: 5630860628453097293, guid: 71142601db9c0e449a60495d3dd3f532, type: 3}
+  terrainType: 0
+  smoothness: 0.05
+  noiseScale: 0.125
+  heightAmplitude: 2
+  noiseSeed: 0.5
+  cornerSmoothness: 0.15
+  tangentStrength: 1
+  profile: {fileID: 11400000, guid: 9a91cdcdbd8ff984aba7c903e11f37c2, type: 2}
+  flatChance: 0.3
+  flatMinPoints: 4
+  flatMaxPoints: 7
+  spawningAllowed: 1
+  structureSpawnChance: 0.4
+  structures:
+  - {fileID: 3874158534899231194, guid: 686e85d83522b594295b5e7077dbb6bb, type: 3}
+  - {fileID: 3874158534899231194, guid: 7734fed380805bf40ba6b26c4ecab484, type: 3}
+  - {fileID: 3874158534899231194, guid: 819e4e807d459d8468cedb7c1b4d4132, type: 3}
+  nodes: []
+  interactables:
+  - objectData: {fileID: 11400000, guid: 5f3cd16a5e03c484dadd574d2d38ede0, type: 2}
+    spawnChance: 0.02
+    minSpacing: 5
+    maxSpacing: 6
+    allowedAngle: 5
+  - objectData: {fileID: 11400000, guid: 36e15c73c2d0f5d4b88a1b114d49902c, type: 2}
+    spawnChance: 0.006
+    minSpacing: 5
+    maxSpacing: 6
+    allowedAngle: 5
+  - objectData: {fileID: 11400000, guid: 13a78d117363dd6408bc963c94d550c6, type: 2}
+    spawnChance: 0.008
+    minSpacing: 5
+    maxSpacing: 6
+    allowedAngle: 5
+  - objectData: {fileID: 11400000, guid: a9cd666ea92e1cf4994c6b746e5d7cb7, type: 2}
+    spawnChance: 0.01
+    minSpacing: 5
+    maxSpacing: 6
+    allowedAngle: 5
+  skySprite:
+    sprite: {fileID: 21300000, guid: b48483f4cbf8aee4dbbe5d75bf394826, type: 3}
+    yOffset: 0
+  horizonSprite:
+    sprite: {fileID: 21300000, guid: eecc6ed5663bca3438655a5ab0ddc664, type: 3}
+    yOffset: -0.15
+  backgroundSprite:
+    sprite: {fileID: 21300000, guid: c811923b660fc49499b2c3a3b506f225, type: 3}
+    yOffset: 0.8
+  dayAmbience: {fileID: 8300000, guid: 114bbe65b9d494247a5e766fdc473e81, type: 3}
+  duskAmbience: {fileID: 0}
+  nightAmbience: {fileID: 0}
+  spawnChance: 1
+  enemies:
+  - enemy: {fileID: 5388008087247309080, guid: d3b532a88f3ea1947982d27853683e9d, type: 3}
+    chance: 20
+  - enemy: {fileID: 5388008087247309080, guid: afcbb62c5d66c9b4f8ed071dad8e3350, type: 3}
+    chance: 40
+  - enemy: {fileID: 5388008087247309080, guid: 53d0b980bc9e61045a8cbf7324ebf163, type: 3}
+    chance: 60
+  - enemy: {fileID: 5388008087247309080, guid: 30c0303719af5c54990032aa1d1b59b1, type: 3}
+    chance: 40
+  - enemy: {fileID: 5388008087247309080, guid: 01b0be618b158d845ba52ed4d344e75d, type: 3}
+    chance: 5
+  - enemy: {fileID: 5388008087247309080, guid: dd70175222d6dbc47aece0e0a3e550e1, type: 3}
+    chance: 20

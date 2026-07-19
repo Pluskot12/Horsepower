@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e38ac4abfd8d504eacf43f2da130496, type: 3}
+  m_Name: World Object - Pebbles
+  m_EditorClassIdentifier: CarGame::CarGame.WorldObjectData
+  Id: 7b7f927a-8e09-4f30-8145-fb91d30eca96
+  variants:
+  - {fileID: 8433775419084928759, guid: c3afb40ee0accad4a9a677ded8db0583, type: 3}

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b702fbf58bf6f94db0a78690bd4eedc, type: 3}
+  m_Name: Gadget - Noisebreacher
+  m_EditorClassIdentifier: CarGame::CarGame.GadgetItem
+  Id: 06b416a0-6f39-43cd-a6b8-407482b9cc41
+  displayName: Noisebreacher
+  sprite: {fileID: 21300000, guid: db5b0e64a6fa2294185a4f2ffec213fe, type: 3}
+  maxStackSize: 1
+  prefab: {fileID: 8821066259847645609, guid: 2dc8657f6c07c9e48a21108f95feddfb, type: 3}
+  slot: 0

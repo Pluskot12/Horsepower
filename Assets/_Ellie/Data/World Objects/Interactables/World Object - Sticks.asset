@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e38ac4abfd8d504eacf43f2da130496, type: 3}
+  m_Name: World Object - Sticks
+  m_EditorClassIdentifier: CarGame::CarGame.WorldObjectData
+  Id: 3819d4cb-1550-48f2-9792-42f39002269e
+  variants:
+  - {fileID: 8433775419084928759, guid: ca79461ab8d42614daf641e1dc525962, type: 3}

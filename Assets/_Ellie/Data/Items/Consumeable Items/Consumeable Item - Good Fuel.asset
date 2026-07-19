@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4935520b44ad541958b35de8d9afb2, type: 3}
+  m_Name: Consumeable Item - Good Fuel
+  m_EditorClassIdentifier: CarGame::CarGame.ConsumeableItemData
+  Id: 632761d1-f6db-4a2e-9415-ca5cb1e8cb81
+  displayName: Good Fuel
+  sprite: {fileID: 21300000, guid: ce392e8a52a8d1e48ba85cfae6e568cf, type: 3}
+  maxStackSize: 10
+  useClip: {fileID: 8300000, guid: 54926f8e792a2cf4ba2b51f91634d71c, type: 3}
+  effects:
+  - type: 1
+    amount: 20

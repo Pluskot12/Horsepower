@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 422aaab529623e34c9d130fd1f01243b, type: 3}
+  m_Name: Enemy - Jalopy
+  m_EditorClassIdentifier: CarGame::CarGame.EnemyData
+  Id: 0939408c-ddfa-4b7a-8695-9941384c5d89
+  Prefab: {fileID: 8133407921476846474, guid: f72195534d8cb7343a51d82bcd5d0a3e, type: 3}

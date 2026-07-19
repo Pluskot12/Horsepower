@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad3ce01e63d1be40ad4386fe07bfd18, type: 3}
+  m_Name: Flare Gun
+  m_EditorClassIdentifier: CarGame::CarGame.ToolItemData
+  Id: 572d7c86-513c-477c-879d-c8d3b20faa92
+  displayName: Flare Gun
+  sprite: {fileID: 21300000, guid: 79f4ce4690d70644382b2d0e40a5df8f, type: 3}
+  maxStackSize: 1
+  prefab: {fileID: 4720960365853173, guid: 3f70712cb2ead874a86a96e57dfa5055, type: 3}
+  maxDurability: 1

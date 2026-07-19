@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e38ac4abfd8d504eacf43f2da130496, type: 3}
+  m_Name: World Object - Deadwood Tree
+  m_EditorClassIdentifier: CarGame::CarGame.WorldObjectData
+  Id: 3cea8c8f-a85f-45db-b2fa-ba4ff73ad4dd
+  variants:
+  - {fileID: 8905499103834021116, guid: 6eb4ffa86d0eab8499cb0dbe120a9b2f, type: 3}
+  - {fileID: 8905499103834021116, guid: 2054f4dc23288aa468fd10e13c138b2a, type: 3}

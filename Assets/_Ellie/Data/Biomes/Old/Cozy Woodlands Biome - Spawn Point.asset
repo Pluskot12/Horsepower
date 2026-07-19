@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646423e13eabb674985e8580af31d4dd, type: 3}
+  m_Name: Cozy Woodlands Biome - Spawn Point
+  m_EditorClassIdentifier: CarGame::CarGame.BiomeData
+  icon: {fileID: 21300000, guid: b4d868e761e5f8b4b9f9923e3e259bdf, type: 3}
+  pauseSound: {fileID: 8300000, guid: 55fc9c0da22424641942b025020205fc, type: 3}
+  biomeType: 1
+  chunkPrefab: {fileID: 5630860628453097293, guid: 71142601db9c0e449a60495d3dd3f532, type: 3}
+  terrainType: 0
+  smoothness: 0.5
+  noiseScale: 0.1
+  heightAmplitude: 2
+  noiseSeed: 0.5
+  cornerSmoothness: 1
+  tangentStrength: 1
+  profile: {fileID: 11400000, guid: acd214fa3eeb5764c9da09ec17a8f28e, type: 2}
+  flatChance: 1
+  flatMinPoints: 4
+  flatMaxPoints: 6
+  spawningAllowed: 1
+  structureSpawnChance: 1
+  structures:
+  - {fileID: 3874158534899231194, guid: 24e09bf83453aef4a9b415193779f30a, type: 3}
+  nodes: []
+  interactables: []
+  skySprite:
+    sprite: {fileID: 21300000, guid: 11fcbc67b223e2d46adbaed423694e12, type: 3}
+    yOffset: 0
+  horizonSprite:
+    sprite: {fileID: 21300000, guid: 8cdba8d24a0968c4d9396770311922ac, type: 3}
+    yOffset: 0
+  backgroundSprite:
+    sprite: {fileID: 21300000, guid: 5bfd42aaef3637348b78c47d8080eecb, type: 3}
+    yOffset: 0
+  dayAmbience: {fileID: 8300000, guid: f8f63c8f26d73a74fbac133c78caf146, type: 3}
+  duskAmbience: {fileID: 0}
+  nightAmbience: {fileID: 0}
+  spawnChance: 0.25
+  enemies:
+  - enemy: {fileID: 5388008087247309080, guid: d3b532a88f3ea1947982d27853683e9d, type: 3}
+    chance: 7
+  - enemy: {fileID: 5388008087247309080, guid: dd70175222d6dbc47aece0e0a3e550e1, type: 3}
+    chance: 2
+  - enemy: {fileID: 5388008087247309080, guid: afcbb62c5d66c9b4f8ed071dad8e3350, type: 3}
+    chance: 2

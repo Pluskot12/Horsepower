@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae8868a7fdfe8eb41bf747a496c8a042, type: 3}
+  m_Name: Loot Crate Exclusive
+  m_EditorClassIdentifier: CarGame::CarGame.DropTable
+  items:
+  - item: {fileID: 11400000, guid: 1a93f3a8db8545a4faab02c3d17d6578, type: 2}
+    dropChance: 1
+    minDrop: 0
+    maxDrop: 0
+  - item: {fileID: 11400000, guid: 339b5ce0c1320b94bb322ae48889b959, type: 2}
+    dropChance: 5
+    minDrop: 1
+    maxDrop: 5
+  - item: {fileID: 11400000, guid: 97f82e2d2f860394caef83696586fa0f, type: 2}
+    dropChance: 5
+    minDrop: 1
+    maxDrop: 5
+  - item: {fileID: 11400000, guid: 6476d91af764527448a5fc7d3c6e0ee8, type: 2}
+    dropChance: 5
+    minDrop: 1
+    maxDrop: 1

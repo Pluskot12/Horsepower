@@ -1,0 +1,588 @@
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+namespace CarGame
+{
+    public class BuildingManager : MonoBehaviour
+    {
+        public static BuildingManager Instance { get; private set; }
+
+        [SerializeField] private TerrainManager terrainManager;
+        [SerializeField] private LayerMask buildingBlockingLayer;
+        [SerializeField] private LayerMask buildingRightClickLayer;
+
+
+        [Header("Audio")]
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip buildAudio;
+        [SerializeField] private AudioClip removeAudio;
+
+        [Header("Colors")]
+        [SerializeField] private Color validPlacementColor;
+        [SerializeField] private Color invalidPlacementColor;
+
+        [Header("Build Settings")]
+        [SerializeField] private float maxPlacementDistance = 3;
+        [SerializeField] private float buildTime = 3;
+        [SerializeField] private float drainSpeed = 5;
+
+        [Header("Progress Bar")]
+        [SerializeField] private BuildingIndicatorUI progressBar;
+        [SerializeField] private BuildingIndicatorUI progressRemoveBar;
+
+        private List<Building> placedBuildings = new();
+        public List<Building> PlacedBuildings => placedBuildings;
+
+        private List<BuildingSaveData> saveData = new();
+
+        private BuildingItem currentBuildingData;
+        private Building currentBuilding;
+
+        private bool canPlace;
+
+        private float buildProgress;
+
+        private Collider2D[] results = new Collider2D[10];
+        private ContactFilter2D blockingFilter = new ContactFilter2D();
+        private ContactFilter2D clickFilter = new ContactFilter2D();
+
+        private bool isBuilding;
+
+        int inventorySlot;
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+
+                return;
+            }
+
+            Instance = this;
+            blockingFilter.SetLayerMask(buildingBlockingLayer);
+            blockingFilter.useTriggers = true;
+
+            clickFilter.SetLayerMask(buildingRightClickLayer);
+            clickFilter.useTriggers = true;
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (currentBuilding == null)
+                return;
+
+            Vector2 bottomLeft = terrainManager.RaycastGroundAt(currentBuilding.GetLeftCorner()).point;
+            Vector2 bottomRight = terrainManager.RaycastGroundAt(currentBuilding.GetRightCorner()).point;
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(bottomLeft, 0.1f);
+            Gizmos.DrawSphere(bottomRight, 0.1f);
+        }
+        float removeTime = 1.5f;
+        bool removeInProgress;
+
+        GameObject currentHit;
+        TerrainChunk currentChunk;
+
+        private void Update()
+        {
+            HandleRightClick();
+
+            if (currentBuilding == null)
+            {
+                progressBar.Hide(false);
+                buildProgress = 0;
+                isBuilding = false;
+                return;
+            }
+
+            progressBar.Show(currentBuilding.IndicatorPosition);
+
+            var hit = terrainManager.RaycastGroundAtMouse();
+
+
+            if (hit && currentHit != hit.collider.gameObject)
+            {
+                currentHit = hit.collider.gameObject;
+                currentChunk = currentHit.GetComponent<TerrainChunk>();
+            }
+            else if (!hit)
+            {
+                currentHit = null;
+                currentChunk = null;
+            }
+
+
+            if (hit)
+            {
+                var leftHit = terrainManager.RaycastGroundAt(currentBuilding.GetLeftCorner());
+                var rightHit = terrainManager.RaycastGroundAt(currentBuilding.GetRightCorner());
+                Vector2 slope = rightHit.point - leftHit.point;
+
+                canPlace = CanPlaceBuilding(slope);
+
+                if (!isBuilding)
+                {
+                    if (hoveringAttachmentSlot)
+                    {
+                        currentBuilding.transform.position = hoveringAttachmentSlot.transform.position;
+                    }
+                    else
+                    {
+                        currentBuilding.transform.position = hit.point;
+                    }
+
+                }
+
+                float z = Mathf.Atan2(slope.y, slope.x) * Mathf.Rad2Deg;
+                currentBuilding.transform.rotation = Quaternion.Euler(0, 0, z);
+
+                if (canPlace)
+                {
+                    progressBar.UpdateStatus(BuildingIndicatorUI.Status.Valid);
+                    currentBuilding.SpriteRenderer.color = validPlacementColor;
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        isBuilding = true;
+                        progressBar.OnClick(true);
+                    }
+                    else if (Input.GetMouseButtonUp(0))
+                    {
+                        isBuilding = false;
+                        progressBar.OnClick(false);
+                    }
+                }
+                else
+                {
+                    progressBar.UpdateStatus(BuildingIndicatorUI.Status.Invalid);
+                    currentBuilding.SpriteRenderer.color = invalidPlacementColor;
+                }
+
+            }
+            else
+            {
+                canPlace = false;
+            }
+
+            if (isBuilding && IsPlayerMoving())
+            {
+                isBuilding = false;
+                canPlace = false;
+
+                progressBar.OnClick(false);
+            }
+
+            UpdateProgress();
+        }
+        BuildingInteraction hoveringBInteraction;
+        BuildingInteraction clickedBInteraction;
+
+
+        private bool IsPlayerMoving()
+        {
+            return GameManager.Instance.Player.CarController.GetRigidbody(CarController.PhysicsPart.Body).linearVelocity.magnitude > 1;
+        }
+
+        private void HandleRightClick()
+        {
+            Vector2 worldPoint = GameManager.Instance.Camera.ScreenToWorldPoint(Input.mousePosition);
+            Collider2D hit = Physics2D.OverlapPoint(worldPoint, buildingRightClickLayer);
+
+            if (hit && hit.TryGetComponent<BuildingInteraction>(out BuildingInteraction building))
+            {
+                if (hoveringBInteraction != building)
+                {
+                    hoveringBInteraction = building;
+
+                    OnMouseEnterBuilding(hoveringBInteraction);
+                }
+
+                OnMouseOverBuilding(hoveringBInteraction);
+                // building.Interact(GameManager.Instance.Player);
+            }
+            else
+            {
+                if (!isBuilding)
+                {
+                    OnMouseExitBuilding(hoveringBInteraction);
+                    hoveringBInteraction = null;
+                }
+            }
+
+
+
+
+            // Clicks
+
+            if (hoveringBInteraction == null || IsPlayerMoving())
+            {
+                if (progressRemoveBar.IsShowing)
+                {
+                    progressRemoveBar.Hide(false);
+                }
+                interactionTimer = 0;
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                clickedBInteraction = hoveringBInteraction;
+                interactionTimer = 0;
+            }
+            else if (Input.GetMouseButton(1) && clickedBInteraction == hoveringBInteraction)
+            {
+                if (hoveringBInteraction.Building.Removeable && interactionTimer >= 0.25f)
+                {
+                    progressRemoveBar.Show(hoveringBInteraction.Building.IndicatorPosition);
+                    if (!removeInProgress)
+                    {
+                        removeInProgress = true;
+                        progressRemoveBar.UpdateStatus(BuildingIndicatorUI.Status.Valid);
+                        progressRemoveBar.OnClick(true);
+                    }
+                    float progress = (interactionTimer - 0.25f) / removeTime;
+
+                    progressRemoveBar.UpdateProgress(progress);
+
+                    if ((interactionTimer - 0.25f) >= removeTime)
+                    {
+                        hoveringBInteraction.Building.RemoveBuilding(true);
+                        progressRemoveBar.UpdateStatus(BuildingIndicatorUI.Status.Complete);
+                        clickedBInteraction = null;
+                        interactionTimer = 0f;
+                        removeInProgress = false;
+                        audioSource.PlayOneShot(removeAudio);
+                    }
+                    //
+                }
+
+                interactionTimer += Time.deltaTime;
+            }
+            else if (Input.GetMouseButtonUp(1) && clickedBInteraction == hoveringBInteraction)
+            {
+                if (interactionTimer < removeInteractionTime)
+                {
+                    if (hoveringBInteraction)
+                    {
+                        hoveringBInteraction.Interact(GameManager.Instance.Player);
+
+                    }
+                }
+                progressRemoveBar.Hide(false);
+                progressRemoveBar.OnClick(false);
+                clickedBInteraction = null;
+                removeInProgress = false;
+            }
+            else
+            {
+
+                // interactionTimer -= Time.deltaTime * drainSpeed;
+                // float progress = (interactionTimer - 0.25f) / removeTime;
+                // progressRemoveBar.UpdateProgress(progress);
+                removeInProgress = false;
+            }
+        }
+
+        float removeInteractionTime = 0.5f;
+        float interactionTimer;
+        private void UpdateProgress()
+        {
+            if (canPlace && isBuilding)
+            {
+                buildProgress += Time.deltaTime / buildTime;
+            }
+            else
+            {
+                buildProgress -= Time.deltaTime * drainSpeed;
+            }
+
+            buildProgress = Mathf.Clamp01(buildProgress);
+
+            if (buildProgress >= 1f)
+            {
+                if (TryPlace(currentBuildingData))
+                {
+                    progressBar.UpdateStatus(BuildingIndicatorUI.Status.Complete);
+                    PlayerInventory.Instance.InventoryController.OnItemUse(inventorySlot);
+                }
+            }
+
+            progressBar.UpdateProgress(buildProgress);
+        }
+
+        private bool CanPlaceBuilding(Vector2 slope)
+        {
+            if (isBuilding)
+            {
+                return true;
+            }
+
+            if (currentChunk && currentChunk.CanBuild == false)
+            {
+                return false;
+            }
+
+            if (hoveringAttachmentSlot && IsWithinDistance())
+            {
+                return true;
+            }
+
+            if (!IsWithinDistance())
+            {
+                return false;
+            }
+
+            if (!IsWithinAllowedAngle(slope))
+            {
+                return false;
+            }
+
+            if (IsBlockedByStructure())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsWithinDistance()
+        {
+            return Vector3.Distance(GameManager.Instance.Player.transform.position, GameManager.Instance.MousePosition) <= maxPlacementDistance;
+        }
+
+        private bool IsWithinAllowedAngle(Vector2 slope)
+        {
+
+            float angle = Vector2.Angle(slope, Vector2.right);
+
+            if (angle <= currentBuildingData.maxAngle + 0.1f)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsBlockedByStructure()
+        {
+            int count = currentBuilding.Collider.Overlap(blockingFilter, results);
+
+            return count > 0;
+        }
+
+        public void OnBuildingSelected(BuildingItem building, int slot)
+        {
+            inventorySlot = slot;
+            buildProgress = 0;
+            isBuilding = false;
+
+            if (building == null)
+            {
+                RemoveTempBuilding();
+
+                return;
+            }
+
+            if (currentBuilding != null)
+            {
+                RemoveTempBuilding();
+            }
+
+            currentBuildingData = building;
+
+            SpawnBuildingPreview();
+        }
+
+        public bool TryPlace(BuildingItem building)
+        {
+            if (canPlace)
+            {
+                var instance = PlaceBuilding(currentBuildingData.prefab, currentBuilding.transform.position, currentBuilding.transform.rotation, hoveringBuilding, hoveringAttachmentSlot);
+                instance.SpriteRenderer.color = Color.white;
+                // instance.OnBuildingPlaced(hoveringBuilding, hoveringAttachmentSlot);
+                audioSource.PlayOneShot(buildAudio);
+
+                if (currentBuildingData.placementSound)
+                {
+                    audioSource.PlayOneShot(currentBuildingData.placementSound);
+                }
+
+
+                RemoveTempBuilding();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private Building PlaceBuilding(Building building, Vector3 position, Quaternion rotation, Building parent, BuildingAttachmentSlot slot)
+        {
+            var instance = Instantiate(building, position, rotation);
+            instance.SpriteRenderer.color = Color.white;
+            instance.OnBuildingPlaced(parent, slot);
+
+            if (parent == null)
+            {
+                placedBuildings.Add(instance);
+            }
+
+            return instance;
+        }
+
+        private void SpawnBuildingPreview()
+        {
+            var position = terrainManager.RaycastGroundAtMouse();
+
+            currentBuilding = Instantiate(currentBuildingData.prefab, position.point, Quaternion.identity);
+            currentBuilding.SetPreview();
+        }
+
+        private void RemoveTempBuilding()
+        {
+            if (currentBuilding != null)
+            {
+                Destroy(currentBuilding.gameObject);
+                currentBuilding = null;
+            }
+
+            currentBuildingData = null;
+
+        }
+
+        #region Building Interaction
+
+        private Building hoveringBuilding;
+        private BuildingAttachmentSlot hoveringAttachmentSlot;
+        private RenderingLayerMask hoveringMask;
+        private int hoveringOrder;
+        private SortingGroup hoveringSortingGroup;
+
+
+        public void OnMouseEnterBuilding(BuildingInteraction building)
+        {
+            hoveringBuilding = building.Building;
+
+            if (currentBuilding != null)
+            {
+                //hoveringMask = hoveringBuilding.SpriteRenderer.renderingLayerMask;
+                hoveringMask = currentBuilding.SpriteRenderer.renderingLayerMask;
+                //hoveringOrder = hoveringBuilding.SpriteRenderer.sortingOrder;
+                hoveringOrder = currentBuilding.SpriteRenderer.sortingOrder;
+                hoveringSortingGroup = currentBuilding.SortingGroup;
+
+                currentBuilding.SpriteRenderer.sortingLayerName = building.Building.SpriteRenderer.sortingLayerName;
+                currentBuilding.SpriteRenderer.sortingOrder = building.Building.SpriteRenderer.sortingOrder + 10;
+                currentBuilding.SortingGroup.sortingLayerName = building.Building.SortingGroup.sortingLayerName;
+                currentBuilding.SortingGroup.sortingOrder = building.Building.SortingGroup.sortingOrder + 1;
+
+            }
+        }
+
+        public void OnMouseOverBuilding(BuildingInteraction building)
+        {
+            hoveringAttachmentSlot = null;
+
+            if (currentBuilding == null)
+            {
+                return;
+            }
+
+            if (!currentBuilding.Attachable)
+            {
+                return;
+            }
+
+
+            if (building.Building.AttachmentSlots.Length == 0)
+            {
+                return;
+            }
+
+            float maxDistance = 0.75f;
+
+            foreach (var slot in building.Building.AttachmentSlots)
+            {
+                if (slot.Occupied)
+                {
+                    continue;
+                }
+
+                if (building.Building.AllowedAttachments.Contains(currentBuilding.Data))
+                {
+                    float distance = Vector3.Distance(GameManager.Instance.MousePosition, slot.transform.position);
+
+                    if (Vector3.Distance(GameManager.Instance.MousePosition, slot.transform.position) <= maxDistance)
+                    {
+                        hoveringAttachmentSlot = slot;
+                        maxDistance = distance;
+
+                        hoveringMask = building.Building.SpriteRenderer.renderingLayerMask;
+                        hoveringOrder = building.Building.SpriteRenderer.sortingOrder;
+
+                        currentBuilding.SpriteRenderer.sortingLayerName = building.Building.SpriteRenderer.sortingLayerName;
+                        currentBuilding.SpriteRenderer.sortingOrder = building.Building.SpriteRenderer.sortingOrder + 10;
+                        currentBuilding.SortingGroup.sortingLayerName = building.Building.SortingGroup.sortingLayerName;
+                        currentBuilding.SortingGroup.sortingOrder = building.Building.SortingGroup.sortingOrder + 1;
+                    }
+                }
+            }
+        }
+
+        public void OnMouseExitBuilding(BuildingInteraction building)
+        {
+            hoveringBuilding = null;
+            hoveringAttachmentSlot = null;
+        }
+
+        public void RemoveBuilding(Building building)
+        {
+            placedBuildings.Remove(building);
+        }
+
+        #endregion
+
+        public List<BuildingSaveData> GetSaveData()
+        {
+            var saveData = new List<BuildingSaveData>();
+
+            foreach (var building in placedBuildings)
+            {
+                saveData.Add(building.GetSaveData());
+            }
+
+            return saveData;
+        }
+
+        public void LoadBuildings(List<BuildingSaveData> playerBuildings)
+        {
+            foreach (var buildingData in playerBuildings)
+                LoadBuilding(buildingData, null, null);
+        }
+
+        private void LoadBuilding(BuildingSaveData data, Building parent, BuildingAttachmentSlot slot)
+        {
+            ItemDatabase database = GameManager.Instance.ItemDatabase;
+
+            Building prefab = database.GetById<BuildingItem>(data.Id).prefab;
+            Building instance = PlaceBuilding(prefab, data.Position, data.Rotation, parent, slot);
+
+            //foreach (var saveable in instance.GetComponents<IBuildingSaveable>())
+            if (instance.TryGetComponent<IBuildingSaveable>(out IBuildingSaveable saveable))
+            {
+                saveable.ApplySaveData(data);
+            }
+
+            for (int i = 0; i < data.Attachments.Length; i++)
+            {
+                if (data.Attachments[i] != null)
+                    LoadBuilding(data.Attachments[i], instance, instance.AttachmentSlots[i]);
+            }
+        }
+
+    }
+}

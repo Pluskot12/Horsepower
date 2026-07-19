@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e38ac4abfd8d504eacf43f2da130496, type: 3}
+  m_Name: World Object - Medium Crate
+  m_EditorClassIdentifier: CarGame::CarGame.WorldObjectData
+  Id: ff17f726-fcd9-450a-8c74-b98400f5c635
+  variants:
+  - {fileID: 8433775419084928759, guid: 02fbbf2bef5bd88439f1ae9c3613ec61, type: 3}
