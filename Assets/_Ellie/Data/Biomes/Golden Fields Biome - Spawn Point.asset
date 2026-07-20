@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646423e13eabb674985e8580af31d4dd, type: 3}
   m_Name: Golden Fields Biome - Spawn Point
   m_EditorClassIdentifier: CarGame::CarGame.BiomeData
-  icon: {fileID: 21300000, guid: b4d868e761e5f8b4b9f9923e3e259bdf, type: 3}
-  pauseSound: {fileID: 8300000, guid: 55fc9c0da22424641942b025020205fc, type: 3}
+  icon: {fileID: 21300000, guid: 1561d88dc9a9b9947b70768603ac8896, type: 3}
+  pauseSound: {fileID: 8300000, guid: 2bcf4bab8ca90c842a7f0373e7b78fce, type: 3}
   biomeType: 1
   chunkPrefab: {fileID: 5630860628453097293, guid: 71142601db9c0e449a60495d3dd3f532, type: 3}
   terrainType: 0
