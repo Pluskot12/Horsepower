@@ -701,6 +701,8 @@ namespace CarGame
             PlayerGadgets.Instance.LoadData(data.Gadgets);
 
             workshopUpgrades.SetLevel(data.workshopLevel);
+
+            CalculateStats();
         }
 
         public void StartGame()

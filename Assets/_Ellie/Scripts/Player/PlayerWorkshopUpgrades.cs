@@ -67,7 +67,10 @@ namespace CarGame
 
         public void SetLevel(int workshopLevel)
         {
-            upgradeLevel = workshopLevel;
+            for (int i = 0; i < workshopLevel; i++)
+            {
+                Upgrade();
+            }
         }
     }
 }

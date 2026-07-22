@@ -1741,8 +1741,8 @@ MonoBehaviour:
   - {fileID: 189985374325610908}
   - {fileID: 4529228545837432500}
   - {fileID: 7650266328116828577}
-  craftButtonValid: {fileID: 21300000, guid: b885e9d4ba67de74682b7d43addc7a64, type: 3}
-  craftButtonInvalid: {fileID: 21300000, guid: d884f9be6c41f704dbdd4242459a0cb9, type: 3}
+  craftButtonValid: {fileID: 21300000, guid: f3f7a9fe3d5b0a64390a703d0751b8ca, type: 3}
+  craftButtonInvalid: {fileID: 21300000, guid: 96cfc459e2db00b419e2710c4b2b94a9, type: 3}
   upgradeSound: {fileID: 8300000, guid: 0a7f71ef01bc1b34bb21a01614a083ce, type: 3}
   health: {fileID: 5536774371832379968}
   hunger: {fileID: 4662228351138883151}
