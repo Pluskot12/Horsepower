@@ -77,6 +77,9 @@ namespace CarGame
 
         private bool playerInVision;
 
+        public void Knockback(Vector2 value) => controller.Knockback(value);
+
+
         #region Testing
 
         [SerializeField] private Canvas testCanvas;

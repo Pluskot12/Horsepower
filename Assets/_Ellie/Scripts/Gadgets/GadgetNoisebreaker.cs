@@ -13,6 +13,7 @@ namespace CarGame
         //[SerializeField] private int shield = 100;
         [SerializeField] private float duration = 10;
         [SerializeField] private float radius = 10;
+        [SerializeField] private float knockbackForce = 10;
 
         [Header("Audio")]
         [SerializeField] private AudioClip[] hitSounds;
@@ -84,6 +85,8 @@ namespace CarGame
             foreach (var enemy in enemies)
             {
                 enemy.DeAggro();
+                Vector2 knockbackDir = new Vector2(enemy.transform.position.x - transform.position.x, 0).normalized;
+                enemy.Knockback(knockbackDir * knockbackForce);
             }
         }
 
