@@ -470,6 +470,16 @@ namespace CarGame
                 StopCoroutine(alertedState);
         }
 
+
+        public void DeAggro()
+        {
+            visionGauge = 0;
+            OnAggroIncrease?.Invoke(this, visionGauge);
+            StopAlertedState();
+
+            idleRoutine = StartCoroutine(IdleBehavior());
+        }
+
         IEnumerator AlertedCoroutine()
         {
             alerted = true;
@@ -519,5 +529,6 @@ namespace CarGame
             controller.Body.linearVelocity = data.Velocity;
             controller.Body.angularVelocity = data.AngularVelocity;
         }
+
     }
 }

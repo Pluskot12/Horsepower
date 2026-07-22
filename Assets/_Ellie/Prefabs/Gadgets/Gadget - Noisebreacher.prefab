@@ -156,7 +156,7 @@ Transform:
   m_GameObject: {fileID: 8912837614395644210}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.034, y: 0.308, z: 0}
+  m_LocalPosition: {x: 0.034, y: 0.229, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -209,7 +209,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1962667653
   m_SortingLayer: 11
-  m_SortingOrder: 500
+  m_SortingOrder: 49
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: f0883ee6e9f106d47a94663fa24e1a51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -964,15 +964,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee3668949fcecd429f6316a40312ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: CarGame::CarGame.GadgetForceShield
-  cooldown: 30
-  forceShield: {fileID: 7471413438001399516}
-  explosionParts: {fileID: 7157172122134447028}
+  cooldown: 20
+  antenna: {fileID: 8912837614395644210}
+  wave: {fileID: 7471413438001399516}
   duration: 0.075
+  radius: 10
   hitSounds:
   - {fileID: 8300000, guid: 95fa7b681c05d644da714015dcc96a5f, type: 3}
   - {fileID: 8300000, guid: 56c212040d38f984ab98f3a09d7d00f4, type: 3}
-  activateSound: {fileID: 8300000, guid: d3af8092c591eeb418e90709cf6e2431, type: 3}
-  destroyedSound: {fileID: 8300000, guid: 1e1632c8d087533428350cad124f241c, type: 3}
+  activateSound: {fileID: 8300000, guid: 66f76e05259fcd94c8376ce43316e883, type: 3}
+  waveSound: {fileID: 8300000, guid: 06e567caf68105549a943cc9265ba43b, type: 3}
 --- !u!1001 &8191716750441946913
 PrefabInstance:
   m_ObjectHideFlags: 0
