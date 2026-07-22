@@ -478,6 +478,9 @@ namespace CarGame
         {
             visionGauge = 0;
             OnAggroIncrease?.Invoke(this, visionGauge);
+
+            jaw.SetTarget(null);
+
             StopAlertedState();
 
             idleRoutine = StartCoroutine(IdleBehavior());

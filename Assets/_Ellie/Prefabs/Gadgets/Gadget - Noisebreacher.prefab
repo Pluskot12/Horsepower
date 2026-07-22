@@ -209,7 +209,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1962667653
   m_SortingLayer: 11
-  m_SortingOrder: 49
+  m_SortingOrder: 499
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: f0883ee6e9f106d47a94663fa24e1a51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -969,6 +969,7 @@ MonoBehaviour:
   wave: {fileID: 7471413438001399516}
   duration: 0.075
   radius: 10
+  knockbackForce: 15
   hitSounds:
   - {fileID: 8300000, guid: 95fa7b681c05d644da714015dcc96a5f, type: 3}
   - {fileID: 8300000, guid: 56c212040d38f984ab98f3a09d7d00f4, type: 3}
