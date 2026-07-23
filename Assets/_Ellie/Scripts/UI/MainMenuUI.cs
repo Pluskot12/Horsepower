@@ -10,7 +10,10 @@ namespace CarGame
     {
         private const string GAME_SCENE = "Game Scene";
 
+        [SerializeField] private Button startButton;
         [SerializeField] private Button continueButton;
+        [SerializeField] private Button exitButton;
+
         [SerializeField] private TextMeshProUGUI continueText;
         [SerializeField] private Image continueIcon;
         [SerializeField] private Color disabledColor;
@@ -69,6 +72,8 @@ namespace CarGame
 
         public void OnNewGameButton()
         {
+            DisableButtons();
+
             GameManager.NewGame();
 
             // Create new Save Data
@@ -79,6 +84,8 @@ namespace CarGame
 
         public void OnContinueButton()
         {
+            DisableButtons();
+
             GameManager.LoadGame();
 
             StartCoroutine(LoadScene(GAME_SCENE));
@@ -86,9 +93,17 @@ namespace CarGame
 
         public void OnExitButton()
         {
+            DisableButtons();
+
             Application.Quit();
         }
 
+        private void DisableButtons()
+        {
+            startButton.interactable = false;
+            continueButton.interactable = false;
+            exitButton.interactable = false;
+        }
 
     }
 }
