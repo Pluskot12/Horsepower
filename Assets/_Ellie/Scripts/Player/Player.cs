@@ -561,7 +561,7 @@ namespace CarGame
         private float CalcMaxTurbo()
         {
             float turbo = baseTurbo;
-            turbo += workshopUpgrades.CurrentUpgrades.turbo;
+            //turbo += workshopUpgrades.CurrentUpgrades.turbo;
             return turbo;
         }
 

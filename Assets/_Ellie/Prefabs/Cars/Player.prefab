@@ -2102,7 +2102,6 @@ MonoBehaviour:
     hunger: 5
     speed: 10
     horsepower: 20
-    turbo: 1
     items:
     - item: {fileID: 11400000, guid: b76efbbb1d57b89429407bd79e3295c3, type: 2}
       quantity: 1
@@ -2116,7 +2115,6 @@ MonoBehaviour:
     hunger: 5
     speed: 10
     horsepower: 10
-    turbo: 1
     items:
     - item: {fileID: 11400000, guid: b76efbbb1d57b89429407bd79e3295c3, type: 2}
       quantity: 5
@@ -2130,14 +2128,13 @@ MonoBehaviour:
     hunger: 20
     speed: 10
     horsepower: 15
-    turbo: 1
     items:
-    - item: {fileID: 11400000, guid: c3f141448f026854b9d7241f06c384fc, type: 2}
-      quantity: 1
+    - item: {fileID: 11400000, guid: b76efbbb1d57b89429407bd79e3295c3, type: 2}
+      quantity: 15
     - item: {fileID: 11400000, guid: da8b1203d5651ee48b2d217bd2f032b1, type: 2}
       quantity: 20
     - item: {fileID: 11400000, guid: 4dcc7ebdd6bb29f4084677e9a23e453a, type: 2}
-      quantity: 4
+      quantity: 10
     - item: {fileID: 11400000, guid: befdaf7e01e38b541b66973a2153da8d, type: 2}
       quantity: 500
   currentUpgrades:
@@ -2145,7 +2142,6 @@ MonoBehaviour:
     hunger: 0
     speed: 0
     horsepower: 0
-    turbo: 0
     items: []
 --- !u!1 &8387809186573078888
 GameObject:
