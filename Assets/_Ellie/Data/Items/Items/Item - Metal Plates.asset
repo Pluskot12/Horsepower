@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 656456d76bca39b4caf05f6331393574, type: 3}
-  m_Name: Metal Plates
+  m_Name: Item - Metal Plates
   m_EditorClassIdentifier: 
   Id: a5979d7d-ed3d-4713-8ddc-5d086d3a5e91
   displayName: Metal Plates
