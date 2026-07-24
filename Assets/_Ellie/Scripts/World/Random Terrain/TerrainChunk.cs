@@ -337,6 +337,12 @@ namespace CarGame
                     continue;
                 }
 
+                if (hit.transform.TryGetComponent<BiomeDeadEnd>(out BiomeDeadEnd deadEnd))
+                {
+                    Debug.LogWarning("Spawning on deadEnd");
+                    continue;
+                }
+
                 float y = hit.point.y;
                 float worldX = hit.point.x;
 

@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 176283449264792296, guid: 57e68bd4d4cdfe747b1fadb5295f7c7a, type: 3}
       propertyPath: randomLootCrate
       value: 
-      objectReference: {fileID: 3440241662424113678, guid: e436b4f2c26934c4aad7f7d6b2e683a1, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 176283449264792296, guid: 57e68bd4d4cdfe747b1fadb5295f7c7a, type: 3}
       propertyPath: spawnTables.Array.size
       value: 0

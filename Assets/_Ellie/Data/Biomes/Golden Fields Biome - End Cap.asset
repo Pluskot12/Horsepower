@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646423e13eabb674985e8580af31d4dd, type: 3}
+  m_Name: Golden Fields Biome - End Cap
+  m_EditorClassIdentifier: CarGame::CarGame.BiomeData
+  icon: {fileID: 21300000, guid: 1561d88dc9a9b9947b70768603ac8896, type: 3}
+  pauseSound: {fileID: 8300000, guid: 2bcf4bab8ca90c842a7f0373e7b78fce, type: 3}
+  biomeType: 1
+  chunkPrefab: {fileID: 5630860628453097293, guid: 71142601db9c0e449a60495d3dd3f532, type: 3}
+  terrainType: 0
+  smoothness: 0.5
+  noiseScale: 0.1
+  heightAmplitude: 2
+  noiseSeed: 0.5
+  cornerSmoothness: 1
+  tangentStrength: 1
+  profile: {fileID: 11400000, guid: b87539a80439f1d43acd4aac44a03fa9, type: 2}
+  flatChance: 0.35
+  flatMinPoints: 4
+  flatMaxPoints: 8
+  spawningAllowed: 0
+  structureSpawnChance: 0.4
+  structures: []
+  nodes: []
+  interactables: []
+  skySprite:
+    sprite: {fileID: 21300000, guid: 6d07b6b75ca9d274fba3c4aed791104e, type: 3}
+    yOffset: 0
+  horizonSprite:
+    sprite: {fileID: 21300000, guid: 3dc0853f8c19c824d806be204beb1e6e, type: 3}
+    yOffset: 0
+  backgroundSprite:
+    sprite: {fileID: 21300000, guid: ffc4cc9eb6791e043947286bca55ecd2, type: 3}
+    yOffset: 0
+  dayAmbience: {fileID: 8300000, guid: 44cda92a8a3e5dc468fce7a9cddd11d4, type: 3}
+  duskAmbience: {fileID: 0}
+  nightAmbience: {fileID: 0}
+  spawnChance: 0
+  enemies: []
