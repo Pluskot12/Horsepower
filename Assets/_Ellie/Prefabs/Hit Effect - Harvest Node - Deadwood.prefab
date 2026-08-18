@@ -105,12 +105,12 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8498737108188916851}
   randomizeOnAwake: 1
   sprites:
-  - {fileID: 21300000, guid: 8d0e7792a043ab64daba5fb8ad9235e1, type: 3}
-  - {fileID: 21300000, guid: 5c51fbb885ff0ce49bf79541dabcb9b2, type: 3}
-  - {fileID: 21300000, guid: b4809b25337296f4e9529ce0c195084c, type: 3}
-  - {fileID: 21300000, guid: 82f0cab89575b0f4e9c530ee966af600, type: 3}
-  - {fileID: 21300000, guid: 06a5115d2799d684d8185ee4fc24bd9a, type: 3}
-  - {fileID: 21300000, guid: f32c7af77472186479af8865522d70db, type: 3}
+  - {fileID: 21300000, guid: 85d47f8798c234341891071b39e1c60a, type: 3}
+  - {fileID: 21300000, guid: 57862ac28c61a9e4f8243cc43cacd533, type: 3}
+  - {fileID: 21300000, guid: 78a3403fbb2c582418e6f7bb1d205426, type: 3}
+  - {fileID: 21300000, guid: b13c30f752f2e0b43ade30c25ad3d524, type: 3}
+  - {fileID: 21300000, guid: c4c5d14309d1792428c24f91c86664ed, type: 3}
+  - {fileID: 21300000, guid: 9b87409f516d09c4d9d283b046f06ef4, type: 3}
 --- !u!50 &5593950247779618077
 Rigidbody2D:
   serializedVersion: 5
@@ -273,5 +273,5 @@ SpriteRenderer:
   m_Size: {x: 0.08, y: 0.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0

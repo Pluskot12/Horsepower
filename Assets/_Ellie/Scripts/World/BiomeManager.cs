@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +17,8 @@ namespace CarGame
 
         public UnityEvent<BiomeData> OnBiomeChanged;
 
+        public event Action<Player> PlayerLeftDeadEnd;
+
         private void Awake()
         {
             Instance = this;
@@ -23,17 +26,26 @@ namespace CarGame
             currentBiome = defaultBiome;
         }
 
-        public void OnBiomeChange(Biome biome) 
+        private bool inDeadEnd;
+
+        public void OnBiomeChange(Biome biome)
         {
-            if (biome.Data == null) 
+            if (biome.Data == null)
             {
                 Debug.LogWarning("No BiomeData set for " + biome.gameObject.name);
                 return;
             }
 
-            if (biome.Type == BiomeType.DeadEnd) 
+            if (biome.Type == BiomeType.DeadEnd)
             {
+                inDeadEnd = true;
                 return;
+            }
+            else if (inDeadEnd)
+            {
+                inDeadEnd = false;
+
+                PlayerLeftDeadEnd?.Invoke(GameManager.Instance.Player);
             }
 
             if (currentBiomeType != biome.Type)

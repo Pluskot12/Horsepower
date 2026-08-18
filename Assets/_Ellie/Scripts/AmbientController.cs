@@ -73,10 +73,35 @@ namespace CarGame
                 PlayAmbient(biome.dayAmbience, 1f);
         }
 
-        public void SetTime(float time)
+        public void SetTime(float time, float dayLength)
         {
             currentTime = time;
             previousTime = time;
+
+            var active = GetActiveAmbientForTime(time, dayLength);
+            if (active != null)
+            {
+                PlayAmbient(active);
+            }
+        }
+
+        private Ambient GetActiveAmbientForTime(float time, float dayLength)
+        {
+            Ambient best = null;
+            float bestDelta = float.MaxValue;
+
+            foreach (var e in ambient)
+            {
+                float delta = Mathf.Repeat(time - e.triggerTime, dayLength);
+
+                if (delta < bestDelta)
+                {
+                    bestDelta = delta;
+                    best = e;
+                }
+            }
+            Debug.Log(best.triggerName);
+            return best;
         }
 
         bool ignoreFirst = true;
@@ -108,6 +133,7 @@ namespace CarGame
             {
                 if (DidTimeCross(previousTime, currentTime, e.triggerTime))
                 {
+
                     PlayAmbient(e);
                 }
             }
@@ -135,6 +161,11 @@ namespace CarGame
         private void PlaySoundEffect(SoundEffectEvent e)
         {
             // Debug.Log("SoundEvent Trigger: " + e.triggerName);
+            if (e.clip == null)
+            {
+                Debug.Log("No clip for " + e.triggerName);
+                return;
+            }
 
             effectAudioSource.PlayOneShot(e.clip);
         }

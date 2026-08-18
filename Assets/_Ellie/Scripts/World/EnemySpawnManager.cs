@@ -16,7 +16,7 @@ namespace CarGame
 
         [Header("References")]
         [SerializeField] private Camera cam;
-        [SerializeField] private EnemyController enemyPrefab;
+        [SerializeField] private EnemyData enemyData;
         [SerializeField] private LayerMask groundLayer;
 
         [Header("Settings")]
@@ -25,7 +25,7 @@ namespace CarGame
         [SerializeField] private float baseSpawnInterval = 2;
         [SerializeField, Range(0, 100f)] private float baseSpawnChance = 100;
 
-        public List<EnemyController> randomSpawnedEnemies = new List<EnemyController>();
+        public List<EnemyController> spawnedEnemies = new List<EnemyController>();
 
         //private Vector3 left = new Vector2(-1, 0);
         //private Vector3 right = new Vector2(2, 0);
@@ -187,13 +187,13 @@ namespace CarGame
 
             if (Input.GetKeyDown(KeyCode.J))
             {
-                /*
+                return;
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 worldPosition.z = 0;
-                var e = SpawnEnemy(enemyPrefab, worldPosition);
-                randomSpawnedEnemies.Add(e);
+                var e = SpawnEnemy(enemyData.Prefab, worldPosition, Quaternion.identity, true);
+                // spawnedEnemies.Add(e);
                 //SpawnRandomEnemyOffScreen();
-                */
+
             }
 
             if (!canSpawn || GameManager.Instance.Player.IsDead)
@@ -216,11 +216,11 @@ namespace CarGame
 
         private void TrySpawnRandomEnemy(Side side = Side.Random)
         {
-            randomSpawnedEnemies.RemoveAll(enemy => enemy == null);
+            spawnedEnemies.RemoveAll(enemy => enemy == null);
 
-            if (randomSpawnedEnemies.Count >= maxRandomEnemies)
+            if (spawnedEnemies.Count >= maxRandomEnemies)
             {
-                foreach (var enemy in randomSpawnedEnemies)
+                foreach (var enemy in spawnedEnemies)
                 {
                     if (Vector2.Distance(GameManager.Instance.Player.transform.position, enemy.transform.position) > randomEnemyMaxDistnace)
                     {
@@ -228,9 +228,9 @@ namespace CarGame
                     }
                 }
 
-                randomSpawnedEnemies.RemoveAll(enemy => enemy == null);
+                spawnedEnemies.RemoveAll(enemy => enemy == null);
 
-                if (randomSpawnedEnemies.Count >= maxRandomEnemies)
+                if (spawnedEnemies.Count >= maxRandomEnemies)
                 {
                     return;
                 }
@@ -358,7 +358,7 @@ namespace CarGame
                 e.AlignToGround();
             }
 
-            randomSpawnedEnemies.Add(e);
+            spawnedEnemies.Add(e);
 
             return e;
         }
@@ -397,7 +397,7 @@ namespace CarGame
 
         public List<EnemySaveData> GetSaveData()
         {
-            return randomSpawnedEnemies.Where(enemy => enemy != null).Select(enemy => enemy.GetSaveData()).ToList();
+            return spawnedEnemies.Where(enemy => enemy != null).Select(enemy => enemy.GetSaveData()).ToList();
         }
 
         public void LoadData(List<EnemySaveData> data)
@@ -418,6 +418,21 @@ namespace CarGame
         public EnemyController GetEnemyWithId(string id)
         {
             return database.GetById(id).Prefab;
+        }
+
+        public List<EnemyController> GetEnemiesWithinRadius(Transform center, float radius)
+        {
+            List<EnemyController> enemies = new List<EnemyController>();
+
+            foreach (var enemy in spawnedEnemies)
+            {
+                if (Vector2.Distance(enemy.transform.position, center.position) <= radius)
+                {
+                    enemies.Add(enemy);
+                }
+            }
+
+            return enemies;
         }
     }
 }

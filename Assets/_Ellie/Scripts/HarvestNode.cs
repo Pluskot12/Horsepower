@@ -8,7 +8,8 @@ namespace CarGame
     public interface IRespawnable
     {
         public void Respawn();
-        public void Init(int variant, TerrainChunk chunk);
+        public void Init(int variant, TerrainChunk chunk, Vector3 position);
+        public Vector3 Position { get; set; }
     }
 
 
@@ -41,6 +42,8 @@ namespace CarGame
         [SerializeField] private TerrainChunk chunk;
         private int maxHealth;
 
+        public Vector3 Position { get; set; }
+
         public enum HarvestType
         {
             None,
@@ -51,9 +54,6 @@ namespace CarGame
         int variant;
 
         public HarvestType Type => type;
-
-
-        float respawnTime => TimeManager.Instance.DayLength * 0.5f;
 
 
         public void Respawn()
@@ -69,10 +69,12 @@ namespace CarGame
             maxHealth = health;
         }
 
-        public void Init(int variant, TerrainChunk chunk)
+        public void Init(int variant, TerrainChunk chunk, Vector3 position)
         {
             this.variant = variant;
             this.chunk = chunk;
+
+            Position = position;
         }
 
         public void SetData(WorldObjectData data)
@@ -121,7 +123,7 @@ namespace CarGame
 
             if (chunk)
             {
-                chunk.OnHarvest(this, respawnTime);
+                chunk.OnHarvest(this, TimeManager.Instance.ResourceRespawnTime);
             }
             else
             {
@@ -172,7 +174,7 @@ namespace CarGame
             if (health <= 0)
             {
                 SetActive(false);
-                chunk.OnHarvest(this, respawnTime);
+                chunk.OnHarvest(this, TimeManager.Instance.ResourceRespawnTime);
             }
         }
     }

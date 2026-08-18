@@ -150,6 +150,28 @@ namespace CarGame
         {
             public EnemyData enemy;
             [Range(0, 100f)] public int chance;
+
+            [Header("Spawn Time Window")]
+            public bool restrictToTime = false;
+            [Range(0, 1200f)] public float startTime = 0f;
+            [Range(0, 1200f)] public float endTime = 1200f;
+
+            public bool CanSpawn(float currentTime)
+            {
+                if (!restrictToTime)
+                {
+                    return true;
+                }
+
+                if (startTime <= endTime)
+                {
+                    return currentTime >= startTime && currentTime <= endTime;
+                }
+                else
+                {
+                    return currentTime >= startTime || currentTime <= endTime;
+                }
+            }
         }
 
         [System.Serializable]
@@ -175,11 +197,20 @@ namespace CarGame
 
         public EnemyController GetEnemy()
         {
-            int totalWeight = 0;
+            float time = TimeManager.Instance.GetCurrentTime();
 
+            int totalWeight = 0;
             foreach (var e in enemies)
             {
-                totalWeight += e.chance;
+                if (e.CanSpawn(time))
+                {
+                    totalWeight += e.chance;
+                }
+            }
+
+            if (totalWeight <= 0)
+            {
+                return null;
             }
 
             int random = Random.Range(0, totalWeight);
@@ -187,9 +218,14 @@ namespace CarGame
 
             foreach (var e in enemies)
             {
+                if (!e.CanSpawn(time))
+                {
+                    continue;
+                }
+
                 cumulative += e.chance;
 
-                if (random <= cumulative)
+                if (random < cumulative)
                 {
                     return e.enemy.Prefab;
                 }

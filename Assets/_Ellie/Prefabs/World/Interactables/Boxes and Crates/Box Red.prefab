@@ -227,7 +227,7 @@ PrefabInstance:
     - target: {fileID: 6071029442316892069, guid: 5308862eaed65bd47ab704ea665fdbbd, type: 3}
       propertyPath: 'onDestroyAudio.Array.data[1]'
       value: 
-      objectReference: {fileID: 8300000, guid: 68d3a362f1995a64f948c180c3d27ec6, type: 3}
+      objectReference: {fileID: 8300000, guid: ecdda5449f991654eb7736055055db4f, type: 3}
     - target: {fileID: 6071029442316892069, guid: 5308862eaed65bd47ab704ea665fdbbd, type: 3}
       propertyPath: items.Array.data[0].dropChance
       value: 40

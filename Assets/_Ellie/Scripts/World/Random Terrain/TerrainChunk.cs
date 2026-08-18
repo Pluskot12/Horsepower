@@ -337,6 +337,12 @@ namespace CarGame
                     continue;
                 }
 
+                if (hit.transform.TryGetComponent<BiomeDeadEnd>(out BiomeDeadEnd deadEnd))
+                {
+                    Debug.LogWarning("Spawning on deadEnd");
+                    continue;
+                }
+
                 float y = hit.point.y;
                 float worldX = hit.point.x;
 
@@ -353,7 +359,7 @@ namespace CarGame
                 var spawnedObject = Instantiate(prefab, position, Quaternion.identity, parent);
                 if (spawnedObject.TryGetComponent(out IRespawnable s))
                 {
-                    s.Init(variant, this);
+                    s.Init(variant, this, position);
                 }
                 else
                 {
@@ -534,7 +540,14 @@ namespace CarGame
         {
             yield return new WaitForSeconds(respawnTime);
 
-            o.Respawn();
+            if (GameManager.Instance.IsVisibleOnScreen(o.Position, 1f))
+            {
+                StartCoroutine(RespawnObject(o, 10f));
+            }
+            else
+            {
+                o.Respawn();
+            }
         }
 
         public ChunkSaveData GetSaveData()
@@ -569,7 +582,7 @@ namespace CarGame
                 prefab = variant.GetComponent<HarvestNode>();
 
                 var instance = Instantiate(prefab, node.Position, node.Rotation, transform);
-                instance.Init(node.Variant, this);
+                instance.Init(node.Variant, this, node.Position);
                 instance.Setup(node);
                 spawnedObjects.Add(instance.gameObject);
             }
@@ -579,7 +592,7 @@ namespace CarGame
                 variant = GameManager.Instance.WorldObjectDatabase.GetById(interactable.Id).variants[interactable.Variant];
                 interactablePrefab = variant.GetComponent<ItemContainer>();
                 var instance = Instantiate(interactablePrefab, interactable.Position, interactable.Rotation, transform);
-                instance.Init(interactable.Variant, this);
+                instance.Init(interactable.Variant, this, interactable.Position);
                 //instance.Setup(interactable);
                 spawnedObjects.Add(instance.gameObject);
             }

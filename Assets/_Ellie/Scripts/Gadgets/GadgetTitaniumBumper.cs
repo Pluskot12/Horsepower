@@ -88,8 +88,6 @@ namespace CarGame
             {
                 if (collision.attachedRigidbody.TryGetComponent<CarController>(out CarController car))
                 {
-
-
                     Vector2 knockbackDir = new Vector2(car.transform.position.x - player.CarController.transform.position.x, verticalKnockbackFactor * KnockbackChargeMulti()).normalized;
                     Knockback(player.CarController, new Vector2(-knockbackDir.x * playerKnockbackMultiplier, Mathf.Abs(knockbackDir.y)));
                     Knockback(car, knockbackDir);
@@ -101,11 +99,9 @@ namespace CarGame
                         c.TryDamage(GetDamage(), player.gameObject);
                     }
 
-
                     SoundManager.PlayRandomSFX(hitSounds, transform.position);
 
                     gadget.StartCooldown(Cooldown);
-
 
                     CameraManager.Instance.Shake(1f * KnockbackChargeMulti());
                 }

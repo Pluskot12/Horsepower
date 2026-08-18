@@ -66,6 +66,12 @@ namespace CarGame
 
         public int TryAdd(ItemData item, int quantity, int durability)
         {
+            if (item == null)
+            {
+                Debug.LogWarning("Trying to add null item");
+                return 0;
+            }
+
             int remaining = quantity;
 
             #region Special Case for Weapons

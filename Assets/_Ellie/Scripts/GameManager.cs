@@ -35,7 +35,12 @@ namespace CarGame
 
             defaultSpawnPoint = spawnPoint;
         }
+        [SerializeField] private float startTime = 1100;
 
+        private void Start()
+        {
+            //TimeManager.Instance.SetTime(startTime);
+        }
         public void Init()
         {
             Time.timeScale = 0;
@@ -48,6 +53,7 @@ namespace CarGame
             else
             {
                 TerrainManager.Instance.GenerateNewWorld();
+                TimeManager.Instance.SetTime(startTime);
                 player.StartGame();
 
             }
