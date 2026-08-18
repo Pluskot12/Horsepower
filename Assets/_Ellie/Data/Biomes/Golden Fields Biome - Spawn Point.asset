@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646423e13eabb674985e8580af31d4dd, type: 3}
   m_Name: Golden Fields Biome - Spawn Point
   m_EditorClassIdentifier: CarGame::CarGame.BiomeData
-  icon: {fileID: 21300000, guid: b4d868e761e5f8b4b9f9923e3e259bdf, type: 3}
-  pauseSound: {fileID: 8300000, guid: 55fc9c0da22424641942b025020205fc, type: 3}
+  icon: {fileID: 21300000, guid: 1561d88dc9a9b9947b70768603ac8896, type: 3}
+  pauseSound: {fileID: 8300000, guid: 2bcf4bab8ca90c842a7f0373e7b78fce, type: 3}
   biomeType: 1
   chunkPrefab: {fileID: 5630860628453097293, guid: 71142601db9c0e449a60495d3dd3f532, type: 3}
   terrainType: 0
@@ -43,17 +43,37 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: ffc4cc9eb6791e043947286bca55ecd2, type: 3}
     yOffset: 0
   dayAmbience: {fileID: 8300000, guid: 44cda92a8a3e5dc468fce7a9cddd11d4, type: 3}
-  duskAmbience: {fileID: 0}
-  nightAmbience: {fileID: 0}
+  duskAmbience: {fileID: 8300000, guid: 682395497c09f1d49ac74d624f0535a2, type: 3}
+  nightAmbience: {fileID: 8300000, guid: 837ded9a767002740975c595c822ca9b, type: 3}
   spawnChance: 0.25
   enemies:
   - enemy: {fileID: 11400000, guid: 07306dd47e209df44abe8c9bdc168029, type: 2}
     chance: 50
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
   - enemy: {fileID: 11400000, guid: 75649ed2aa32a9a4fa793ead7b82f273, type: 2}
     chance: 40
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
   - enemy: {fileID: 11400000, guid: 78de095c88ef99449bee433523b665b1, type: 2}
     chance: 30
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
   - enemy: {fileID: 11400000, guid: c65642409fda2384c8c1a78d44f35d17, type: 2}
     chance: 20
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
   - enemy: {fileID: 11400000, guid: be6ea22b098aa754c8ae7732b87051a5, type: 2}
     chance: 10
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
+  - enemy: {fileID: 11400000, guid: f6d463ed66d6ad34bb4119d796cac167, type: 2}
+    chance: 30
+    restrictToTime: 1
+    startTime: 520
+    endTime: 880

@@ -8,6 +8,7 @@ namespace CarGame
         public int CurrentHealth { get; set; }
 
         public void TryDamage(int damage, GameObject attacker, bool triggerEffects = true);
+        public void TryDamagePercentage(float percent, GameObject attacker, bool triggerEffects = true);
 
         public void OnHit(int damage, bool triggerEffects);
         public void OnDeath();

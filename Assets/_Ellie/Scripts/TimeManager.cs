@@ -26,6 +26,8 @@ namespace CarGame
         public float DuskStartTime => duskStartTime;
         public float NightStartTime => nightStartTime;
 
+        public float ResourceRespawnTime => 60f * 2f;
+
         public enum TimeOfDay
         {
             Day,
@@ -211,7 +213,7 @@ namespace CarGame
         {
             currentTime = time;
 
-            ambienceController.SetTime(time);
+            ambienceController.SetTime(time, DayLength);
         }
     }
 }

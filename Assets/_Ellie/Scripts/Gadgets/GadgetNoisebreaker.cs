@@ -7,20 +7,26 @@ namespace CarGame
 {
     public class GadgetNoisebreaker : GadgetAbility
     {
-        [SerializeField] private SpriteRenderer forceShield;
-        [SerializeField] private GameObject explosionParts;
+        [SerializeField] private GameObject antenna;
+        [SerializeField] private SpriteRenderer wave;
+        //[SerializeField] private GameObject explosionParts;
         //[SerializeField] private int shield = 100;
         [SerializeField] private float duration = 10;
+        [SerializeField] private float radius = 10;
+        [SerializeField] private float knockbackForce = 10;
 
         [Header("Audio")]
         [SerializeField] private AudioClip[] hitSounds;
         [SerializeField] private AudioClip activateSound;
-        [SerializeField] private AudioClip destroyedSound;
+        [SerializeField] private AudioClip waveSound;
+
+        Vector3 antennaStartPos;
 
         public override void OnEquip(Player player)
         {
             //player.SetShield(shield);
-            forceShield.transform.localScale = Vector3.zero;
+            antennaStartPos = antenna.transform.localPosition;
+            wave.transform.localScale = Vector3.zero;
 
             player.OnAttacked += OnHit;
         }
@@ -44,11 +50,18 @@ namespace CarGame
             // shieldActive = true;
             // player.SetShield(true);
 
-            Tween.Alpha(forceShield, 0, 1f, 0.25f);
-            Tween.Scale(forceShield.transform, 0, 1f, 0.25f, ease: Ease.OutBack);
+            Sequence.Create()
+                .Chain(Tween.LocalPositionY(antenna.transform, 0.369f, 0.2f))
+                .ChainCallback(() => Zap())
+                .Chain(Tween.Alpha(wave, 0, 1f, 1))
+                .Group(Tween.Scale(wave.transform, 0, 1f, 1f, ease: Ease.OutBack))
+
+                .Chain(Tween.Alpha(wave, 0, 1))
+                .Chain(Tween.LocalPositionY(antenna.transform, antennaStartPos.y, 0.2f));
+
 
             yield return new WaitForSeconds(duration);
-            Tween.Alpha(forceShield, 0, 0.075f);
+
 
 
             //SoundManager.PlaySFX(destroyedSound, transform.position);
@@ -61,6 +74,20 @@ namespace CarGame
             // Destroy(instance, 10f);
             // shieldActive = false;
             // player.SetShield(false);
+        }
+
+        private void Zap()
+        {
+            SoundManager.PlaySFX(waveSound, transform.position);
+
+            var enemies = EnemySpawnManager.Instance.GetEnemiesWithinRadius(transform, radius);
+
+            foreach (var enemy in enemies)
+            {
+                enemy.DeAggro();
+                Vector2 knockbackDir = new Vector2(enemy.transform.position.x - transform.position.x, 0).normalized;
+                enemy.Knockback(knockbackDir * knockbackForce);
+            }
         }
 
         public void OnHit(int damage)

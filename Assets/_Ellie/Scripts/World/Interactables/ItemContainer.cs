@@ -28,17 +28,19 @@ namespace CarGame
 
         int variant;
 
-        float respawnTime => TimeManager.Instance.DayLength * 0.5f;
+
+        public Vector3 Position { get; set; }
 
         public void Respawn()
         {
             SetActive(true);
         }
-
-        public void Init(int variant, TerrainChunk chunk)
+        public void Init(int variant, TerrainChunk chunk, Vector3 position)
         {
             this.variant = variant;
             this.chunk = chunk;
+
+            Position = position;
         }
 
         public void TryInteract()
@@ -66,7 +68,7 @@ namespace CarGame
 
             if (chunk)
             {
-                chunk.OnHarvest(this, respawnTime);
+                chunk.OnHarvest(this, TimeManager.Instance.ResourceRespawnTime);
             }
             else
             {

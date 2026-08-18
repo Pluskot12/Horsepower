@@ -16,5 +16,13 @@ namespace CarGame
                 Id = System.Guid.NewGuid().ToString();
             }
         }
+
+        /*
+        [Button("Create new Id")]
+        private void RegenId()
+        {
+            Id = System.Guid.NewGuid().ToString();
+        }
+        */
     }
 }

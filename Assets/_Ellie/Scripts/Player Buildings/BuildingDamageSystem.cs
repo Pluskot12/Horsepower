@@ -38,6 +38,13 @@ namespace CarGame
             CurrentHealth = MaxHealth;
         }
 
+
+        public void TryDamagePercentage(float percent, GameObject attacker = null, bool triggerEffects = true)
+        {
+            int damage = Mathf.RoundToInt(MaxHealth * percent);
+            TryDamage(damage, attacker, triggerEffects);
+        }
+
         public void TryDamage(int damage, GameObject attacker, bool triggerEffects)
         {
 

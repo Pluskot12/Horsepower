@@ -793,6 +793,14 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7901404810430939016, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
+      propertyPath: dropTables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901404810430939016, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
+      propertyPath: 'dropTables.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b019d7808e33384a8cae06b696b8baa, type: 2}
+    - target: {fileID: 7901404810430939016, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
       propertyPath: 'idleSounds.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: e843597cd92488b49b3cc3d7cf5a40f7, type: 3}
@@ -812,6 +820,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.76
       objectReference: {fileID: 0}
+    - target: {fileID: 8357154603331554288, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c304c6a1e40214d49bb77efa8ae9204c, type: 3}
     - target: {fileID: 8378099161754734390, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -820,6 +832,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8715060666108646063, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c304c6a1e40214d49bb77efa8ae9204c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

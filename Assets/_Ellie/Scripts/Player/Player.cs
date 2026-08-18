@@ -454,6 +454,12 @@ namespace CarGame
             noiseGenerator.GenerateNoise(multiplier);
         }
 
+        public void TryDamagePercentage(float percent, GameObject attacker = null, bool triggerEffects = true)
+        {
+            int damage = Mathf.RoundToInt(MaxHealth * percent);
+            TryDamage(damage, attacker, triggerEffects);
+        }
+
         public void TryDamage(int damage, GameObject attacker = null, bool triggerEffects = true)
         {
             OnAttacked?.Invoke(damage);
@@ -488,8 +494,6 @@ namespace CarGame
                 CameraManager.Instance.Shake(1f);
                 OnHit(damage, triggerEffects);
             }
-
-
         }
 
         private float speedUpgrade;
@@ -561,7 +565,7 @@ namespace CarGame
         private float CalcMaxTurbo()
         {
             float turbo = baseTurbo;
-            turbo += workshopUpgrades.CurrentUpgrades.turbo;
+            //turbo += workshopUpgrades.CurrentUpgrades.turbo;
             return turbo;
         }
 
@@ -636,6 +640,11 @@ namespace CarGame
 
         private bool CanTakeDamage()
         {
+            if (IsDead)
+            {
+                return false;
+            }
+
             if (dash.IsImmune)
             {
                 return false;
@@ -701,6 +710,8 @@ namespace CarGame
             PlayerGadgets.Instance.LoadData(data.Gadgets);
 
             workshopUpgrades.SetLevel(data.workshopLevel);
+
+            CalculateStats();
         }
 
         public void StartGame()

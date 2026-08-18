@@ -260,6 +260,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.075
       objectReference: {fileID: 0}
+    - target: {fileID: 5917359543390729762, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.167
+      objectReference: {fileID: 0}
     - target: {fileID: 6951422110953766015, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4
@@ -272,6 +276,14 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 07306dd47e209df44abe8c9bdc168029, type: 2}
+    - target: {fileID: 7901404810430939016, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
+      propertyPath: dropTables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901404810430939016, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
+      propertyPath: 'dropTables.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 855f06e84d53ba14890c848bea35e73a, type: 2}
     - target: {fileID: 8295549099331673474, guid: e07c9f67501a53e44a16ded9bc670a1d, type: 3}
       propertyPath: m_Mass
       value: 200

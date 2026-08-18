@@ -12,7 +12,7 @@ namespace CarGame
             public int hunger;
             public int speed;
             public int horsepower;
-            public int turbo;
+            //public int turbo;
 
             [Header("Required Items")]
             public Ingredient[] items;
@@ -39,7 +39,7 @@ namespace CarGame
             currentUpgrades.hunger += u.hunger;
             currentUpgrades.speed += u.speed;
             currentUpgrades.horsepower += u.horsepower;
-            currentUpgrades.turbo += u.turbo;
+            //currentUpgrades.turbo += u.turbo;
 
             upgradeLevel++;
         }
@@ -67,7 +67,10 @@ namespace CarGame
 
         public void SetLevel(int workshopLevel)
         {
-            upgradeLevel = workshopLevel;
+            for (int i = 0; i < workshopLevel; i++)
+            {
+                Upgrade();
+            }
         }
     }
 }

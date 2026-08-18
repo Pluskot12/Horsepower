@@ -14,7 +14,9 @@ namespace CarGame
         [SerializeField] private RectTransform rect;
         [SerializeField] private Workshop workshop;
         [SerializeField] private Image maxedImage;
+        [SerializeField] private TextMeshProUGUI maxedText;
 
+        [SerializeField] private RectTransform upgradeParent;
         [SerializeField] private Button craftButton;
         [SerializeField] private CraftingIngredientItemUI[] slots;
         [SerializeField] private Sprite craftButtonValid;
@@ -29,7 +31,7 @@ namespace CarGame
         [SerializeField] private TextMeshProUGUI hunger;
         [SerializeField] private TextMeshProUGUI speed;
         [SerializeField] private TextMeshProUGUI horsepower;
-        [SerializeField] private TextMeshProUGUI turbo;
+        // [SerializeField] private TextMeshProUGUI turbo;
 
         [Header("Stars")]
         [SerializeField] private StarUI[] stars;
@@ -49,7 +51,8 @@ namespace CarGame
         private void Awake()
         {
             // currentRecipe = upgrades[0].items;
-
+            maxedImage.enabled = false;
+            maxedText.enabled = false;
 
             animationParent.anchoredPosition = new Vector2(0, offPosition);
         }
@@ -89,6 +92,14 @@ namespace CarGame
             if (player.WorkshopUpgrades.IsMax())
             {
                 maxedImage.enabled = true;
+                maxedText.enabled = true;
+
+                health.text = "";
+                hunger.text = "";
+                speed.text = "";
+                horsepower.text = "";
+
+                upgradeParent.gameObject.SetActive(false);
 
                 if (animate)
                 {
@@ -98,6 +109,11 @@ namespace CarGame
             else
             {
                 maxedImage.enabled = false;
+                maxedText.enabled = false;
+
+
+                upgradeParent.gameObject.SetActive(true);
+
                 currentRecipe = player.WorkshopUpgrades.GetNextUpgrade().items;
                 UpdateSlots();
             }
@@ -114,7 +130,7 @@ namespace CarGame
             hunger.text = "+" + upgrades.hunger;
             speed.text = "+" + upgrades.speed;
             horsepower.text = "+" + upgrades.horsepower;
-            turbo.text = "+" + upgrades.turbo;
+            //turbo.text = "+" + upgrades.turbo;
         }
 
         public void UpdateSlots()
