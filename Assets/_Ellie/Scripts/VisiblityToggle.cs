@@ -16,20 +16,20 @@ public class VisiblityToggle : MonoBehaviour
 
     private void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.P)) 
+
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (visible)
             {
                 layoutGroup.alpha = 0;
                 visible = false;
             }
-            else 
+            else
             {
                 layoutGroup.alpha = 1;
                 visible = true;
             }
-        }*/
+        }
     }
 
     [SerializeField] private TextMeshProUGUI performanceLabel;

@@ -55,7 +55,7 @@ namespace CarGame
 
                     if (instance.TryGetComponent<IRespawnable>(out IRespawnable respawnable))
                     {
-                        respawnable.Init(variant, chunk);
+                        respawnable.Init(variant, chunk, spawnPos);
                     }
                 }
             }
@@ -71,11 +71,9 @@ namespace CarGame
             Vector3 spawnPos = GetPositionWithMinDistance();
             if (spawnPos != Vector3.zero)
             {
-
-
                 if (GameManager.Instance.IsVisibleOnScreen(spawnPos, 1f))
                 {
-                    StartCoroutine(RespawnChest());
+                    StartCoroutine(RespawnChest(10f));
                     return;
                 }
 
@@ -124,12 +122,12 @@ namespace CarGame
         {
             spawnedPositions.Remove(randomLootCratePosition);
 
-            StartCoroutine(RespawnChest());
+            StartCoroutine(RespawnChest(TimeManager.Instance.ResourceRespawnTime));
         }
 
-        private IEnumerator RespawnChest()
+        private IEnumerator RespawnChest(float respawnTime)
         {
-            float respawnTime = Random.Range(TimeManager.Instance.DayLength, TimeManager.Instance.DayLength * 2F);
+            // float respawnTime = Random.Range(TimeManager.Instance.DayLength, TimeManager.Instance.DayLength * 2F);
             // respawnTime = 1f;
             yield return new WaitForSeconds(respawnTime);
 

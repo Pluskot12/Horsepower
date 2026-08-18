@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422aaab529623e34c9d130fd1f01243b, type: 3}
   m_Name: Enemy - Roadbuster
   m_EditorClassIdentifier: CarGame::CarGame.EnemyData
-  Id: 0939408c-ddfa-4b7a-8695-9941384c5d89
+  Id: bbc42078-dbaa-4579-bc4b-d52cecc3abf3
   Prefab: {fileID: 8133407921476846474, guid: 6552488ebca3a33488efa017aeaea79a, type: 3}

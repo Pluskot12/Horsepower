@@ -45,6 +45,7 @@ namespace CarGame
 
         [HideInInspector] public UnityEvent OnCarTurned;
 
+        public float enginePitchOffset;
         public Rigidbody2D Body => car;
 
         private float moveInput;
@@ -91,6 +92,7 @@ namespace CarGame
                 return;
 
             float targetPitch = (Mathf.Abs(moveInput) > 0.01f) ? maxPitch : minPitch;
+            targetPitch += enginePitchOffset;
             engineAudio.pitch = Mathf.Lerp(engineAudio.pitch, targetPitch, Time.deltaTime * pitchLerpSpeed);
         }
 
@@ -416,6 +418,11 @@ namespace CarGame
             return null;
         }
 
+        public void SetEnginePitch(float v)
+        {
+            engineAudio.time = UnityEngine.Random.Range(0, engineAudio.clip.length);
+            enginePitchOffset = v;
+        }
 
         public float GetMaxSpeed()
         {

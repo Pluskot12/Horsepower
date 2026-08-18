@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5630860628453097293}
   - component: {fileID: 7414350653756162828}
   - component: {fileID: 1527075257162891431}
-  - component: {fileID: 3947467197447858246}
   - component: {fileID: 4986098856963105770}
   m_Layer: 8
   m_Name: Chunk
@@ -56,11 +55,13 @@ MonoBehaviour:
   startHeight: 0
   globalXOffset: 0
   biomeData: {fileID: 0}
+  CanBuild: 1
   flatAreas: []
   structureMask:
     serializedVersion: 2
     m_Bits: 1048576
   debug: 0
+  spawnedObjects: []
   slicedAreas: []
 --- !u!1971053207 &7414350653756162828
 SpriteShapeRenderer:
@@ -115,7 +116,6 @@ SpriteShapeRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_ShapeTexture: {fileID: 2800000, guid: 9d1bb1fe29675c842a484571acc84db0, type: 3}
   m_Sprites:
-  - {fileID: 21300000, guid: 29c7d77ca56b253499e29cadab05a268, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
@@ -125,8 +125,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: -9.441709, z: 0}
-    m_Extent: {x: 10.000001, y: 10.558293, z: 0}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_SpriteSortPoint: 0
 --- !u!114 &1527075257162891431
 MonoBehaviour:
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EnableTangents: 1
   m_GeometryCached: 0
   m_UTess2D: 1
-  m_UpdateShadow: 1
+  m_UpdateShadow: 0
   m_ShadowDetail: 16
   m_ShadowOffset: 0.5
   m_BoundsScale: 2
@@ -198,69 +198,16 @@ MonoBehaviour:
   m_Modifiers: []
   m_ColliderSegment:
   - {x: -10, y: -20}
-  - {x: -10, y: 0.622084}
-  - {x: 9.999996, y: 0.622084}
+  - {x: -10, y: 0.686584}
+  - {x: 10, y: 0.686584}
   - {x: 10, y: -20}
   - {x: -10, y: -20}
   m_ShadowSegment:
   - {x: -10, y: -20}
-  - {x: -10, y: 1.116584}
-  - {x: 9.999996, y: 1.116584}
+  - {x: -10, y: 0.686584}
+  - {x: 10, y: 0.686584}
   - {x: 10, y: -20}
   - {x: -10, y: -20}
---- !u!114 &3947467197447858246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314674933642797288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
-  m_ShadowGroup: 0
-  m_Priority: 0
-  m_ComponentVersion: 5
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_AlphaCutoff: 1
-  m_ApplyToSortingLayers: 00000000d5decf3b3dd2bb627732d0787b11048b255f95a4cf485f8e1b0de68bd36f3dacf57b15ce0bb82af9b9228119
-  m_ShapePath:
-  - {x: -726.8313, y: -74.29198, z: 0}
-  - {x: -726.8313, y: 168.49455, z: 0}
-  - {x: 834.82495, y: 168.49455, z: 0}
-  - {x: 834.82495, y: -74.29198, z: 0}
-  m_ShapePathHash: 0
-  m_InstanceId: 0
-  m_ShadowShape2DComponent: {fileID: 1527075257162891431}
-  m_ShadowShape2DProvider:
-    rid: 4460081373390045432
-  m_ShadowCastingSource: 2
-  m_ShadowMesh:
-    m_Mesh: {fileID: 0}
-    m_LocalBounds:
-      m_Center: {x: 0, y: -9.441711, z: 0}
-      m_Extent: {x: 9.350006, y: 9.908295, z: 0}
-    m_EdgeProcessing: 1
-    m_TrimEdge: 0.65
-    m_FlipX: 0
-    m_FlipY: 0
-    m_InitialTrim: 0
-  m_CastingOption: 1
-  m_PreviousTrimEdge: 0.65
-  m_PreviousEdgeProcessing: 1
-  m_PreviousShadowCastingSource: 2
-  m_PreviousShadowShape2DSource: {fileID: 1527075257162891431}
-  references:
-    version: 2
-    RefIds:
-    - rid: 4460081373390045432
-      type: {class: ShadowShape2DProvider_SpriteShape, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
-      data: 
 --- !u!60 &4986098856963105770
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -307,9 +254,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1.1165848}
-      - {x: -10.041533, y: -6.179017}
-      - {x: -6.2060084, y: -17.983547}
-      - {x: 6.2060103, y: -17.983547}
-      - {x: 10.041533, y: -6.179015}
+    - - {x: -10, y: -20}
+      - {x: -10, y: 0.686584}
+      - {x: 10, y: 0.686584}
+      - {x: 10, y: -20}
+      - {x: -10, y: -20}
   m_UseDelaunayMesh: 1

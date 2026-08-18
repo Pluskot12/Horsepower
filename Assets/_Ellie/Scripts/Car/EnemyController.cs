@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -77,6 +78,12 @@ namespace CarGame
 
         private bool playerInVision;
 
+        public Vector3 Velocity => controller.Body.linearVelocity;
+        public float MaxSpeed => controller.GetMaxSpeed();
+        public float IdleSpeed => idleMoveSpeed;
+        public void Knockback(Vector2 value) => controller.Knockback(value);
+
+
         #region Testing
 
         [SerializeField] private Canvas testCanvas;
@@ -91,6 +98,8 @@ namespace CarGame
 
         [SerializeField] private LayerMask groundLayer;
 
+        public UnityEvent OnIdleSound;
+
         public void SetData(EnemyData data)
         {
             this.data = data;
@@ -99,6 +108,8 @@ namespace CarGame
         private void Awake()
         {
             sortingGroup.sortingOrder = GetSortingOrder();
+
+            controller.SetEnginePitch(Random.Range(0.9f, 1.1f));
         }
 
         private int GetSortingOrder()
@@ -179,7 +190,7 @@ namespace CarGame
             }
             else if (!alerted)
             {
-                attackTarget = null;
+                SetAttackTarget(null);
                 foreach (var eye in eyes)
                 {
                     eye.SetFollow(false);
@@ -194,6 +205,8 @@ namespace CarGame
 
         private void OnDestroy()
         {
+            SetAttackTarget(null);
+
             if (testCanvas != null)
             {
                 Destroy(testCanvas.gameObject);
@@ -243,13 +256,13 @@ namespace CarGame
                 OnAggroIncrease?.Invoke(this, 0);
 
                 bar.color = Color.red;
-                attackTarget = player;
+                SetAttackTarget(player);
                 foreach (var eye in eyes)
                 {
                     eye.SetFollow(true);
                 }
                 StopIdle();
-
+                aggro = true;
                 if (jaw)
                 {
                     jaw.SetTarget(attackTarget);
@@ -258,17 +271,18 @@ namespace CarGame
             else if (visionGauge == 0 && attackTarget)
             {
                 bar.color = Color.green;
-                attackTarget = null;
+                SetAttackTarget(null);
                 foreach (var eye in eyes)
                 {
                     eye.SetFollow(false);
                 }
                 StartIdle();
+                aggro = false;
                 jaw.SetTarget(attackTarget);
             }
 
         }
-
+        bool aggro;
         [Header("Idle Settings")]
         [SerializeField] private float moveDuration = 2f;
         [SerializeField] private float moveRandom = 2f;
@@ -286,6 +300,29 @@ namespace CarGame
         [SerializeField] private float minIdleNoise = 3;
         [SerializeField] private float maxIdleNoise = 5;
 
+        public static int AggroCount;
+        public static event Action<int> OnAggro;
+        private void SetAttackTarget(Player target)
+        {
+            attackTarget = target;
+
+            if (target)
+            {
+                AggroCount++;
+            }
+            else
+            {
+                AggroCount--;
+            }
+
+            if (AggroCount < 0)
+            {
+                AggroCount = 0;
+            }
+
+            OnAggro?.Invoke(AggroCount);
+        }
+
         private IEnumerator PlayIdleSound()
         {
             while (!IsDead)
@@ -297,6 +334,7 @@ namespace CarGame
                 if (!IsDead/* && inIdleMode*/)
                 {
                     effectSource.PlayOneShot(idleSounds[Random.Range(0, idleSounds.Count)]);
+                    OnIdleSound?.Invoke();
                 }
             }
         }
@@ -462,12 +500,25 @@ namespace CarGame
                 alertedState = StartCoroutine(AlertedCoroutine());
             }
         }
-
+        public bool IsAggro => aggro;
         private void StopAlertedState()
         {
             alerted = false;
             if (alertedState != null)
                 StopCoroutine(alertedState);
+        }
+
+
+        public void DeAggro()
+        {
+            visionGauge = 0;
+            OnAggroIncrease?.Invoke(this, visionGauge);
+
+            jaw.SetTarget(null);
+
+            StopAlertedState();
+
+            idleRoutine = StartCoroutine(IdleBehavior());
         }
 
         IEnumerator AlertedCoroutine()
@@ -481,6 +532,12 @@ namespace CarGame
             yield return new WaitForSeconds(1);
             alertedState = null;
             alerted = false;
+        }
+
+        public void TryDamagePercentage(float percent, GameObject attacker = null, bool triggerEffects = true)
+        {
+            int damage = Mathf.RoundToInt(MaxHealth * percent);
+            TryDamage(damage, attacker, triggerEffects);
         }
 
         public void TryDamage(int damage, GameObject attacker = null, bool triggerEffects = true)
@@ -519,5 +576,6 @@ namespace CarGame
             controller.Body.linearVelocity = data.Velocity;
             controller.Body.angularVelocity = data.AngularVelocity;
         }
+
     }
 }

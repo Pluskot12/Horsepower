@@ -21,36 +21,12 @@ PrefabInstance:
       value: 0.827451
       objectReference: {fileID: 0}
     - target: {fileID: 2767931543276306258, guid: 21be86bb16de74742856b62d3e429da9, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.14509805
-      objectReference: {fileID: 0}
-    - target: {fileID: 2767931543276306258, guid: 21be86bb16de74742856b62d3e429da9, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2767931543276306258, guid: 21be86bb16de74742856b62d3e429da9, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.82745105
-      objectReference: {fileID: 0}
-    - target: {fileID: 2767931543276306258, guid: 21be86bb16de74742856b62d3e429da9, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4280615123
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3165500354278394580, guid: 21be86bb16de74742856b62d3e429da9, type: 3}
       propertyPath: m_Name
       value: Main Menu Button - Red
-      objectReference: {fileID: 0}
-    - target: {fileID: 7070200885331815231, guid: 21be86bb16de74742856b62d3e429da9, type: 3}
-      propertyPath: m_Color.b
-      value: 0.14509805
-      objectReference: {fileID: 0}
-    - target: {fileID: 7070200885331815231, guid: 21be86bb16de74742856b62d3e429da9, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7070200885331815231, guid: 21be86bb16de74742856b62d3e429da9, type: 3}
-      propertyPath: m_Color.r
-      value: 0.82745105
       objectReference: {fileID: 0}
     - target: {fileID: 8287603940585616327, guid: 21be86bb16de74742856b62d3e429da9, type: 3}
       propertyPath: m_Pivot.x
