@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CarGame
 {
@@ -21,7 +20,7 @@ namespace CarGame
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            explosion.Explode(data, blastRadius);
+            explosion.Explode(data.damage, blastRadius);
             noiseGenerator.GenerateNoise(1f);
 
             Destroy(gameObject);

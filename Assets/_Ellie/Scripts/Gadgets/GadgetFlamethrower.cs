@@ -23,7 +23,7 @@ namespace CarGame
 
         private bool equipped;
 
-        public override void OnActivate(Player player)
+        public override bool TryActivate(Player player)
         {
             drawOrder = 10000;
             source.clip = activationSound;
@@ -33,6 +33,8 @@ namespace CarGame
             StartCoroutine(Fire());
             Tween.Alpha(spriteRenderer, 0f, 1f, duration);
             Tween.Alpha(spriteRenderer, 1f, 0f, 5f, startDelay: duration + 3f);
+
+            return true;
         }
 
         public override void OnEquip(Player player)

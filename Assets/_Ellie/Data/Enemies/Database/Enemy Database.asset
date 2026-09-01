@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CarGame::CarGame.EnemyDatabase
   path: Assets/_Ellie/Data/Enemies
   enemies:
+  - {fileID: 11400000, guid: 8f9b0eb274ad80543ac8bb6034dd9105, type: 2}
   - {fileID: 11400000, guid: 75649ed2aa32a9a4fa793ead7b82f273, type: 2}
   - {fileID: 11400000, guid: 07306dd47e209df44abe8c9bdc168029, type: 2}
   - {fileID: 11400000, guid: be6ea22b098aa754c8ae7732b87051a5, type: 2}

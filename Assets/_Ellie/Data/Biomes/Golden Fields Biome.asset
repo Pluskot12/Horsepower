@@ -111,3 +111,8 @@ MonoBehaviour:
     restrictToTime: 1
     startTime: 520
     endTime: 880
+  - enemy: {fileID: 11400000, guid: 8f9b0eb274ad80543ac8bb6034dd9105, type: 2}
+    chance: 30
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200

@@ -18,7 +18,7 @@ namespace CarGame
             }
 
             float roll = Random.value;
-            Debug.Log("Roll " + roll);
+
             if (roll >= triggerChance)
             {
                 Beep();
@@ -27,7 +27,6 @@ namespace CarGame
 
         private void Beep()
         {
-            Debug.LogWarning("BEEP");
             SoundManager.PlaySFX(hornSound, transform.position);
             EnemySpawnManager.Instance.OnNoiseGenerated(noiseLevel);
         }

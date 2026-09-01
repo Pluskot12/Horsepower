@@ -39,10 +39,13 @@ namespace CarGame
             StopAllCoroutines();
         }
 
-        public override void OnActivate(Player player)
+        public override bool TryActivate(Player player)
         {
             StartCoroutine(ShieldCoroutine());
+
+            return true;
         }
+
         bool shieldActive;
         private IEnumerator ShieldCoroutine()
         {

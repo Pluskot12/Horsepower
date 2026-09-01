@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2054130957526313163
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3236771552013502625, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_Name
+      value: Bullet - Grenadier
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: bulletDrop
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: triggerOnHitEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: OnImpact.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: OnImpact.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: OnImpact.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1940606753665019581}
+    - target: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: OnImpact.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: OnImpact.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Explode
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: OnImpact.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CarGame.GrenadeExplosion, CarGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: OnImpact.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343416063656397942, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f5e75b2dcd8dc1248b68cd2122dea2df, type: 3}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 4935505512973110811, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1005359078683630523}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+--- !u!4 &6965477179892560483 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8947497628173130408, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
+  m_PrefabInstance: {fileID: 2054130957526313163}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4199545739419182406
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6965477179892560483}
+    m_Modifications:
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630429380623777069, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+      propertyPath: m_Name
+      value: Grenadier - Explosion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+--- !u!4 &1005359078683630523 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4013842346049486589, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+  m_PrefabInstance: {fileID: 4199545739419182406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1940606753665019581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2353591595581344763, guid: 3f0019c1b3ff649459cd9c86aef8f812, type: 3}
+  m_PrefabInstance: {fileID: 4199545739419182406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae5861f5ed95864c8a6612d62f6c61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CarGame::CarGame.GrenadeExplosion

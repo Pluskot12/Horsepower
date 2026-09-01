@@ -15,4 +15,4 @@ MonoBehaviour:
   Id: a5979d7d-ed3d-4713-8ddc-5d086d3a5e91
   displayName: Metal Plates
   sprite: {fileID: 21300000, guid: bd8d51ddd4448834ebbdda57fbdc3585, type: 3}
-  maxStackSize: 40
+  maxStackSize: 50

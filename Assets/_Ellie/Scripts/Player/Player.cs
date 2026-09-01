@@ -11,6 +11,7 @@ namespace CarGame
         [SerializeField] private PlayerController playerController;
         [SerializeField] private CarController carController;
         [SerializeField] private Rigidbody2D body;
+        [SerializeField] private Animator bodyAnimator;
         [SerializeField] private Animator trunkAnimator;
         [SerializeField] private AttachmentController attachmentController;
         [SerializeField] private HitEffect hitEffect;
@@ -142,6 +143,11 @@ namespace CarGame
             if (transform.position.y < -100)
             {
                 TryDamage(99999);
+            }
+
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+            {
+                bodyAnimator.Play("Roswell Start Drive");
             }
 
 

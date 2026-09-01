@@ -139,19 +139,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a9ddb6cea81f54ba08f07aab512aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: CarGame::CarGame.Projectile
-  bulletDrop: 0
   visuals: {fileID: 7320568664353860352}
-  trail: {fileID: 0}
-  hitEffect: {fileID: 0}
-  hitLayer:
-    serializedVersion: 2
-    m_Bits: 256
+  spriteRenderer: {fileID: 4343416063656397942}
+  bulletDrop: 0
   rotationSpeed: 5
-  spriteRenderer: {fileID: 0}
-  hitSounds: []
   triggerOnHitEffects: 1
   destroyOnImpact: 1
   destroyOnImpactGround: 1
+  hitSounds: []
+  OnSpawn:
+    m_PersistentCalls:
+      m_Calls: []
+  OnImpact:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3610737292674889965
 GameObject:
   m_ObjectHideFlags: 0

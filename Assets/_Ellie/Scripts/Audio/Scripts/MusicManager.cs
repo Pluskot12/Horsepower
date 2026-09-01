@@ -57,11 +57,11 @@ namespace CarGame
 
             if (count >= 1)
             {
-                MusicManager.Instance.PlayOverride(chaseMusic, 1.0f);
+                PlayOverride(chaseMusic, 1.0f);
             }
             else
             {
-                MusicManager.Instance.ClearOverride(3f);
+                ClearOverride(3f);
             }
         }
 

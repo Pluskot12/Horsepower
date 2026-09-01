@@ -279,6 +279,11 @@ namespace CarGame
                 return -1;
             }
 
+            if (!to.CanFit(clickedSlot.SlottedItem.ItemData, clickedSlot.SlottedItem.Quantity))
+            {
+                return -1;
+            }
+
             int count = clickedSlot.SlottedItem.Quantity;
             int remaining = to.TryAdd(clickedSlot.SlottedItem);
             int remove = count - remaining;

@@ -16,6 +16,7 @@ namespace CarGame
 
         private Transform playerTransform;
 
+        private FlareGun.LootDrop lootDrop;
 
         bool destroy;
 
@@ -27,12 +28,17 @@ namespace CarGame
 
         float elapsedTime;
 
+        private bool canSpawnLoot;
+        private float lootTimer;
+        private float lootTimerInterval = 10;
+
+
         private void Awake()
         {
             flareLight.intensity = 0;
         }
 
-        public void Setup(float noise, float tickrate, float lifetime)
+        public void Setup(float noise, float tickrate, float lifetime, FlareGun.LootDrop lootDrop)
         {
             playerTransform = GameManager.Instance.Player.transform;
 
@@ -41,6 +47,10 @@ namespace CarGame
             this.lifetime = lifetime;
 
             EnemySpawnManager.Instance.OnNoiseGenerated(noise);
+
+            this.lootDrop = lootDrop;
+
+            canSpawnLoot = true;
 
             init = true;
         }
@@ -55,9 +65,11 @@ namespace CarGame
             tick += Time.deltaTime;
             elapsedTime += Time.deltaTime;
 
+            float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
             if (tick >= tickrate)
             {
-                float distanceMultiplier = GetDistanceMultiplier();
+                float distanceMultiplier = GetDistanceMultiplier(distanceToPlayer);
 
                 if (distanceMultiplier > 0f)
                 {
@@ -75,16 +87,17 @@ namespace CarGame
             }
 
             UpdateLightIntensity();
+
+            TrySpawnLoot(distanceToPlayer);
+
         }
 
-        private float GetDistanceMultiplier()
+        private float GetDistanceMultiplier(float distance)
         {
             if (playerTransform == null)
             {
                 return 1f;
             }
-
-            float distance = Vector3.Distance(transform.position, playerTransform.position);
 
             if (distance <= minDistance)
             {
@@ -133,6 +146,51 @@ namespace CarGame
             else
             {
                 flareLight.intensity = 1f;
+            }
+        }
+
+        private void TrySpawnLoot(float distanceToPlayer)
+        {
+            if (canSpawnLoot)
+            {
+                lootTimer += Time.deltaTime;
+
+                if (lootTimer >= lootTimerInterval)
+                {
+                    if (distanceToPlayer <= maxDistance)
+                    {
+                        float random = Random.value;
+                        float chance = GetLootDropChance();
+
+                        if (random <= chance)
+                        {
+                            canSpawnLoot = false;
+                            SpawnLootDrop();
+                        }
+                    }
+
+                    lootTimer = 0;
+                }
+            }
+        }
+
+        private void SpawnLootDrop()
+        {
+            Vector3 position = transform.position;
+            position.x += Random.Range(-5f, 5f);
+            position.y += 2f;
+
+            Instantiate(lootDrop.prefab, position, Quaternion.identity);
+        }
+
+        private float GetLootDropChance()
+        {
+            switch (TimeManager.Instance.GetTimeOfDay())
+            {
+                case TimeManager.TimeOfDay.Day: return lootDrop.dropChanceDay;
+                case TimeManager.TimeOfDay.Dusk: return lootDrop.dropChanceDusk;
+                case TimeManager.TimeOfDay.Night: return lootDrop.dropChanceNight;
+                default: return 0f;
             }
         }
     }

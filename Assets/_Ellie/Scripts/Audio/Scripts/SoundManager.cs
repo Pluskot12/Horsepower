@@ -40,12 +40,14 @@ namespace Ellie.Audio
 
             sfxSoundBuilder = new SoundBuilder(sfxSoundPool);
             uiSoundBuilder = new SoundBuilder(uiSoundPool);
+
+            sfxSoundPool.InitializePool();
+            uiSoundPool.InitializePool();
         }
 
         private void Start()
         {
-            sfxSoundPool.InitializePool();
-            uiSoundPool.InitializePool();
+
         }
 
         public static void PlaySFX(AudioClip clip, Vector3 position)

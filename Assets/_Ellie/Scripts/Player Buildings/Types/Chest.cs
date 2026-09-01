@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CarGame
@@ -33,6 +34,9 @@ namespace CarGame
         [SerializeField] private AudioClip explodingSound;
         [SerializeField] private AudioClip openAudio;
         [SerializeField] private AudioClip closeAudio;
+
+        public event Action OnDestroyed;
+
 
         public Inventory Inventory => inventory.Inventory;
 
@@ -180,8 +184,7 @@ namespace CarGame
                 attachedToStructure.OnChestLooted(this);
             }
 
-
-            //foreach (var item in )
+            OnDestroyed?.Invoke();
         }
 
         public void SetAttachedStructure(Structure structure)

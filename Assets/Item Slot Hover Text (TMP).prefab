@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Item hover text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2895a4e9cbd5b0441af4c7114f28b17f, type: 2}
-  m_sharedMaterial: {fileID: -7593342618960702241, guid: 2895a4e9cbd5b0441af4c7114f28b17f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ec84d4f130ac0de47b072929a04571b2, type: 2}
+  m_sharedMaterial: {fileID: -7593342618960702241, guid: ec84d4f130ac0de47b072929a04571b2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

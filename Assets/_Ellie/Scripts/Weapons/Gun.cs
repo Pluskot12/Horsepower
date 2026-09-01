@@ -34,6 +34,7 @@ namespace CarGame
         [SerializeField] private float bulletSpread = 5;
         [SerializeField] private float bulletSpeed = 10;
         [SerializeField] private int bullets = 10;
+        [SerializeField] private float bulletLifeTime = 1;
 
         [Header("Magazine Sprites")]
 
@@ -259,7 +260,7 @@ namespace CarGame
             if (bullets == 1)
             {
                 Projectile p = Instantiate(projectilePrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-                p.Setup(bulletSpawnPoint.position, bulletSpawnPoint.right * bulletSpeed, damage, 1f, hitMask);
+                p.Setup(bulletSpawnPoint.position, bulletSpawnPoint.right * bulletSpeed, damage, bulletLifeTime, hitMask);
             }
             else
             {

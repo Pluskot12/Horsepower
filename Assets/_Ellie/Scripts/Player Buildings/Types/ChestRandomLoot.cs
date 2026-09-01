@@ -11,7 +11,7 @@ namespace CarGame
         [SerializeField] private int maxItems = 3;
         [SerializeField] private DropTable[] dropsTables;
 
-        public void RandomizeContent(InventoryController inventory) 
+        public void RandomizeContent(InventoryController inventory)
         {
             int max = Mathf.Min(maxItems, inventory.Capacity);
 
@@ -19,7 +19,7 @@ namespace CarGame
 
             drops.AddRange(Roll(minItems, max));
             int durability;
-            for (int i = 0; i < drops.Count; i++) 
+            for (int i = 0; i < drops.Count; i++)
             {
                 durability = ItemSpawner.GetMaxDurability(drops[i].item);
                 inventory.TryAddItem(drops[i].item, drops[i].quantity, durability);
@@ -30,7 +30,7 @@ namespace CarGame
         {
             List<DropTable.Item> possibleItems = new List<DropTable.Item>();
 
-            foreach (var table in dropsTables) 
+            foreach (var table in dropsTables)
             {
                 possibleItems.AddRange(table.items);
             }

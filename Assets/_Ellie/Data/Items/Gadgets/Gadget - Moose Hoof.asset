@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b702fbf58bf6f94db0a78690bd4eedc, type: 3}
+  m_Name: Gadget - Moose Hoof
+  m_EditorClassIdentifier: CarGame::CarGame.GadgetItem
+  Id: df9f51c4-180f-48b7-9c41-f48ed7b19eea
+  displayName: Moose Hoof
+  sprite: {fileID: 21300000, guid: 445165ccb9138e94e86bbb22654076da, type: 3}
+  maxStackSize: 1
+  prefab: {fileID: 8821066259847645609, guid: d21134aa0d8d93f44beb6652cc8cbd74, type: 3}
+  slot: 0

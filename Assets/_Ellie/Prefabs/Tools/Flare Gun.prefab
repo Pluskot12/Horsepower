@@ -575,11 +575,16 @@ MonoBehaviour:
   bulletLifetime: 0.4
   noise: 50
   noiseTickrate: 5
-  explosionLifetime: 300
+  explosionLifetime: 60
   bulletSpawn: {fileID: 6165278987436934621}
   bullet: {fileID: 3475178136165955629, guid: bcf4eedee4171384399e0f4fe059a63d, type: 3}
   shootClip: {fileID: 8300000, guid: a596ef9be285a3448be01a8b99aa6d42, type: 3}
   explosionClip: {fileID: 8300000, guid: e8988cf1cd6ca3247b480ab75a91bed2, type: 3}
+  lootDrop:
+    prefab: {fileID: 3204428529090279671, guid: 74e8fbeb60ff3524e8cf8a519f21355a, type: 3}
+    dropChanceDay: 0.05
+    dropChanceDusk: 0.1
+    dropChanceNight: 0.4
 --- !u!95 &6669500407297660916
 Animator:
   serializedVersion: 7

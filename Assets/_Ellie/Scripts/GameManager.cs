@@ -17,6 +17,7 @@ namespace CarGame
 
         [SerializeField] private ItemDatabase itemDatabase;
         [SerializeField] private WorldObjectDatabase worldObjectDatabase;
+        [SerializeField] private Chest sorryChest;
 
         public ItemDatabase ItemDatabase => itemDatabase;
         public WorldObjectDatabase WorldObjectDatabase => worldObjectDatabase;
@@ -56,6 +57,8 @@ namespace CarGame
                 TimeManager.Instance.SetTime(startTime);
                 player.StartGame();
 
+                sorryChest.gameObject.SetActive(true);
+                sorryChest.OnPlace(null);
             }
         }
 

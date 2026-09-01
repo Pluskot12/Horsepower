@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace CarGame
 {
@@ -9,6 +8,9 @@ namespace CarGame
         [SerializeField] private LayerMask mask;
 
         [SerializeField] private Projectile[] frags;
+
+
+        [SerializeField] private int fragDamage = 3;
 
         [Header("Knockback Settings")]
         [SerializeField] private float knockbackForce = 1500f;
@@ -19,7 +21,8 @@ namespace CarGame
         [SerializeField] private float coneDirection = 0f;
         [SerializeField] private float fragDelay = 0.2f;
         [SerializeField] private float fragSpeed = 0.2f;
-        [SerializeField] private int damage = 3;
+
+
 
         protected override void OnExplode()
         {
@@ -38,8 +41,9 @@ namespace CarGame
         {
             yield return new WaitForSeconds(fragDelay);
 
+            int randomFrags = Random.Range(1, frags.Length);
 
-            for (int i = 0; i < frags.Length; i++)
+            for (int i = 0; i < randomFrags; i++)
             {
                 float halfCone = coneAngle * 0.5f;
                 float angle = coneDirection + Random.Range(-halfCone, halfCone);
@@ -51,13 +55,13 @@ namespace CarGame
                 frag.gameObject.SetActive(true);
                 frag.transform.right = direction;
                 float random = Random.Range(0.9f, 1.1f);
-                frag.Setup(spawnPos, direction * fragSpeed * random, damage, 10f, mask);
+                frag.Setup(spawnPos, direction * fragSpeed * random, fragDamage, 10f, mask);
             }
         }
 
-        protected override void ApplyEffect(Collider2D hit, IDamageable target, BombItem data)
+        protected override void ApplyEffect(Collider2D hit, IDamageable target, int damage)
         {
-            base.ApplyEffect(hit, target, data);
+            base.ApplyEffect(hit, target, damage);
 
             Rigidbody2D rb = hit.attachedRigidbody;
             Vector2 dir = (rb.position - (Vector2)transform.position);

@@ -26,6 +26,23 @@ namespace CarGame
 
         bool isActive;
 
+        [Header("Loot Drop Settings")]
+        [SerializeField] private LootDrop lootDrop;
+
+        [System.Serializable]
+        public struct LootDrop
+        {
+            public ParachuteCrate prefab;
+
+
+
+            [Header("Drop Chance")]
+            public float dropChanceDay;
+            public float dropChanceDusk;
+            public float dropChanceNight;
+
+        }
+
         private void OnEnable()
         {
             CinemachineCore.CameraUpdatedEvent.AddListener(OnCinemachineUpdated);
@@ -51,6 +68,8 @@ namespace CarGame
             visuals.right = Vector2.right;
         }
 
+
+
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
@@ -59,6 +78,10 @@ namespace CarGame
 
                 // Tween.LocalRotation(visuals, new Vector3(0, 0, 75), 0.35f, ease: Ease.OutElastic);
             }
+
+
+
+            //SpawnLootDrop();
         }
 
         public void OnShoot()
@@ -78,7 +101,7 @@ namespace CarGame
         {
             yield return new WaitForSeconds(bulletLifetime);
             var instance = Instantiate(flareExplosion, p.transform.position, Quaternion.identity);
-            instance.Setup(noise, noiseTickrate, explosionLifetime);
+            instance.Setup(noise, noiseTickrate, explosionLifetime, lootDrop);
 
             SoundManager.PlaySFX(explosionClip, p.transform.position);
 
@@ -86,5 +109,7 @@ namespace CarGame
 
             toolbase.UpdateDurability();
         }
+
+
     }
 }

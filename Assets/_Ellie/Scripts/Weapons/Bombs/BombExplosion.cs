@@ -1,33 +1,42 @@
+using Ellie.Audio;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
-using static UnityEngine.Analytics.IAnalytic;
-using static UnityEngine.GraphicsBuffer;
 
 namespace CarGame
 {
     public class BombExplosion : MonoBehaviour
     {
-
-        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip explosionSound;
         [SerializeField] private LayerMask damageableLayers;
+
+        [Header("Settings")]
+        [SerializeField] protected float blastRadius = 1;
+        [SerializeField] protected int explosionDamage = 10;
 
         private HashSet<IDamageable> targets;
 
         private void Awake()
         {
-            gameObject.SetActive(false);
+            Debug.Log("C");
+            //gameObject.SetActive(false);
         }
 
-        public void Explode(BombItem data, float blastRadius)
+        public void Explode()
+        {
+            Explode(explosionDamage, blastRadius);
+        }
+
+        public void Explode(int damage, float blastRadius)
         {
             transform.SetParent(null);
             gameObject.SetActive(true);
 
             CameraManager.Instance.Shake(2);
 
-            audioSource.transform.SetParent(null);
-            Destroy(audioSource.gameObject, audioSource.clip.length * 2f);
+            SoundManager.PlaySFX(explosionSound, transform.position);
+
+            //audioSource.transform.SetParent(null);
+            //Destroy(audioSource.gameObject, audioSource.clip.length * 2f);
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, blastRadius, damageableLayers);
 
@@ -40,7 +49,7 @@ namespace CarGame
 
                 IDamageable target = hit.attachedRigidbody.GetComponent<IDamageable>();
 
-                if (targets.Contains(target)) 
+                if (targets.Contains(target))
                 {
                     continue;
                 }
@@ -48,21 +57,21 @@ namespace CarGame
                 if (target != null)
                 {
                     targets.Add(target);
-                    ApplyEffect(hit, target, data);
+                    ApplyEffect(hit, target, damage);
                 }
             }
 
             OnExplode();
         }
 
-        protected virtual void OnExplode() 
+        protected virtual void OnExplode()
         {
 
         }
 
-        protected virtual void ApplyEffect(Collider2D hit, IDamageable target, BombItem data) 
+        protected virtual void ApplyEffect(Collider2D hit, IDamageable target, int damage)
         {
-            target.TryDamage(data.damage, gameObject);
+            target.TryDamage(damage, gameObject);
         }
 
 

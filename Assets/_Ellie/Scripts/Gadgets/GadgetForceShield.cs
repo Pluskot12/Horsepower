@@ -33,12 +33,14 @@ namespace CarGame
             StopAllCoroutines();
         }
 
-        public override void OnActivate(Player player)
+        public override bool TryActivate(Player player)
         {
             StartCoroutine(ShieldCoroutine());
+
+            return true;
         }
         bool shieldActive;
-        private IEnumerator ShieldCoroutine() 
+        private IEnumerator ShieldCoroutine()
         {
             SoundManager.PlaySFX(activateSound, transform.position);
             shieldActive = true;
@@ -61,10 +63,10 @@ namespace CarGame
             player.SetShield(false);
         }
 
-        public void OnHit(int damage) 
+        public void OnHit(int damage)
         {
-            if (shieldActive) 
-            { 
+            if (shieldActive)
+            {
                 SoundManager.PlayRandomSFX(hitSounds, transform.position);
             }
         }

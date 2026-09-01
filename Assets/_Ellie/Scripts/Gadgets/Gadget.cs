@@ -8,7 +8,8 @@ namespace CarGame
         [SerializeField] private GadgetAbility ability;
         [SerializeField] private bool activateable = true;
 
-        public Action<Gadget, GadgetItem.Slot, float> OnCooldownStarted;
+        public event Action<Gadget, GadgetItem.Slot, float> OnCooldownStarted;
+        public event Action<Gadget, GadgetItem.Slot> OnCooldownEnded;
 
         public bool Activateable => activateable;
 
@@ -39,6 +40,7 @@ namespace CarGame
                 if (timer >= currentCooldown)
                 {
                     onCooldown = false;
+                    OnCooldownEnded?.Invoke(this, gadgetData.slot);
                 }
             }
         }
@@ -57,12 +59,15 @@ namespace CarGame
 
         public void Activate(bool activatedByAbility = false)
         {
-            StartCooldown(AbilityCooldown);
-
             if (!activatedByAbility)
             {
-                ability.OnActivate(player);
+                if (ability.TryActivate(player) == false)
+                {
+                    return;
+                }
             }
+
+            StartCooldown(AbilityCooldown);
         }
 
         public void StartCooldown(float cd)

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2428632dc5c33724ea71a453bafb4760, type: 3}
+  m_Name: Gun - Grenadier
+  m_EditorClassIdentifier: CarGame::CarGame.WeaponItemData
+  Id: fd17fd6b-9045-407f-ad99-01f97c93c7bf
+  displayName: Grenadier
+  sprite: {fileID: 21300000, guid: 7cda7f0f6f565784aa8fd5f50e700fa0, type: 3}
+  maxStackSize: 40
+  gun: {fileID: 5936284848236713949, guid: 7359a1c0336837643a2ed819bc3e0d46, type: 3}
+  ammoType: {fileID: 0}
+  maxDurability: 40

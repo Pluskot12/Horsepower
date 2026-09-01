@@ -11,7 +11,7 @@ namespace CarGame
         protected Player player;
         protected Gadget gadget;
 
-        public void Init(Gadget gadget, Player player) 
+        public void Init(Gadget gadget, Player player)
         {
             this.gadget = gadget;
             this.player = player;
@@ -19,8 +19,8 @@ namespace CarGame
 
         public virtual void OnEquip(Player player) { }
 
-        public virtual void OnActivate(Player player) { }
-        
+        public virtual bool TryActivate(Player player) { return true; }
+
         public virtual void OnUnequip(Player player) { }
     }
 }

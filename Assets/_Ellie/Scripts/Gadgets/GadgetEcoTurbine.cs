@@ -13,7 +13,7 @@ namespace CarGame
 
         bool activated;
 
-        public override void OnActivate(Player player) 
+        public override bool TryActivate(Player player)
         {
             source.clip = activationSound;
             source.volume = player.EngineVolume;
@@ -25,6 +25,8 @@ namespace CarGame
             StartCoroutine(Deactivate());
 
             activated = true;
+
+            return true;
         }
 
         IEnumerator Deactivate()
@@ -45,12 +47,12 @@ namespace CarGame
             source.volume = player.EngineVolume;
         }
 
-        public override void OnEquip(Player player) 
+        public override void OnEquip(Player player)
         {
-            
+
         }
-        
-        public override void OnUnequip(Player player) 
+
+        public override void OnUnequip(Player player)
         {
             StopAllCoroutines();
 
