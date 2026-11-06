@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443d89ec54de0de449a37bafc7091d24, type: 3}
+  m_Name: Building - Radio Station
+  m_EditorClassIdentifier: CarGame::CarGame.BuildingItem
+  Id: edea3895-d1ec-4a70-8992-99ac5b0ea1e2
+  displayName: Radio Station
+  sprite: {fileID: 21300000, guid: 87053da0348334146822e86b00a69a7c, type: 3}
+  maxStackSize: 1
+  prefab: {fileID: 5844002745563753973, guid: b55864eaf353682448e9a8206ef97421, type: 3}
+  maxAngle: 0
+  placementSound: {fileID: 0}

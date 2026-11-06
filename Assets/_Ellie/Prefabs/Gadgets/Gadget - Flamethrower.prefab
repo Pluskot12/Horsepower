@@ -333,7 +333,7 @@ MonoBehaviour:
   damage: 3
   hitMask:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 67111168
   prefab: {fileID: 5565118456577840083, guid: 6f744027b66ed4b4c80e4c1e7eefda77, type: 3}
   firePoint: {fileID: 7168581871664080024}
   spriteRenderer: {fileID: 1233940160941237512}

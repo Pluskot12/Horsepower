@@ -1,5 +1,6 @@
 using Ellie.Audio;
 using PrimeTween;
+using System.Collections;
 using UnityEngine;
 
 namespace CarGame
@@ -39,7 +40,7 @@ namespace CarGame
         {
             var instance = Instantiate(fireworkPrefab, fireworkPrefab.transform.position, fireworkPrefab.transform.rotation);
             instance.enabled = true;
-            instance.Setup(fireworkPrefab.transform.position, -90, rotationPivot.up * bulletSpeed, damage, 10f, hitMask);
+            instance.Setup(player, fireworkPrefab.transform.position, -90, rotationPivot.up * bulletSpeed, damage, 10f, hitMask);
 
             //Tween.ShakeLocalRotation(instance.transform, Vector3.forward * 5, 0.5f);
 
@@ -49,6 +50,15 @@ namespace CarGame
             projectileReady = false;
 
             SoundManager.PlaySFX(onUseSound, transform.position);
+
+            StartCoroutine(ReloadTimer(Cooldown - rotationTime));
+        }
+
+        private IEnumerator ReloadTimer(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+
+            Reload();
         }
 
         private void Reload()
@@ -64,14 +74,16 @@ namespace CarGame
             });
         }
 
-        public override void OnEquip(Player player)
+        public override void OnEquip(Player player, float equipCooldown)
         {
             gadget.OnCooldownEnded += Gadget_OnCooldownEnded;
+
+            StartCoroutine(ReloadTimer(equipCooldown));
         }
 
         private void Gadget_OnCooldownEnded(Gadget gadget, GadgetItem.Slot slot)
         {
-            Reload();
+            //Reload();
         }
 
         public override void OnUnequip(Player player)

@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 5913ff3004dbd5548892444bf3e3e9c0
+labels:
+- counter
+- fps
+- graphy
+- tayx
+timeCreated: 1515072754
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 105778
+  packageName: '[Graphy] - Ultimate FPS Counter - Stats Monitor & Debugger'
+  packageVersion: 4.0.0
+  assetPath: Assets/graphy/CHANGELOG.md
+  uploadId: 984674

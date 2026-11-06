@@ -22,20 +22,15 @@ namespace CarGame
 
         Vector3 antennaStartPos;
 
-        public override void OnEquip(Player player)
+        public override void OnEquip(Player player, float equipCooldown)
         {
             //player.SetShield(shield);
             antennaStartPos = antenna.transform.localPosition;
             wave.transform.localScale = Vector3.zero;
-
-            player.OnAttacked += OnHit;
         }
 
         public override void OnUnequip(Player player)
         {
-            //player.SetShield(0);
-            player.OnAttacked -= OnHit;
-
             StopAllCoroutines();
         }
 
@@ -92,14 +87,5 @@ namespace CarGame
                 enemy.Knockback(knockbackDir * knockbackForce);
             }
         }
-
-        public void OnHit(int damage)
-        {/*
-            if (shieldActive)
-            {
-                SoundManager.PlayRandomSFX(hitSounds, transform.position);
-            }*/
-        }
-
     }
 }

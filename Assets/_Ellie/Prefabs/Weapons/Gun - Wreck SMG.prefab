@@ -484,7 +484,7 @@ MonoBehaviour:
   explodingParts: {fileID: 4760428072255413210}
   hitMask:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 67111168
   projectilePrefab: {fileID: 3270022949829619265, guid: f28a2489381ebe446afed8a554d5f6f7, type: 3}
   damage: 3
   fireRate: 10
@@ -493,6 +493,7 @@ MonoBehaviour:
   bulletSpread: 4
   bulletSpeed: 100
   bullets: 1
+  bulletLifeTime: 1
   spriteRenderer: {fileID: 617693890526640728}
   ammoStages:
   - ammo: 100
@@ -506,6 +507,7 @@ MonoBehaviour:
   recoilAmount: 5
   recoilReturnSpeed: 8
   muzzleFlash: {fileID: 1547584283290965386}
+  shellEffect: {fileID: 0}
   shootClip: {fileID: 8300000, guid: 1d8d4d26cdcebb94eab90aa97d3762db, type: 3}
   betweenShotClip: {fileID: 0}
   reloadClip: {fileID: 8300000, guid: b9d932d6a8936014988fd70bd622c926, type: 3}

@@ -27,11 +27,11 @@ namespace CarGame
         [SerializeField] private AudioClip[] hitSounds;
 
         [Header("Events")]
-        [SerializeField] private UnityEvent OnSpawn;
-        [SerializeField] private UnityEvent OnImpact;
+        [SerializeField] private UnityEvent<IAttacker> OnSpawn;
+        [SerializeField] private UnityEvent<IAttacker> OnImpact;
 
         HashSet<IDamageable> targets = new HashSet<IDamageable>();
-
+        private IAttacker attacker;
         private LayerMask hitLayer;
         private int damage;
 
@@ -50,15 +50,16 @@ namespace CarGame
 
         private float rotationOffset;
 
-        public void Setup(Vector3 position, float rotationOffset, Vector3 velocity, int damage, float lifeTime, LayerMask mask)
+        public void Setup(IAttacker attacker, Vector3 position, float rotationOffset, Vector3 velocity, int damage, float lifeTime, LayerMask mask)
         {
             this.rotationOffset = rotationOffset;
 
-            Setup(position, velocity, damage, lifeTime, mask);
+            Setup(attacker, position, velocity, damage, lifeTime, mask);
         }
 
-        public void Setup(Vector3 position, Vector3 velocity, int damage, float lifeTime, LayerMask mask)
+        public void Setup(IAttacker attacker, Vector3 position, Vector3 velocity, int damage, float lifeTime, LayerMask mask)
         {
+            this.attacker = attacker;
             this.damage = damage;
 
             initialPosition = position;
@@ -69,7 +70,7 @@ namespace CarGame
 
             hitLayer = mask;
 
-            OnSpawn?.Invoke();
+            OnSpawn?.Invoke(attacker);
 
             Destroy(gameObject, lifeTime);
         }
@@ -113,7 +114,7 @@ namespace CarGame
             {
                 if (CanBeDamaged(hit, out IDamageable target))
                 {
-                    target.TryDamage(damage, gameObject, triggerOnHitEffects);
+                    target.TryDamage(damage, attacker, triggerOnHitEffects);
                     targets.Add(target);
                 }
                 else if (destroyOnImpactGround)
@@ -123,7 +124,7 @@ namespace CarGame
                     Destroy(gameObject);
                 }
 
-                OnImpact?.Invoke();
+                OnImpact?.Invoke(attacker);
 
                 if (hitSounds.Length > 0)
                 {
@@ -150,6 +151,17 @@ namespace CarGame
             if (hit.rigidbody != null)
             {
                 if (hit.rigidbody.gameObject.TryGetComponent(out IDamageable t))
+                {
+                    if (!targets.Contains(t))
+                    {
+                        target = t;
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                if (hit.collider.TryGetComponent(out IDamageable t))
                 {
                     if (!targets.Contains(t))
                     {

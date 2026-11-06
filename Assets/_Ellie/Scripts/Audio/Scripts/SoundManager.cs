@@ -71,6 +71,11 @@ namespace Ellie.Audio
                 return;
             }
 
+            if (clips == null || clips.Length == 0)
+            {
+                return;
+            }
+
             PlaySFX(clips[Random.Range(0, clips.Length)], position);
         }
 

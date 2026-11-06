@@ -4,6 +4,7 @@ namespace CarGame
 {
     public class AttachmentController : MonoBehaviour
     {
+        [SerializeField] private Player player;
         [SerializeField] private Transform weaponSlot;
         [SerializeField] private Transform toolSlot;
         [SerializeField] private Transform gadgetSlot;
@@ -17,9 +18,9 @@ namespace CarGame
 
         int slot;
 
-        public void AttachItem(ItemData item, int slot, bool skipSound) 
+        public void AttachItem(ItemData item, int slot, bool skipSound)
         {
-            if (item == activeItem && this.slot == slot) 
+            if (item == activeItem && this.slot == slot)
             {
                 return;
             }
@@ -29,7 +30,7 @@ namespace CarGame
 
             RemoveAttachment();
 
-            if (item == null) 
+            if (item == null)
                 return;
 
             if (item.GetType() == typeof(WeaponItemData))
@@ -45,16 +46,16 @@ namespace CarGame
         private void AddWeaponAttachment(WeaponItemData weapon, int slot, bool skipSound)
         {
             attachedGun = Instantiate(weapon.gun, weaponSlot);
-            attachedGun.Setup(transform, slot, weapon, audioSource, skipSound);
+            attachedGun.Setup(player, transform, slot, weapon, audioSource, skipSound);
         }
 
         private void AddToolAttachment(ToolItemData tool, int slot, bool skipSound)
         {
             attachedTool = Instantiate(tool.prefab, toolSlot);
-            attachedTool.Setup(transform, slot, tool, audioSource, skipSound);
+            attachedTool.Setup(transform, slot, tool, skipSound);
         }
 
-        private void RemoveAttachment() 
+        private void RemoveAttachment()
         {
             attachedGun?.OnDeselect();
             attachedGun = null;
@@ -63,7 +64,7 @@ namespace CarGame
             attachedTool = null;
         }
 
-        public void ShowAttachment() 
+        public void ShowAttachment()
         {
             attachedGun?.gameObject.SetActive(true);
             attachedTool?.gameObject.SetActive(true);
@@ -75,7 +76,7 @@ namespace CarGame
             attachedTool?.gameObject.SetActive(false);
         }
 
-        public void OnBreak() 
+        public void OnBreak()
         {
             attachedGun?.OnItemBreak();
             attachedTool?.OnItemBreak();

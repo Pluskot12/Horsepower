@@ -1,3 +1,4 @@
+using Ellie.Core;
 using UnityEngine;
 
 namespace CarGame
@@ -6,8 +7,9 @@ namespace CarGame
     {
         [SerializeField] private float radius;
         [SerializeField] private LayerMask targetLayers;
+        [SerializeField] private bool fireEvents;
 
-        public void GenerateNoise(float multiplier)
+        public void GenerateNoise(float multiplier, Transform owner)
         {
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, targetLayers);
 
@@ -15,7 +17,10 @@ namespace CarGame
             float depth;
             float alertLevel;
 
-            EnemySpawnManager.Instance.OnNoiseGenerated(multiplier);
+            NoiseManager.EmitNoise(transform.position, 1f, owner);
+
+            // Old
+            // EnemySpawnManager.Instance.OnNoiseGenerated(multiplier);
 
             foreach (var hit in hits)
             {
@@ -33,6 +38,8 @@ namespace CarGame
                     enemy.Alert(transform.position, alertLevel);
                 }
             }
+
+
         }
 
         void OnDrawGizmosSelected()

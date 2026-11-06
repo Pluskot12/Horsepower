@@ -258,7 +258,7 @@ namespace CarGame
         {
             if (secondaryInventory == null)
             {
-                return -1; // ?
+                return -1;
             }
 
             Inventory from;

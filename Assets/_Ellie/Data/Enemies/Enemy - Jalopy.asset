@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Enemy - Jalopy
   m_EditorClassIdentifier: CarGame::CarGame.EnemyData
   Id: 2ae11233-cd09-48f8-9608-1a1a960ad834
-  Prefab: {fileID: 8133407921476846474, guid: f72195534d8cb7343a51d82bcd5d0a3e, type: 3}
+  Prefab: {fileID: 3795655991520080031, guid: a7c6b240da3f83f4e9eef18ce98b1568, type: 3}

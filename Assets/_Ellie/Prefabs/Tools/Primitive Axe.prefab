@@ -145,14 +145,76 @@ PrefabInstance:
       propertyPath: explodingParts
       value: 
       objectReference: {fileID: 8860184217790608058}
+    - target: {fileID: 8448240266110063531, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+      propertyPath: OnToolAction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448240266110063531, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+      propertyPath: OnToolAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448240266110063531, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+      propertyPath: OnToolAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8297603750651702895}
+    - target: {fileID: 8448240266110063531, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+      propertyPath: OnToolAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448240266110063531, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+      propertyPath: OnToolAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUse
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448240266110063531, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+      propertyPath: OnToolAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CarGame.GatheringTool, CarGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8448240266110063531, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+      propertyPath: OnToolAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4661703466278425038, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
       insertIndex: 0
       addedObject: {fileID: 4616200609528511148}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3533915266348011815, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 8297603750651702895}
   m_SourcePrefab: {fileID: 100100000, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+--- !u!4 &169423586629817394 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4121657659436661953, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+  m_PrefabInstance: {fileID: 4281507175548446963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &747603179194628564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3533915266348011815, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}
+  m_PrefabInstance: {fileID: 4281507175548446963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8297603750651702895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747603179194628564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8462697fcc1c2346a68c774c0952a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CarGame::CarGame.GatheringTool
+  hitPoint: {fileID: 169423586629817394}
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 6144
+  hitRadius: 0.25
+  type: 2
+  harvestDamage: 25
+  combatDamage: 5
+  swingCooldown: 0.75
 --- !u!4 &8924809060015044925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4661703466278425038, guid: 158b0ab1d19f86b459105b3be321732c, type: 3}

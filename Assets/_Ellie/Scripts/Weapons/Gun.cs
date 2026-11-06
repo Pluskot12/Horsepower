@@ -50,6 +50,7 @@ namespace CarGame
 
         [Header("Effects")]
         [SerializeField] private Animator muzzleFlash;
+        [SerializeField] private HitEffect shellEffect;
         [SerializeField] private AudioClip shootClip;
         [SerializeField] private AudioClip betweenShotClip;
         [SerializeField] private AudioClip reloadClip;
@@ -220,8 +221,10 @@ namespace CarGame
             SpawnBullet();
             MuzzleFlash();
             AddRecoil();
+            SpawnShell();
 
-            GameManager.Instance.Player.GenerateNoise(1f);
+
+            GameManager.Instance.Player.GenerateNoise(0.5f);
 
             PlayerInventory.Instance.InventoryController.OnItemUse(slot);
             ammo = PlayerInventory.Instance.InventoryController.GetCountAtIndex(slot);
@@ -233,6 +236,18 @@ namespace CarGame
             cooldown = 1f / fireRate;
         }
 
+        private void SpawnShell()
+        {
+            if (shellEffect == null)
+            {
+                return;
+            }
+
+            var instance = Instantiate(shellEffect, shellEffect.transform.position, Quaternion.identity);
+            instance.gameObject.SetActive(true);
+            instance.Setup();
+
+        }
 
         private void Decoil()
         {
@@ -260,7 +275,7 @@ namespace CarGame
             if (bullets == 1)
             {
                 Projectile p = Instantiate(projectilePrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-                p.Setup(bulletSpawnPoint.position, bulletSpawnPoint.right * bulletSpeed, damage, bulletLifeTime, hitMask);
+                p.Setup(player, bulletSpawnPoint.position, bulletSpawnPoint.right * bulletSpeed, damage, bulletLifeTime, hitMask);
             }
             else
             {
@@ -271,7 +286,7 @@ namespace CarGame
                     speedMulti = Random.Range(0.95f, 1.05f);
                     rot = Quaternion.Euler(0, 0, bulletSpawnPoint.eulerAngles.z + Random.Range(-bulletSpread, bulletSpread));
                     Projectile p = Instantiate(projectilePrefab, bulletSpawnPoint.position, rot);
-                    p.Setup(bulletSpawnPoint.position, p.transform.right * bulletSpeed * speedMulti, damage, 1f, hitMask);
+                    p.Setup(player, bulletSpawnPoint.position, p.transform.right * bulletSpeed * speedMulti, damage, 1f, hitMask);
                 }
             }
         }
@@ -284,10 +299,11 @@ namespace CarGame
         int slot;
         WeaponItemData data;
         bool onCooldown;
-
-        public void Setup(Transform t, int slot, WeaponItemData data, AudioSource audioSource, bool playSound)
+        Player player;
+        public void Setup(Player player, Transform t, int slot, WeaponItemData data, AudioSource audioSource, bool playSound)
         {
             parent = t;
+            this.player = player;
             this.slot = slot;
             this.data = data;
 

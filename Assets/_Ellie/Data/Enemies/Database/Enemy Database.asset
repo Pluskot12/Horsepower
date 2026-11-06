@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: CarGame::CarGame.EnemyDatabase
   path: Assets/_Ellie/Data/Enemies
   enemies:
+  - {fileID: 11400000, guid: 39ba8b2d1071d9346b63a00f3a2e462d, type: 2}
+  - {fileID: 11400000, guid: 480e1f18e93973f4da084b1245ee42a7, type: 2}
   - {fileID: 11400000, guid: 8f9b0eb274ad80543ac8bb6034dd9105, type: 2}
   - {fileID: 11400000, guid: 75649ed2aa32a9a4fa793ead7b82f273, type: 2}
   - {fileID: 11400000, guid: 07306dd47e209df44abe8c9bdc168029, type: 2}
+  - {fileID: 11400000, guid: f7ce88b31be6a444d95f4cebb29c6d06, type: 2}
   - {fileID: 11400000, guid: be6ea22b098aa754c8ae7732b87051a5, type: 2}
+  - {fileID: 11400000, guid: 8fa0edeaa4961864c8b234fa8da6d69c, type: 2}
   - {fileID: 11400000, guid: 78de095c88ef99449bee433523b665b1, type: 2}
+  - {fileID: 11400000, guid: e94cb3fb0d79a0f45bf917773372d829, type: 2}
   - {fileID: 11400000, guid: c65642409fda2384c8c1a78d44f35d17, type: 2}
   - {fileID: 11400000, guid: f6d463ed66d6ad34bb4119d796cac167, type: 2}

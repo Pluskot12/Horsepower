@@ -4,13 +4,14 @@ namespace CarGame
 {
     public class Trap : MonoBehaviour
     {
-        [SerializeField] private int damage;
+        [SerializeField] private int reflectDamage;
 
         public void OnDamageTaken(int damage, GameObject attacker)
         {
             if (attacker.TryGetComponent<IDamageable>(out IDamageable target))
             {
-                target.TryDamage(damage, gameObject);
+                Debug.Log("TODO: Set attacker source");
+                target.TryDamage(reflectDamage, null);
             }
         }
 

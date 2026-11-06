@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Enemy - Chili
   m_EditorClassIdentifier: CarGame::CarGame.EnemyData
   Id: ea24ec43-cc97-4da0-b6df-1b40d41346f7
-  Prefab: {fileID: 8133407921476846474, guid: 5bb83ea4093dff7489ce47fa6fced50c, type: 3}
+  Prefab: {fileID: 2817238202425754133, guid: d9ef019c61a8ae3428e490bcc75cf30c, type: 3}

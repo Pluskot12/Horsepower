@@ -225,10 +225,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00de6c03123e4364180353b94c97530e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: CarGame::CarGame.BombExplosion
-  audioSource: {fileID: 0}
+  explosionSound: {fileID: 0}
   damageableLayers:
     serializedVersion: 2
     m_Bits: 3072
+  blastRadius: 1
+  explosionDamage: 10
 --- !u!114 &-4125879803560707311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +308,19 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 76c65037c8354c74bbdd3fd8439f88b9, type: 3}
     - target: {fileID: 1262001180522425719, guid: fa8a92912832f2242a6078d03544ebf1, type: 3}
       propertyPath: MaxDistance
-      value: 75
+      value: 1502.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262001180522425719, guid: fa8a92912832f2242a6078d03544ebf1, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262001180522425719, guid: fa8a92912832f2242a6078d03544ebf1, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262001180522425719, guid: fa8a92912832f2242a6078d03544ebf1, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5335383061789062718, guid: fa8a92912832f2242a6078d03544ebf1, type: 3}
       propertyPath: m_Name

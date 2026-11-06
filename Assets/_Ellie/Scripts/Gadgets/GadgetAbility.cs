@@ -17,7 +17,7 @@ namespace CarGame
             this.player = player;
         }
 
-        public virtual void OnEquip(Player player) { }
+        public virtual void OnEquip(Player player, float equipCooldown) { }
 
         public virtual bool TryActivate(Player player) { return true; }
 

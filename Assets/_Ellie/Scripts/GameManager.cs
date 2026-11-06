@@ -17,7 +17,6 @@ namespace CarGame
 
         [SerializeField] private ItemDatabase itemDatabase;
         [SerializeField] private WorldObjectDatabase worldObjectDatabase;
-        [SerializeField] private Chest sorryChest;
 
         public ItemDatabase ItemDatabase => itemDatabase;
         public WorldObjectDatabase WorldObjectDatabase => worldObjectDatabase;
@@ -42,23 +41,20 @@ namespace CarGame
         {
             //TimeManager.Instance.SetTime(startTime);
         }
-        public void Init()
+        public async void Init()
         {
             Time.timeScale = 0;
 
             if (useLoadedData)
             {
                 // Load stuff
-                SaveManager.Instance.Load();
+                await SaveManager.Instance.Load();
             }
             else
             {
                 TerrainManager.Instance.GenerateNewWorld();
                 TimeManager.Instance.SetTime(startTime);
                 player.StartGame();
-
-                sorryChest.gameObject.SetActive(true);
-                sorryChest.OnPlace(null);
             }
         }
 

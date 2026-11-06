@@ -27,7 +27,8 @@ namespace CarGame
         [SerializeField] private ItemData resource;
         [SerializeField] private int minDrop;
         [SerializeField] private int maxDrop;
-        [SerializeField] private int health;
+        [SerializeField] private int maxHealth;
+        [SerializeField] private int currentHealth;
 
         [Header("Hit Effect")]
         [SerializeField] private HitEffect hitEffect;
@@ -37,10 +38,11 @@ namespace CarGame
         [Header("Sounds")]
         [SerializeField] private AudioClip[] hitSounds;
         [SerializeField] private AudioClip deathSound;
+        [SerializeField] private float aggroNoise = 2;
 
         [Header("Chunk")]
         [SerializeField] private TerrainChunk chunk;
-        private int maxHealth;
+
 
         public Vector3 Position { get; set; }
 
@@ -58,16 +60,10 @@ namespace CarGame
 
         public void Respawn()
         {
-            health = maxHealth;
+            currentHealth = maxHealth;
             SetActive(true);
         }
         public bool debug;
-
-
-        private void Start()
-        {
-            maxHealth = health;
-        }
 
         public void Init(int variant, TerrainChunk chunk, Vector3 position)
         {
@@ -84,11 +80,11 @@ namespace CarGame
 
         public void Damage(int damage)
         {
-            health = Mathf.Clamp(health - damage, 0, maxHealth);
+            currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
 
             OnHit(damage);
 
-            if (health <= 0)
+            if (currentHealth <= 0)
             {
                 OnDeath();
             }
@@ -115,6 +111,7 @@ namespace CarGame
             partsInstance.gameObject.SetActive(true);
 
             SoundManager.PlaySFX(deathSound, transform.position);
+            EnemySpawnManager.Instance.OnNoiseGenerated(aggroNoise);
             //audioSource.transform.parent = null;
             //Destroy(audioSource.gameObject, deathSound.length * 2f);
             //Destroy(gameObject);
@@ -162,16 +159,16 @@ namespace CarGame
                 Variant = variant,
                 Position = transform.position,
                 Rotation = transform.rotation,
-                Health = health,
+                Health = currentHealth,
                 RespawnTime = 0 // TODO
             };
         }
 
         public void Setup(HarvestNodeSaveData loadedData)
         {
-            health = loadedData.Health;
+            currentHealth = loadedData.Health;
 
-            if (health <= 0)
+            if (currentHealth <= 0)
             {
                 SetActive(false);
                 chunk.OnHarvest(this, TimeManager.Instance.ResourceRespawnTime);

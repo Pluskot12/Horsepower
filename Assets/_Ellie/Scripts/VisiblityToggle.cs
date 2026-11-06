@@ -5,13 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(CanvasGroup))]
 public class VisiblityToggle : MonoBehaviour
 {
-    bool visible;
+    public bool visible;
     CanvasGroup layoutGroup;
 
     private void Start()
     {
         layoutGroup = GetComponent<CanvasGroup>();
-        layoutGroup.alpha = 0f;
+        layoutGroup.alpha = visible ? 1 : 0;
+
     }
 
     private void Update()

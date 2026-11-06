@@ -8,6 +8,7 @@
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="PrimeTween.Demo.csproj" />
   <Project Path="PrimeTween.Runtime.csproj" />
+  <Project Path="Ellie.Core.csproj" />
   <Project Path="PrimeTween.Tests.Editor.csproj" />
   <Project Path="PrimeTween.Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />

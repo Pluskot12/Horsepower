@@ -39,23 +39,22 @@ namespace CarGame
         }
 
 
-        public void TryDamagePercentage(float percent, GameObject attacker = null, bool triggerEffects = true)
+        public void TryDamagePercentage(float percent, IAttacker attacker = null, bool triggerEffects = true)
         {
             int damage = Mathf.RoundToInt(MaxHealth * percent);
             TryDamage(damage, attacker, triggerEffects);
         }
 
-        public void TryDamage(int damage, GameObject attacker, bool triggerEffects)
+        public void TryDamage(int damage, IAttacker attacker, bool triggerEffects)
         {
-
-
-
             if (isDead)
             {
                 return;
             }
 
-            OnDamageTaken.Invoke(damage, attacker);
+            //Debug.Log("Damage " + damage + " target " + attacker);
+
+            OnDamageTaken.Invoke(damage, attacker.Transform.gameObject);
 
             CurrentHealth -= damage;
             float percentage = (float)CurrentHealth / MaxHealth * 100f;
@@ -66,11 +65,11 @@ namespace CarGame
             }
             else
             {
-                OnHit(damage, triggerEffects);
+                OnHit(damage, attacker, triggerEffects);
             }
         }
 
-        public void OnHit(int damage, bool triggerEffects)
+        public void OnHit(int damage, IAttacker attacker, bool triggerEffects)
         {
             float percentage = (float)CurrentHealth / MaxHealth * 100f;
             UpdateSprite(percentage);

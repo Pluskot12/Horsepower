@@ -55,7 +55,8 @@ namespace CarGame
                 frag.gameObject.SetActive(true);
                 frag.transform.right = direction;
                 float random = Random.Range(0.9f, 1.1f);
-                frag.Setup(spawnPos, direction * fragSpeed * random, fragDamage, 10f, mask);
+
+                frag.Setup(attacker, spawnPos, direction * fragSpeed * random, fragDamage, 10f, mask);
             }
         }
 

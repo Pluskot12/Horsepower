@@ -31,12 +31,12 @@ TagManager:
   - 
   - Enemy Blocker
   - 
+  - Animal
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Vision
+  - Vision Blocker
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -70,6 +70,9 @@ TagManager:
     locked: 0
   - name: Effects Behind
     uniqueID: 2026910327
+    locked: 0
+  - name: Enemy Behind
+    uniqueID: 3770202717
     locked: 0
   - name: Player
     uniqueID: 2332299643

@@ -95,6 +95,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6379311600034787976, guid: 9e767dbd1994334409cf479910713db7, type: 3}
     - target: {fileID: 2322371921781564931, guid: 19d46524d4ed1d4468e13ba855559bcf, type: 3}
+      propertyPath: aggroNoise
+      value: 17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322371921781564931, guid: 19d46524d4ed1d4468e13ba855559bcf, type: 3}
       propertyPath: deathSound
       value: 
       objectReference: {fileID: 8300000, guid: af6ef0b6fc273264d8b9d30338726c29, type: 3}

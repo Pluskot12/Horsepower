@@ -484,7 +484,7 @@ MonoBehaviour:
   explodingParts: {fileID: 4760428072255413210}
   hitMask:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 67111168
   projectilePrefab: {fileID: 3594094281171994250, guid: 5be10aade5469ed4f936b0e56607cfc2, type: 3}
   damage: 0
   fireRate: 1
@@ -499,6 +499,7 @@ MonoBehaviour:
   recoilAmount: 5
   recoilReturnSpeed: 8
   muzzleFlash: {fileID: 1547584283290965386}
+  shellEffect: {fileID: 0}
   shootClip: {fileID: 8300000, guid: a73c327874c7bf24eb90d502518bd6fa, type: 3}
   betweenShotClip: {fileID: 0}
   reloadClip: {fileID: 0}

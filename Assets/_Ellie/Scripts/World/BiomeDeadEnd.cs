@@ -48,7 +48,8 @@ namespace CarGame
             {
                 if (targets.TryGetValue(target, out BurnData data) && data.timer >= tickRate)
                 {
-                    target.TryDamagePercentage(data.damagePercent, gameObject);
+                    Debug.Log("TODO: Set attacker source");
+                    target.TryDamagePercentage(data.damagePercent, null);
                     data.damagePercent *= 2;
                     data.timer = 0;
                 }

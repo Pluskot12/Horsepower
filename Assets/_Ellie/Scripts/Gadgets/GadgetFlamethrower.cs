@@ -37,7 +37,7 @@ namespace CarGame
             return true;
         }
 
-        public override void OnEquip(Player player)
+        public override void OnEquip(Player player, float equipCooldown)
         {
             equipped = true;
 
@@ -95,7 +95,7 @@ namespace CarGame
 
                 Quaternion rotation = Quaternion.Euler(0, 0, spreadAngle);
                 var instance = Instantiate(prefab, firePoint.position, rotation);
-                instance.Setup(firePoint.position, (instance.transform.right * speed) + player.Velocity, damage, 1f, hitMask);
+                instance.Setup(player, firePoint.position, (instance.transform.right * speed) + player.Velocity, damage, 1f, hitMask);
                 //instance.Setup(firePoint.position, instance.transform.right * speed, damage, 1f, hitMask);
 
                 instance.SetDrawOrder(drawOrder);

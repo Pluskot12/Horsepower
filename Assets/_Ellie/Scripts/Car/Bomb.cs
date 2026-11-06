@@ -10,18 +10,18 @@ namespace CarGame
         [SerializeField] private NoiseGenerator noiseGenerator;
 
         private BombItem data;
-
-        public void Setup(BombItem data, Vector3 direction, float force, Vector2 linearVelocity)
+        private IAttacker attacker;
+        public void Setup(BombItem data, IAttacker attacker, Vector3 direction, float force, Vector2 linearVelocity)
         {
             this.data = data;
-
+            this.attacker = attacker;
             body.AddForce(direction * force, ForceMode2D.Impulse);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            explosion.Explode(data.damage, blastRadius);
-            noiseGenerator.GenerateNoise(1f);
+            explosion.Explode(attacker, data.damage, blastRadius);
+            noiseGenerator.GenerateNoise(1f, null);
 
             Destroy(gameObject);
         }

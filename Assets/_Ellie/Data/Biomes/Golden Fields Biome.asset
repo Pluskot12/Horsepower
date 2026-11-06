@@ -35,11 +35,8 @@ MonoBehaviour:
   - {fileID: 3874158534899231194, guid: ee490ac4ae97b4a49bd6c3997e7bac1e, type: 3}
   - {fileID: 3874158534899231194, guid: ed18bf4d7167aeb4d8b167036ca2fa20, type: 3}
   - {fileID: 3874158534899231194, guid: 428203fd98950e1439a3c5360e0092d1, type: 3}
-  - {fileID: 3874158534899231194, guid: 9f57ebc3ee6f954428313f3bcec4eb69, type: 3}
   - {fileID: 3874158534899231194, guid: 08ad17e4f03ee6a43920a6eea38b7f19, type: 3}
-  - {fileID: 3874158534899231194, guid: 8b5833fde83ad0e488e996fc17056207, type: 3}
   - {fileID: 3874158534899231194, guid: edb4801a94b621f4fb54c23312125332, type: 3}
-  - {fileID: 3874158534899231194, guid: 6932ab5f0fec79149a6517ff29b6421f, type: 3}
   nodes:
   - objectData: {fileID: 11400000, guid: 106258f36849b4148bbfaf829e188214, type: 2}
     spawnChance: 0.025
@@ -75,44 +72,49 @@ MonoBehaviour:
     yOffset: 0
   backgroundSprite:
     sprite: {fileID: 21300000, guid: ffc4cc9eb6791e043947286bca55ecd2, type: 3}
-    yOffset: 0
+    yOffset: 0.5
   dayAmbience: {fileID: 8300000, guid: 44cda92a8a3e5dc468fce7a9cddd11d4, type: 3}
   duskAmbience: {fileID: 8300000, guid: 682395497c09f1d49ac74d624f0535a2, type: 3}
   nightAmbience: {fileID: 8300000, guid: 837ded9a767002740975c595c822ca9b, type: 3}
   spawnChance: 0.25
   enemies:
   - enemy: {fileID: 11400000, guid: 07306dd47e209df44abe8c9bdc168029, type: 2}
-    chance: 50
-    restrictToTime: 0
-    startTime: 0
-    endTime: 1400
-  - enemy: {fileID: 11400000, guid: 75649ed2aa32a9a4fa793ead7b82f273, type: 2}
-    chance: 40
-    restrictToTime: 0
-    startTime: 0
-    endTime: 1400
-  - enemy: {fileID: 11400000, guid: 78de095c88ef99449bee433523b665b1, type: 2}
-    chance: 30
-    restrictToTime: 0
-    startTime: 0
-    endTime: 1400
-  - enemy: {fileID: 11400000, guid: c65642409fda2384c8c1a78d44f35d17, type: 2}
     chance: 20
     restrictToTime: 0
     startTime: 0
     endTime: 1400
-  - enemy: {fileID: 11400000, guid: be6ea22b098aa754c8ae7732b87051a5, type: 2}
+  - enemy: {fileID: 11400000, guid: 78de095c88ef99449bee433523b665b1, type: 2}
     chance: 10
     restrictToTime: 0
     startTime: 0
     endTime: 1400
+  - enemy: {fileID: 11400000, guid: 8f9b0eb274ad80543ac8bb6034dd9105, type: 2}
+    chance: 15
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200
+  - enemy: {fileID: 11400000, guid: c65642409fda2384c8c1a78d44f35d17, type: 2}
+    chance: 5
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
+  - enemy: {fileID: 11400000, guid: 75649ed2aa32a9a4fa793ead7b82f273, type: 2}
+    chance: 5
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
+  - enemy: {fileID: 11400000, guid: be6ea22b098aa754c8ae7732b87051a5, type: 2}
+    chance: 5
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
   - enemy: {fileID: 11400000, guid: f6d463ed66d6ad34bb4119d796cac167, type: 2}
-    chance: 30
-    restrictToTime: 1
+    chance: 1
+    restrictToTime: 0
     startTime: 520
     endTime: 880
-  - enemy: {fileID: 11400000, guid: 8f9b0eb274ad80543ac8bb6034dd9105, type: 2}
-    chance: 30
+  - enemy: {fileID: 11400000, guid: 480e1f18e93973f4da084b1245ee42a7, type: 2}
+    chance: 5
     restrictToTime: 0
     startTime: 0
     endTime: 1200

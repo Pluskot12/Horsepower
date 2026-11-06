@@ -15,12 +15,12 @@ namespace CarGame
         [SerializeField] private Image itemParent;
         [SerializeField] private Image itemIcon;
         [SerializeField] private Image frame;
-        [SerializeField] private Image cooldownSprite;
+        [SerializeField] protected Image cooldownSprite;
         [SerializeField] private TextMeshProUGUI quantityText;
         [SerializeField] private InventoryItem slottedItem;
-        InventoryUI ui;
+        protected InventoryUI ui;
 
-        private bool onCooldown;
+        protected bool onCooldown;
         public bool OnCooldown => onCooldown;
 
         public GadgetBarUI gadgetBar;
@@ -41,7 +41,8 @@ namespace CarGame
             Inventory,
             ActionBar,
             Gadget,
-            Chest
+            Chest,
+            TrashCan
         }
 
         public enum AllowedItem
@@ -80,7 +81,7 @@ namespace CarGame
                 }
             }
         }
-        Coroutine cooldownCoroutine;
+        protected Coroutine cooldownCoroutine;
         public void StartCooldown(float time)
         {
             if (cooldownSprite != null)
@@ -107,7 +108,7 @@ namespace CarGame
         }
 
 
-        private IEnumerator Cooldown(float time)
+        protected virtual IEnumerator Cooldown(float time)
         {
             onCooldown = true;
             float timer = 0;
@@ -143,7 +144,7 @@ namespace CarGame
             Index = i;
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public virtual void OnPointerClick(PointerEventData eventData)
         {
             if (onCooldown)
             {
@@ -158,7 +159,6 @@ namespace CarGame
             {
                 ui?.OnSlotClicked(this, eventData);
             }
-
         }
 
         public void OnPointerEnter(PointerEventData eventData)

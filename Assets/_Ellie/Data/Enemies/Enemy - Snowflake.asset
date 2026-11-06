@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Enemy - Snowflake
   m_EditorClassIdentifier: CarGame::CarGame.EnemyData
   Id: 8ece916c-9f04-4448-a328-12edfc7e7637
-  Prefab: {fileID: 8133407921476846474, guid: 02b8cdafe9ef84c4cabefb1eaaa546ce, type: 3}
+  Prefab: {fileID: 7155960545961107496, guid: e653a445aa58a5841bfc98bf82a99313, type: 3}

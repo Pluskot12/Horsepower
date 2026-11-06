@@ -120,7 +120,7 @@ namespace CarGame
 
             HandleJumpInput();
 
-            HandleBombInput();
+            // HandleBombInput();
 
             HandleHornInput();
             HandleHeadLightInput();
@@ -247,29 +247,30 @@ namespace CarGame
         {
             if (Input.GetKeyDown(KeyCode.G))
             {
-                player.GenerateNoise(1f);
+                player.GenerateNoise(0.3f);
                 hornSource.Play();
             }
         }
 
-        public void HandleBombInput()
-        {
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                var equipedBomb = PlayerGadgets.Instance.TryUseBomb();
-                if (equipedBomb == null)
-                {
-                    return;
-                }
+        /*
+         public void HandleBombInput()
+         {
+             if (Input.GetKeyDown(KeyCode.X))
+             {
+                 var equipedBomb = PlayerGadgets.Instance.TryUseBomb();
+                 if (equipedBomb == null)
+                 {
+                     return;
+                 }
 
-                bombAnimator.Play("Open");
-                effectsSource.PlayOneShot(bombThrowSound);
-                Bomb bomb = Instantiate(equipedBomb.prefab, bombSpawnPoint.position, Quaternion.identity);
-                Vector3 direction = controller.FacingRight ? bombSpawnPoint.right : -bombSpawnPoint.right;
-                bomb.Setup(equipedBomb, direction, bombForce, controller.Body.linearVelocity);
-            }
-        }
-
+                 bombAnimator.Play("Open");
+                 effectsSource.PlayOneShot(bombThrowSound);
+                 Bomb bomb = Instantiate(equipedBomb.prefab, bombSpawnPoint.position, Quaternion.identity);
+                 Vector3 direction = controller.FacingRight ? bombSpawnPoint.right : -bombSpawnPoint.right;
+                 bomb.Setup(equipedBomb, direction, bombForce, controller.Body.linearVelocity);
+             }
+         }
+         */
 
         private IEnumerator TurnCooldown()
         {

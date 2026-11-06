@@ -390,7 +390,7 @@ namespace CarGame
             controller.SetMoveInput(0f);
         }
 
-        public void OnHit(int damage, bool triggerEffects)
+        public void OnHit(int damage, IAttacker attacker, bool triggerEffects)
         {
             float percentage = (float)CurrentHealth / MaxHealth * 100f;
             damageSystem.UpdateSprite(percentage, triggerEffects);
@@ -534,13 +534,13 @@ namespace CarGame
             alerted = false;
         }
 
-        public void TryDamagePercentage(float percent, GameObject attacker = null, bool triggerEffects = true)
+        public void TryDamagePercentage(float percent, IAttacker attacker = null, bool triggerEffects = true)
         {
             int damage = Mathf.RoundToInt(MaxHealth * percent);
             TryDamage(damage, attacker, triggerEffects);
         }
 
-        public void TryDamage(int damage, GameObject attacker = null, bool triggerEffects = true)
+        public void TryDamage(int damage, IAttacker attacker = null, bool triggerEffects = true)
         {
             CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
 
@@ -550,8 +550,8 @@ namespace CarGame
             }
             else
             {
-                Alert(attacker.transform.position, 1);
-                OnHit(damage, triggerEffects);
+                Alert(attacker.Transform.position, 1);
+                OnHit(damage, attacker, triggerEffects);
             }
         }
 

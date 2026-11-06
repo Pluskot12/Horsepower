@@ -163,6 +163,11 @@ namespace CarGame
             return inventory.RemoveItems(item, amount);
         }
 
+        public void RemoveAtIndex(int index)
+        {
+            inventory.TryRemoveAtIndex(index);
+        }
+
         public void TryAddItem(ItemData item, int amount, int durability)
         {
             inventory.TryAdd(item, amount, durability);

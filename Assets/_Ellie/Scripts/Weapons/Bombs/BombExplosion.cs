@@ -15,19 +15,23 @@ namespace CarGame
 
         private HashSet<IDamageable> targets;
 
+        protected IAttacker attacker;
+
         private void Awake()
         {
             Debug.Log("C");
             //gameObject.SetActive(false);
         }
 
-        public void Explode()
+        public void Explode(IAttacker attacker)
         {
-            Explode(explosionDamage, blastRadius);
+            Explode(attacker, explosionDamage, blastRadius);
         }
 
-        public void Explode(int damage, float blastRadius)
+        public void Explode(IAttacker attacker, int damage, float blastRadius)
         {
+            this.attacker = attacker;
+
             transform.SetParent(null);
             gameObject.SetActive(true);
 
@@ -71,7 +75,8 @@ namespace CarGame
 
         protected virtual void ApplyEffect(Collider2D hit, IDamageable target, int damage)
         {
-            target.TryDamage(damage, gameObject);
+            Debug.Log("TODO: Set attacker source");
+            target.TryDamage(damage, null);
         }
 
 

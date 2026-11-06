@@ -969,7 +969,7 @@ MonoBehaviour:
   wave: {fileID: 7471413438001399516}
   duration: 0.075
   radius: 10
-  knockbackForce: 15
+  knockbackForce: 25
   hitSounds:
   - {fileID: 8300000, guid: 95fa7b681c05d644da714015dcc96a5f, type: 3}
   - {fileID: 8300000, guid: 56c212040d38f984ab98f3a09d7d00f4, type: 3}

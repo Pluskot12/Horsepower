@@ -224,5 +224,6 @@ namespace CarGame
                 slot.StopCooldown();
             }
         }
+
     }
 }

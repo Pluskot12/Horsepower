@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Enemy - Piper
   m_EditorClassIdentifier: CarGame::CarGame.EnemyData
   Id: ef33f229-94a4-4eb9-a44a-df97b4a29e4c
-  Prefab: {fileID: 8133407921476846474, guid: ea862f59eef03e94bb7d458b87026ff2, type: 3}
+  Prefab: {fileID: 5455109918107545666, guid: 99b2fcc0e9419a7469b17e07c3ce5630, type: 3}

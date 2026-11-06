@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4223016354443716158
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -280349361992080424, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: dropTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c7f718c0cd0d5c45949d147782f032e, type: 2}
+    - target: {fileID: -280349361992080424, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: deathSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -280349361992080424, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: 'deathSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: cb5974feb930850448c96a355f14dccd, type: 3}
+    - target: {fileID: 49540892920643360, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e5a1b842db6894d4da74af31b72617e0, type: 3}
+    - target: {fileID: 1363698178739525671, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e767ff23228997d4cae4e10fb1f6ed67, type: 3}
+    - target: {fileID: 1489090430889370461, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_Name
+      value: Loadlasher Trailer - Rocks
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273084597497882176, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b307ba711372b1d46bcf5b2640284268, type: 3}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773481565267059865, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008563506956905892, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008563506956905892, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -524764579
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f1eddfcfc78ba74aa9c6077bef9ab34, type: 3}

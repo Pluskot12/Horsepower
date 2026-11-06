@@ -1,3 +1,4 @@
+using Demo.Perception;
 using TriInspector;
 using UnityEngine;
 
@@ -6,8 +7,10 @@ namespace CarGame
     [CreateAssetMenu(menuName = "Car/Enemy/New Enemy")]
     public class EnemyData : ScriptableObject
     {
+
         [ReadOnly] public string Id;
-        public EnemyController Prefab;
+        [ContextMenuItem("Create new ID", "RegenId")]
+        public Enemy Prefab;
 
         private void OnValidate()
         {
@@ -17,12 +20,12 @@ namespace CarGame
             }
         }
 
-        /*
-        [Button("Create new Id")]
+
+        //[Button("Create new Id")]
         private void RegenId()
         {
             Id = System.Guid.NewGuid().ToString();
         }
-        */
+
     }
 }

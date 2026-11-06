@@ -67,7 +67,14 @@ namespace CarGame
         {
             yield return new WaitForSeconds(0.1f);
 
-            Awaitable awaitable = SceneLoader.LoadScene(sceneName);
+            try
+            {
+                Awaitable awaitable = SceneLoader.LoadScene(sceneName);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning(e);
+            }
         }
 
         public void OnNewGameButton()

@@ -2,7 +2,6 @@ using CarGame.Saving;
 using Ellie.Json;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using static CarGame.TerrainChunk;
 
@@ -23,7 +22,7 @@ namespace CarGame
         public static bool HasSaveFile()
         {
 #if UNITY_WEBGL
-    return PlayerPrefs.HasKey(SAVE_STRING);
+            return PlayerPrefs.HasKey(SAVE_STRING);
 #else
             return File.Exists(GetSavePath(SAVE_STRING));
 #endif
@@ -38,9 +37,11 @@ namespace CarGame
         {
             SaveData.PlayerData = GameManager.Instance.Player.GetSaveData();
             SaveData.WorldData.Time = TimeManager.Instance.GetTime();
+            SaveData.WorldData.Day = TimeManager.Instance.GetDay();
             SaveData.WorldData.PlayerBuildings = BuildingManager.Instance.GetSaveData();
             SaveData.WorldData.Enemies = EnemySpawnManager.Instance.GetSaveData();
             SaveData.WorldData.Chunks = TerrainManager.Instance.GetSaveData();
+            SaveData.WorldData.SeekerRaid = EnemySpawnManager.Instance.SeekerRaidManager.GetSaveData();
             string json = JsonConvert.SerializeObject(SaveData, Settings);
 #if UNITY_WEBGL
 
@@ -59,7 +60,7 @@ namespace CarGame
             Debug.Log("Saved game data");
         }
 
-        public void Load()
+        public async Awaitable Load()
         {
             string json;
 
@@ -92,9 +93,12 @@ namespace CarGame
 
             GameManager.Instance.Player.OnLoadData(saveData.PlayerData);
             TimeManager.Instance.SetTime(saveData.WorldData.Time);
+            TimeManager.Instance.SetDay(saveData.WorldData.Day);
+            Debug.Log("saveData.WorldData.Day saveData.WorldData.Day" + saveData.WorldData.Day);
             BuildingManager.Instance.LoadBuildings(saveData.WorldData.PlayerBuildings);
             EnemySpawnManager.Instance.LoadData(saveData.WorldData.Enemies);
             TerrainManager.Instance.LoadData(saveData.WorldData.Chunks);
+            EnemySpawnManager.Instance.SeekerRaidManager.SetSaveData(SaveData.WorldData.SeekerRaid);
 
             Debug.Log("Game Loaded");
         }
@@ -177,6 +181,7 @@ namespace CarGame
     {
         // Time
         public float Time;
+        public int Day;
 
         // Chunks
         public List<ChunkSaveData> Chunks;
@@ -186,6 +191,9 @@ namespace CarGame
 
         // Enemies
         public List<EnemySaveData> Enemies;
+
+        // Seeker Raid
+        public SeekerRaidManager.SeekerRaidContext SeekerRaid;
     }
 
     [JsonObject]

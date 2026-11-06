@@ -1,3 +1,4 @@
+using Demo.Perception;
 using Ellie.Audio;
 using System.Collections;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace CarGame
         [SerializeField] private int damage = 10;
         [SerializeField] private float camereShake = 1f;
         [SerializeField] private AudioClip[] hitSounds;
-        [SerializeField] private EnemyController enemy;
+        [SerializeField] private Enemy enemy;
         [SerializeField] float verticalKnockbackFactor = 0f;
         [SerializeField] float cooldown = 5f;
         [Header("Knockback Settings")]
@@ -22,10 +23,10 @@ namespace CarGame
         {
             if (onCooldown)
             {
-                return false;
+                //return false;
             }
 
-            if (enemy.MaxSpeed == enemy.IdleSpeed)
+            if (enemy.IsIdle)
             {
                 return false;
             }
@@ -42,9 +43,8 @@ namespace CarGame
             {
                 return;
             }
-
-            float p = Mathf.Abs(enemy.Velocity.x) / enemy.MaxSpeed;
-            //Debug.Log("Trigger " + p);
+            float velocity = Mathf.Abs(enemy.Velocity.x * CarController.SPEED_MULTI);
+            float p = velocity / enemy.Stat.MaxMoveSpeed;
 
             if (p < speedNeeded)
             {
@@ -60,13 +60,21 @@ namespace CarGame
 
                     if (car.TryGetComponent<IDamageable>(out IDamageable c))
                     {
-                        c.TryDamage(damage, enemy.gameObject);
+                        c.TryDamage(damage, enemy);
                     }
 
                     SoundManager.PlayRandomSFX(hitSounds, transform.position);
                     CameraManager.Instance.Shake(camereShake);
 
                     StartCoroutine(Cooldown());
+                }
+            }
+            else
+            {
+                if (collision.TryGetComponent<IDamageable>(out IDamageable c))
+                {
+                    // 
+                    // c.TryDamage(damage, enemy.gameObject);
                 }
             }
         }

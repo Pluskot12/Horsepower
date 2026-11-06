@@ -1,16 +1,19 @@
+using Ellie.Core;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace CarGame
 {
-    public class Player : MonoBehaviour, IDamageable
+    public class Player : MonoBehaviour, IAttacker, IDamageable, IVisionTarget
     {
         [Header("References")]
 
         [SerializeField] private PlayerController playerController;
         [SerializeField] private CarController carController;
         [SerializeField] private Rigidbody2D body;
+        public Rigidbody2D Rigidbody => body;
         [SerializeField] private Animator bodyAnimator;
         [SerializeField] private Animator trunkAnimator;
         [SerializeField] private AttachmentController attachmentController;
@@ -20,6 +23,7 @@ namespace CarGame
 
         [SerializeField] private DamageSystem damageSystem;
         [SerializeField] private NoiseGenerator noiseGenerator;
+        [SerializeField] private Light2D bodyLight;
 
         [Header("Abilities")]
         [SerializeField] private Jump jump;
@@ -59,6 +63,8 @@ namespace CarGame
         public float Direction => carController.Direction;
 
         public float EngineVolume => playerController.EngineVolume;
+
+        private bool isHidden;
 
         private void Awake()
         {
@@ -100,14 +106,22 @@ namespace CarGame
 
         }
 
+        private void OnEnable()
+        {
+            TargetRegistry.Instance.Register(this);
+        }
 
+        private void OnDisable()
+        {
+            TargetRegistry.Instance.Unregister(this);
+        }
 
         public void Respawn()
         {
             Vector3 spawnPoint = GameManager.Instance.SpawnPoint;
 
             body.simulated = true;
-
+            bodyLight.enabled = true;
             CurrentHealth = MaxHealth;
 
             currentHunger = maxHunger;
@@ -132,7 +146,7 @@ namespace CarGame
 
             //IsDead = false;
         }
-
+        [SerializeField] PlayerDebugUI debugUI;
         private void Update()
         {
             if (IsDead)
@@ -197,7 +211,7 @@ namespace CarGame
                 {
                     hungerDrainTimer = 0;
                     audioSource.PlayOneShot(hungerDamageClip);
-                    GetComponent<IDamageable>().TryDamage(hungerDrain, gameObject);
+                    GetComponent<IDamageable>().TryDamage(hungerDrain, this);
                 }
 
                 if (triggerHungerSound)
@@ -220,7 +234,7 @@ namespace CarGame
             statPanel.UpdateHunger(currentHunger, maxHunger);
         }
 
-        public void OnHit(int damage, bool triggerEffects)
+        public void OnHit(int damage, IAttacker attacker, bool triggerEffects)
         {
             float percentage = (float)CurrentHealth / MaxHealth * 100f;
             damageSystem.UpdateSprite(percentage);
@@ -239,8 +253,10 @@ namespace CarGame
                 body.simulated = false;
                 damageSystem.OnDeath();
                 attachmentController.HideAttachment();
-
+                bodyLight.enabled = false;
                 playerController.OnDeath();
+
+                EnemySpawnManager.Instance.OnPlayerDeath();
 
                 ResetWorkshopUpgrades();
 
@@ -457,16 +473,38 @@ namespace CarGame
 
         public void GenerateNoise(float multiplier)
         {
-            noiseGenerator.GenerateNoise(multiplier);
+            EnemySpawnManager.Instance.OnNoiseGenerated(multiplier);
+            NoiseManager.EmitNoise(transform.position, 1f, transform);
+            // noiseGenerator.GenerateNoise(multiplier, transform);
+
+            if (noisyCoroutine != null)
+            {
+                StopCoroutine(noisyCoroutine);
+            }
+
+            noisyCoroutine = StartCoroutine(NoisyCooldown());
         }
 
-        public void TryDamagePercentage(float percent, GameObject attacker = null, bool triggerEffects = true)
+        private Coroutine noisyCoroutine;
+
+        private IEnumerator NoisyCooldown()
+        {
+            isNoisy = true;
+            OnIsNoisy?.Invoke(isNoisy);
+
+            yield return new WaitForSeconds(3f);
+
+            isNoisy = false;
+            OnIsNoisy?.Invoke(isNoisy);
+        }
+
+        public void TryDamagePercentage(float percent, IAttacker attacker = null, bool triggerEffects = true)
         {
             int damage = Mathf.RoundToInt(MaxHealth * percent);
             TryDamage(damage, attacker, triggerEffects);
         }
 
-        public void TryDamage(int damage, GameObject attacker = null, bool triggerEffects = true)
+        public void TryDamage(int damage, IAttacker attacker = null, bool triggerEffects = true)
         {
             OnAttacked?.Invoke(damage);
 
@@ -498,7 +536,7 @@ namespace CarGame
             else
             {
                 CameraManager.Instance.Shake(1f);
-                OnHit(damage, triggerEffects);
+                OnHit(damage, attacker, triggerEffects);
             }
         }
 
@@ -510,6 +548,19 @@ namespace CarGame
         public int WorkshopUpgradeLevel => workshopUpgrades.UpgradeLevel;
         public PlayerWorkshopUpgrades WorkshopUpgrades => workshopUpgrades;
 
+        public Transform Transform => transform;
+
+        public BoxCollider2D VisionCollider => visionCollider;
+
+        public bool Disabled => IsDead;
+        public bool IsVisible => !isHidden && !IsDead;
+
+        public bool IsNoisy => isNoisy;
+        private bool isNoisy;
+
+        public Faction Faction => Faction.Player;
+
+        [SerializeField] private BoxCollider2D visionCollider;
         public void OnWorkshopUpgrade()
         {
             workshopUpgrades.Upgrade();
@@ -723,6 +774,14 @@ namespace CarGame
         public void StartGame()
         {
             // Enable player
+
+            debugUI?.Init(this);
+        }
+        public event Action<bool> OnIsNoisy;
+        public void SetHidden(bool hidden)
+        {
+            Debug.Log("Hidden " + hidden);
+            isHidden = hidden;
         }
     }
 

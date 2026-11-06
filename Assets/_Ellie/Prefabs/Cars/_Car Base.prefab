@@ -93,6 +93,84 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &3873752428754734329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6316104861752651086}
+  - component: {fileID: 2663440666028009815}
+  m_Layer: 30
+  m_Name: Vision Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6316104861752651086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873752428754734329}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6485885388355396720}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2663440666028009815
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873752428754734329}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.09}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.18, y: 0.82}
+  m_EdgeRadius: 0
 --- !u!1 &5381870694993942148
 GameObject:
   m_ObjectHideFlags: 0
@@ -4843,6 +4921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6485885388355396720}
   - component: {fileID: 6798515715118487887}
+  - component: {fileID: 361214218203377514}
   - component: {fileID: 2212644612049957199}
   - component: {fileID: 2618095659586567109}
   - component: {fileID: 2922613989169354919}
@@ -4866,6 +4945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6316104861752651086}
   - {fileID: 4705135052271313759}
   - {fileID: 1327180406369035576}
   - {fileID: 3655147910908539237}
@@ -4885,9 +4965,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0bb9358a382f24a846049851e6c852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flipController: {fileID: 361214218203377514}
   car: {fileID: 2212644612049957199}
   frontWheel: {fileID: 3652724829012043742}
   backWheel: {fileID: 1767850684431936604}
+  extraWheels: []
   exhaust: {fileID: 7284729681288553437}
   dash: {fileID: 0}
   maxSpeed: 20
@@ -4904,6 +4986,7 @@ MonoBehaviour:
   minPitch: 0.8
   maxPitch: 2
   pitchLerpSpeed: 5
+  enginePitchOffset: 0
   breakForce: 0.9
   groundLayer:
     serializedVersion: 2
@@ -4916,6 +4999,21 @@ MonoBehaviour:
   stabilizeSpring: 5
   stabilizeDamping: 1
   stabilizeAngleThreshold: 5
+--- !u!114 &361214218203377514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6693477170437503025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e2669568f2356429bb795e7e92abf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CarGame::FlipController
+  carBody: {fileID: 2212644612049957199}
+  roots: []
+  facingRight: 1
 --- !u!50 &2212644612049957199
 Rigidbody2D:
   serializedVersion: 5

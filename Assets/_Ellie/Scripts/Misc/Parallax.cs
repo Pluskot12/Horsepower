@@ -29,6 +29,8 @@ namespace CarGame
             UpdateTextureParameters();
         }
 
+        private Tween alphaTween;
+
         public void SetBackground(BiomeData.Background background, int drawOrder = 1)
         {
             if (spriteRenderer == null)
@@ -121,15 +123,17 @@ namespace CarGame
 
         public void Animate(float alpha)
         {
-            float speed = 0.35f;
-            float delay = 0f;
+            const float speed = 0.35f;
+            float delay = alpha == 0 ? 0.15f : 0f;
 
-            if (alpha == 0)
-            {
-                delay = 0.15f;
-            }
-            
-            Tween.Alpha(spriteRenderer, alpha, speed, startDelay: delay);
+            alphaTween.Stop();
+
+            alphaTween = Tween.Alpha(spriteRenderer, alpha, speed, startDelay: delay);
+        }
+
+        private void OnDisable()
+        {
+            alphaTween.Stop();
         }
     }
 }

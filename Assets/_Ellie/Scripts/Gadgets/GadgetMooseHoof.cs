@@ -52,7 +52,7 @@ namespace CarGame
                 .ChainCallback(() => { hitCollider.enabled = false; });
         }
 
-        public override void OnEquip(Player player)
+        public override void OnEquip(Player player, float equipCooldown)
         {
             rotationPivot.localRotation = Quaternion.Euler(0, 0, offRotation);
             hitCollider.enabled = false;
@@ -69,7 +69,7 @@ namespace CarGame
 
                     if (car.TryGetComponent<IDamageable>(out IDamageable c))
                     {
-                        c.TryDamage(damage, player.gameObject);
+                        c.TryDamage(damage, player);
                     }
 
                     SoundManager.PlayRandomSFX(hitSounds, transform.position);

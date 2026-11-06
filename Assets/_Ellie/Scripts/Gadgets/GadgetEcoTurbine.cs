@@ -47,7 +47,7 @@ namespace CarGame
             source.volume = player.EngineVolume;
         }
 
-        public override void OnEquip(Player player)
+        public override void OnEquip(Player player, float equipCooldown)
         {
 
         }

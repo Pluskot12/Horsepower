@@ -1,3 +1,4 @@
+using Demo.Perception;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -185,24 +186,41 @@ namespace CarGame
         [Range(0, 1f)] public float spawnChance = 1f;
         public List<Enemies> enemies;
 
-        public EnemyController TryGetEnemy()
+        public Enemy TryGetEnemy(bool excludeAnimals)
         {
             if (Random.value > spawnChance)
             {
                 return null;
             }
 
-            return GetEnemy();
+            return GetEnemy(excludeAnimals);
         }
 
-        public EnemyController GetEnemy()
+        bool IsValidEnemy(Enemies e, float time, bool excludeAnimals)
+        {
+            if (!e.CanSpawn(time))
+            {
+                return false;
+            }
+
+            if (excludeAnimals && e.enemy.Prefab.Faction == Ellie.Core.Faction.Animal)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public Enemy GetEnemy(bool excludeAnimals)
         {
             float time = TimeManager.Instance.GetCurrentTime();
+
+
 
             int totalWeight = 0;
             foreach (var e in enemies)
             {
-                if (e.CanSpawn(time))
+                if (IsValidEnemy(e, time, excludeAnimals))
                 {
                     totalWeight += e.chance;
                 }
@@ -218,7 +236,7 @@ namespace CarGame
 
             foreach (var e in enemies)
             {
-                if (!e.CanSpawn(time))
+                if (!IsValidEnemy(e, time, excludeAnimals))
                 {
                     continue;
                 }
@@ -231,7 +249,7 @@ namespace CarGame
                 }
             }
 
-            return null;
+            return null; // unreachable unless a weight is negative
         }
 
     }

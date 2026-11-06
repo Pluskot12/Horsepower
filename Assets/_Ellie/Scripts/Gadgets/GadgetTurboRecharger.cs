@@ -56,7 +56,7 @@ namespace CarGame
 
         }
 
-        public override void OnEquip(Player player)
+        public override void OnEquip(Player player, float equipCooldown)
         {
             StopAllCoroutines();
         }

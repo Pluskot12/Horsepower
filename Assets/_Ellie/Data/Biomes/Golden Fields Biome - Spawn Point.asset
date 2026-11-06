@@ -48,32 +48,42 @@ MonoBehaviour:
   spawnChance: 0.25
   enemies:
   - enemy: {fileID: 11400000, guid: 07306dd47e209df44abe8c9bdc168029, type: 2}
-    chance: 50
-    restrictToTime: 0
-    startTime: 0
-    endTime: 1400
-  - enemy: {fileID: 11400000, guid: 75649ed2aa32a9a4fa793ead7b82f273, type: 2}
-    chance: 40
-    restrictToTime: 0
-    startTime: 0
-    endTime: 1400
-  - enemy: {fileID: 11400000, guid: 78de095c88ef99449bee433523b665b1, type: 2}
-    chance: 30
-    restrictToTime: 0
-    startTime: 0
-    endTime: 1400
-  - enemy: {fileID: 11400000, guid: c65642409fda2384c8c1a78d44f35d17, type: 2}
     chance: 20
     restrictToTime: 0
     startTime: 0
     endTime: 1400
-  - enemy: {fileID: 11400000, guid: be6ea22b098aa754c8ae7732b87051a5, type: 2}
+  - enemy: {fileID: 11400000, guid: 78de095c88ef99449bee433523b665b1, type: 2}
     chance: 10
     restrictToTime: 0
     startTime: 0
     endTime: 1400
+  - enemy: {fileID: 11400000, guid: 8f9b0eb274ad80543ac8bb6034dd9105, type: 2}
+    chance: 15
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200
+  - enemy: {fileID: 11400000, guid: c65642409fda2384c8c1a78d44f35d17, type: 2}
+    chance: 5
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
+  - enemy: {fileID: 11400000, guid: 75649ed2aa32a9a4fa793ead7b82f273, type: 2}
+    chance: 5
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
+  - enemy: {fileID: 11400000, guid: be6ea22b098aa754c8ae7732b87051a5, type: 2}
+    chance: 5
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1400
   - enemy: {fileID: 11400000, guid: f6d463ed66d6ad34bb4119d796cac167, type: 2}
-    chance: 30
-    restrictToTime: 1
+    chance: 1
+    restrictToTime: 0
     startTime: 520
     endTime: 880
+  - enemy: {fileID: 11400000, guid: 480e1f18e93973f4da084b1245ee42a7, type: 2}
+    chance: 5
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200

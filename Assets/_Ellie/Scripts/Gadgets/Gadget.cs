@@ -52,7 +52,7 @@ namespace CarGame
             gadgetData = data;
 
             ability.Init(this, player);
-            ability.OnEquip(player);
+            ability.OnEquip(player, equipCooldown);
 
             StartCooldown(equipCooldown);
         }

@@ -1,0 +1,385 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &314766764397083488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3565076379153263392}
+  - component: {fileID: 9119058485749085290}
+  m_Layer: 11
+  m_Name: Infection System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3565076379153263392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314766764397083488}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.761131, y: 0.15938675, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1822898814989271277}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9119058485749085290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314766764397083488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051eb11b5a7e88f43a36f54576845106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CarGame::CarGame.Infection
+  infectedData: {fileID: 11400000, guid: 8fa0edeaa4961864c8b234fa8da6d69c, type: 2}
+  self: {fileID: 5095017258593556196}
+  enemyTest: {fileID: 0}
+  infectionChance: 1
+--- !u!1001 &9105246603571241963
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2430205142827351166, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_Layer
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: brain
+      value: 375479401160376408
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: vision
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: faction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: hearing
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: hoverUI
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: weapons
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: movement
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: targeting
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: damageSystem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: stats.Health
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: visionCollider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: stats.MaxMoveSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: stats.IdleMoveSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: components.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_EditorClassIdentifier
+      value: CarGame::Demo.Perception.Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479395169599570]'
+      value: Horsepower.NPC Horsepower.NPC.Flee
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479395169599571]'
+      value: Horsepower.NPC Horsepower.NPC.Flee
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401160376406]'
+      value: CarGame Demo.Perception.DefaultEnemyBrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401160376407]'
+      value: CarGame Demo.Perception.DefaultEnemyBrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401160376408]'
+      value: CarGame Demo.Perception.DefaultEnemyBrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479395169599582].idleBehavoirs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401160376406].idleBehavoirs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401160376407].idleBehavoirs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401160376408].idleBehavoirs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479242813079631].aggroBehavoirs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401160376406].aggroBehavoirs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401160376406].alertBehavoirs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401160376407].aggroBehavoirs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401160376407].alertBehavoirs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401160376408].aggroBehavoirs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401160376408].alertBehavoirs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479395169599582].idleBehavoirs.Array.data[0]'
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401160376406].idleBehavoirs.Array.data[0]'
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401160376406].idleBehavoirs.Array.data[1]'
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479242813079631].aggroBehavoirs.Array.data[0]'
+      value: 375479395169599571
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479242813079631].alertBehavoirs.Array.data[0]'
+      value: 375479395169599570
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401160376406].aggroBehavoirs.Array.data[0]'
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401160376406].aggroBehavoirs.Array.data[1]'
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401160376406].alertBehavoirs.Array.data[0]'
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327570871086654332, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401160376406].alertBehavoirs.Array.data[1]'
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3377041030527871137, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553150425493378300, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_Name
+      value: _Animal Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010788744008517821, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: faction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: weapons
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: components.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'components.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7127264634124366995}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401657139290]'
+      value: CarGame Horsepower.NPC.Flee
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401657139291]'
+      value: CarGame Horsepower.NPC.Flee
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401657139207].increaseRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401657139205].backVisionRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401657139205].frontVisionRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401657139201].maxWanderDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401657139209].weapons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: managedReferences[375479401657139200].aggroBehavoirs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401657139200].aggroBehavoirs.Array.data[0]'
+      value: 375479401657139290
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: 'managedReferences[375479401657139200].alertBehavoirs.Array.data[0]'
+      value: 375479401657139291
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415666533142860889, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 25f7574465fe0cb43ab1e5bbce2708a2, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7426551626151273222, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3565076379153263392}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+--- !u!4 &1822898814989271277 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7426551626151273222, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+  m_PrefabInstance: {fileID: 9105246603571241963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5095017258593556196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4100939472248911119, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+  m_PrefabInstance: {fileID: 9105246603571241963}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91daae4642c0b84da9b16989b5c2676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CarGame::Demo.Perception.Enemy
+--- !u!114 &7127264634124366995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2068688139720710008, guid: dd7792acc6a06234d829bd6720659f96, type: 3}
+  m_PrefabInstance: {fileID: 9105246603571241963}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d98a2e2f75f9fa45a505bb46c19eeb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Horsepower.NPC::Horsepower.NPC.EyeLight

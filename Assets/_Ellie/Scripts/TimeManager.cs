@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CarGame
@@ -26,6 +27,8 @@ namespace CarGame
         public float DuskStartTime => duskStartTime;
         public float NightStartTime => nightStartTime;
 
+        private int day = 0;
+
         public float ResourceRespawnTime => 60f * 2f;
 
         public enum TimeOfDay
@@ -35,7 +38,7 @@ namespace CarGame
             Night
         }
 
-        private int currentDay;
+        public event Action<int> OnDayChanged;
 
         private void Awake()
         {
@@ -105,12 +108,11 @@ namespace CarGame
             {
                 currentTime += Time.deltaTime;
             }
-
-            if (currentTime > dayStartTime && wrapped)
+            float dayEnd = 600;
+            if (currentTime > dayEnd && wrapped)
             {
-                currentDay++;
                 day++;
-
+                OnDayChanged?.Invoke(day);
                 wrapped = false;
             }
 
@@ -133,12 +135,11 @@ namespace CarGame
             else if (currentTime < 0)
             {
                 currentTime += dayLength;
-                currentDay--;
                 day--;
 
-                if (currentDay < 0)
+                if (day < 0)
                 {
-                    currentDay = 0;
+                    day = 0;
                 }
             }
         }
@@ -157,7 +158,7 @@ namespace CarGame
         {
             return duskStartTime / dayLength;
         }
-        int day = 1;
+
         public int GetDay()
         {
             return day;
@@ -212,8 +213,15 @@ namespace CarGame
         public void SetTime(float time)
         {
             currentTime = time;
-
+            wrapped = true;
             ambienceController.SetTime(time, DayLength);
+        }
+
+        public void SetDay(int day)
+        {
+            this.day = day;
+
+            //OnDayChanged?.Invoke(day);
         }
     }
 }

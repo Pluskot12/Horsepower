@@ -7,7 +7,8 @@ namespace CarGame
     {
         public static PlayerGadgets Instance { get; private set; }
 
-        public const int BOMB_INDEX = 0;
+        // public const int BOMB_INDEX = 0;
+        public const int TRASH_CAN_INDEX = 0;
 
         [SerializeField] private GadgetController gadgetController;
 
@@ -44,6 +45,10 @@ namespace CarGame
 
         private void Inventory_AnyValueChanged(InventoryItem[] obj)
         {
+            if (SlotChanged(GadgetItem.Slot.Back, obj[1]))
+            {
+                UpdateSlot(GadgetItem.Slot.Back, obj[1]);
+            }
             if (SlotChanged(GadgetItem.Slot.Back, obj[1]))
             {
                 UpdateSlot(GadgetItem.Slot.Back, obj[1]);
@@ -149,7 +154,7 @@ namespace CarGame
         }
 
 
-
+        /*
         public BombItem TryUseBomb()
         {
             if (gadgetController.Slots[0].OnCooldown)
@@ -167,7 +172,7 @@ namespace CarGame
             gadgetController.OnItemUse(BOMB_INDEX);
             return bombData;
         }
-
+        */
 
         public void DropAllItems()
         {

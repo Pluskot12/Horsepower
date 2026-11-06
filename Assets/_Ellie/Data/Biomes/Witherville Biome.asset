@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646423e13eabb674985e8580af31d4dd, type: 3}
+  m_Name: Witherville Biome
+  m_EditorClassIdentifier: CarGame::CarGame.BiomeData
+  icon: {fileID: 21300000, guid: 87cda3458709eb648a2f86e8e79208ec, type: 3}
+  pauseSound: {fileID: 8300000, guid: ad95e62ecf2d8504db52f44e62ac8208, type: 3}
+  biomeType: 2
+  chunkPrefab: {fileID: 5630860628453097293, guid: 71142601db9c0e449a60495d3dd3f532, type: 3}
+  terrainType: 0
+  smoothness: 0.05
+  noiseScale: 0.125
+  heightAmplitude: 2
+  noiseSeed: 0.5
+  cornerSmoothness: 0.15
+  tangentStrength: 1
+  profile: {fileID: 11400000, guid: 9a91cdcdbd8ff984aba7c903e11f37c2, type: 2}
+  flatChance: 0.3
+  flatMinPoints: 4
+  flatMaxPoints: 7
+  spawningAllowed: 1
+  structureSpawnChance: 0.4
+  structures:
+  - {fileID: 3874158534899231194, guid: 5c2f2be2527606a40b1bc925aa865228, type: 3}
+  - {fileID: 3874158534899231194, guid: 673d2d82fbb308a448f44c65936655e1, type: 3}
+  - {fileID: 3874158534899231194, guid: d5d723230cce32e458e32a83050043ec, type: 3}
+  - {fileID: 3874158534899231194, guid: 30a71d2cdcfcf6d42ad982d8f2b54eb9, type: 3}
+  nodes: []
+  interactables:
+  - objectData: {fileID: 11400000, guid: 5f3cd16a5e03c484dadd574d2d38ede0, type: 2}
+    spawnChance: 0.02
+    minSpacing: 5
+    maxSpacing: 6
+    allowedAngle: 5
+  - objectData: {fileID: 11400000, guid: 36e15c73c2d0f5d4b88a1b114d49902c, type: 2}
+    spawnChance: 0.006
+    minSpacing: 5
+    maxSpacing: 6
+    allowedAngle: 5
+  - objectData: {fileID: 11400000, guid: 13a78d117363dd6408bc963c94d550c6, type: 2}
+    spawnChance: 0.008
+    minSpacing: 5
+    maxSpacing: 6
+    allowedAngle: 5
+  - objectData: {fileID: 11400000, guid: a9cd666ea92e1cf4994c6b746e5d7cb7, type: 2}
+    spawnChance: 0.01
+    minSpacing: 5
+    maxSpacing: 6
+    allowedAngle: 5
+  skySprite:
+    sprite: {fileID: 21300000, guid: 863cb368f40ce1c43b7ff913eacbdaf8, type: 3}
+    yOffset: 0
+  horizonSprite:
+    sprite: {fileID: 21300000, guid: 0adf5cef4b55c274997725488360bdd0, type: 3}
+    yOffset: -0.15
+  backgroundSprite:
+    sprite: {fileID: 21300000, guid: 3fd69a106645c1342864a1bf1a61285a, type: 3}
+    yOffset: 2.6
+  dayAmbience: {fileID: 8300000, guid: 2bfc2549d00bb1c47984c9c5b30e6c35, type: 3}
+  duskAmbience: {fileID: 0}
+  nightAmbience: {fileID: 0}
+  spawnChance: 1
+  enemies:
+  - enemy: {fileID: 11400000, guid: c65642409fda2384c8c1a78d44f35d17, type: 2}
+    chance: 60
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200
+  - enemy: {fileID: 11400000, guid: be6ea22b098aa754c8ae7732b87051a5, type: 2}
+    chance: 30
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200
+  - enemy: {fileID: 11400000, guid: 78de095c88ef99449bee433523b665b1, type: 2}
+    chance: 30
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200
+  - enemy: {fileID: 11400000, guid: 07306dd47e209df44abe8c9bdc168029, type: 2}
+    chance: 20
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200
+  - enemy: {fileID: 11400000, guid: 8f9b0eb274ad80543ac8bb6034dd9105, type: 2}
+    chance: 20
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200
+  - enemy: {fileID: 11400000, guid: 75649ed2aa32a9a4fa793ead7b82f273, type: 2}
+    chance: 10
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200
+  - enemy: {fileID: 11400000, guid: e94cb3fb0d79a0f45bf917773372d829, type: 2}
+    chance: 5
+    restrictToTime: 0
+    startTime: 0
+    endTime: 1200

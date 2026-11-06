@@ -90,7 +90,7 @@ namespace CarGame
             Vector3 shootDirection = bulletSpawn.right * flip;
 
             var instance = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-            instance.Setup(bulletSpawn.position, (shootDirection * bulletSpeed) + GameManager.Instance.Player.Velocity, 0, 5f, 0);
+            instance.Setup(null, bulletSpawn.position, (shootDirection * bulletSpeed) + GameManager.Instance.Player.Velocity, 0, 5f, 0);
 
             SoundManager.PlaySFX(shootClip, transform.position);
 

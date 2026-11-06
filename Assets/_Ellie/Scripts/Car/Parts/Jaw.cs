@@ -36,6 +36,8 @@ namespace CarGame
 
         public void BiteTrigger()
         {
+
+
             Vector2 bitePos = (Vector2)hitpoint.position;
             Collider2D hit = Physics2D.OverlapCircle(bitePos, biteRadius, playerLayer);
 
@@ -45,19 +47,21 @@ namespace CarGame
                 {
                     if (hit.attachedRigidbody.TryGetComponent(out IDamageable damageable))
                     {
-                        damageable.TryDamage(damage, attacker);
+                        Debug.Log("TODO: Set attacker source");
+                        damageable.TryDamage(damage, null);
 
-                        if (biteSound != null) 
-                        { 
+                        if (biteSound != null)
+                        {
                             SoundManager.PlaySFX(biteSound, transform.position);
                         }
                     }
                 }
-                else 
+                else
                 {
                     if (hit.TryGetComponent(out IDamageable damageable))
                     {
-                        damageable.TryDamage(damage, attacker);
+                        Debug.Log("TODO: Set attacker source");
+                        damageable.TryDamage(damage, null);
 
                         if (biteSound != null)
                         {

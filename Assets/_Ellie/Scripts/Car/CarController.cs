@@ -6,12 +6,23 @@ using UnityEngine.Events;
 
 namespace CarGame
 {
+    [System.Serializable]
+    public struct ExtraWheel
+    {
+        public Rigidbody2D wheel;
+        public Transform visual;
+    }
+
     public class CarController : MonoBehaviour
     {
+        public const float SPEED_MULTI = 7.5f;
+
         [Header("References")]
+        [SerializeField] private FlipController flipController;
         [SerializeField] private Rigidbody2D car;
         [SerializeField] private Rigidbody2D frontWheel;
         [SerializeField] private Rigidbody2D backWheel;
+        [SerializeField] private ExtraWheel[] extraWheels;
         [SerializeField] private Exhaust exhaust;
         [SerializeField] private Dash dash;
 
@@ -37,6 +48,7 @@ namespace CarGame
         [SerializeField] private float minPitch = 1f;
         [SerializeField] private float maxPitch = 1.6f;
         [SerializeField] private float pitchLerpSpeed = 3f;
+        [SerializeField] private float enginePitchOffset = 0;
 
         [Header("Misc")]
         [SerializeField] private float breakForce = 0.99f;
@@ -45,13 +57,16 @@ namespace CarGame
 
         [HideInInspector] public UnityEvent OnCarTurned;
 
-        public float enginePitchOffset;
+
         public Rigidbody2D Body => car;
+
 
         private float moveInput;
         private float rotInput;
         private bool facingRight = true;
         public bool FacingRight => facingRight;
+
+        private float randomPitch;
 
         private List<Bodies> bodies;
 
@@ -79,6 +94,12 @@ namespace CarGame
         {
             AnimateWheel(frontWheel, frontWheelVisual);
             AnimateWheel(backWheel, backWheelVisual);
+
+            foreach (var wheel in extraWheels)
+            {
+                AnimateWheel(wheel.wheel, wheel.visual);
+            }
+
             UpdateEngineAudio();
 
             exhaust.SetExhaust(Exhaust);
@@ -92,7 +113,7 @@ namespace CarGame
                 return;
 
             float targetPitch = (Mathf.Abs(moveInput) > 0.01f) ? maxPitch : minPitch;
-            targetPitch += enginePitchOffset;
+            targetPitch += enginePitchOffset + randomPitch;
             engineAudio.pitch = Mathf.Lerp(engineAudio.pitch, targetPitch, Time.deltaTime * pitchLerpSpeed);
         }
 
@@ -115,6 +136,11 @@ namespace CarGame
 
         private void FlipX(float input)
         {
+
+            bool facing = input < 0;
+
+            flipController.SetFacing(facing);
+            return;
             bool flipped = false;
 
             if (input > 0 && facingRight)
@@ -185,6 +211,14 @@ namespace CarGame
 
                 ApplyEngineTorque(frontWheel);
                 ApplyEngineTorque(backWheel);
+
+                if (extraWheels.Length > 0)
+                {
+                    foreach (var wheel in extraWheels)
+                    {
+                        ApplyEngineTorque(wheel.wheel);
+                    }
+                }
 
                 car.AddTorque(moveInput * accelerationRotation);
             }
@@ -273,6 +307,11 @@ namespace CarGame
                 car.linearVelocityX *= breakForce;
                 frontWheel.angularVelocity = 0f;
                 backWheel.angularVelocity = 0f;
+
+                foreach (var wheel in extraWheels)
+                {
+                    wheel.wheel.angularVelocity = 0f;
+                }
             }
         }
 
@@ -309,6 +348,11 @@ namespace CarGame
 
         public void Knockback(Vector2 value)
         {
+            if (dash && dash.IsDashing)
+            {
+                return;
+            }
+
             disableEngine = true;
 
             StartCoroutine(DisableCar(0.2f));
@@ -421,7 +465,7 @@ namespace CarGame
         public void SetEnginePitch(float v)
         {
             engineAudio.time = UnityEngine.Random.Range(0, engineAudio.clip.length);
-            enginePitchOffset = v;
+            randomPitch = v;
         }
 
         public float GetMaxSpeed()
@@ -677,6 +721,11 @@ namespace CarGame
 
                 maxIterations--;
             }
+        }
+
+        public void ConnectTrailer(Transform attachment, Transform pivot)
+        {
+            flipController.SetAttachment(attachment, pivot);
         }
 
         private void OnDrawGizmos()

@@ -48,9 +48,9 @@ namespace CarGame
             activeOverride = overrideA;
             inactiveOverride = overrideB;
 
-            EnemyController.OnAggro += EnemyController_Aggro;
+            //EnemyController.OnAggro += EnemyController_Aggro;
         }
-
+        /*
         private void EnemyController_Aggro(int count)
         {
             // Debug.Log("Aggro " + count);
@@ -63,6 +63,16 @@ namespace CarGame
             {
                 ClearOverride(3f);
             }
+        }
+        */
+        public void PlayChaseMusic()
+        {
+            PlayOverride(chaseMusic, 1.0f);
+        }
+
+        public void StopChaseMusic()
+        {
+            ClearOverride(3f);
         }
 
         private void Update()
@@ -177,6 +187,8 @@ namespace CarGame
         {
             if (fadeDuration < 0f) fadeDuration = defaultFadeDuration;
             if (clip == currentOverrideClip) return;
+
+            // Debug.Log("Playing " + clip);
 
             currentOverrideClip = clip;
 

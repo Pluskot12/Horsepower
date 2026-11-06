@@ -62,12 +62,15 @@ namespace CarGame
             }
         }
 
-        public void OnDeath()
+        public void OnDeath(bool infected = false)
         {
-            source.PlayOneShot(deathSound);
+
             carExhaust.SetActive(false);
 
-
+            if (isEnemy)
+            {
+                EnemySpawnManager.Instance.OnNoiseGenerated(3f);
+            }
 
             Color c = Color.white;
 
@@ -87,11 +90,15 @@ namespace CarGame
 
             var exp = Instantiate(explosion, transform.position, Quaternion.identity);
             exp.SetActive(true);
-            var parts = Instantiate(partsParent, transform.position, Quaternion.identity);
-            parts.SetActive(true);
-
             Destroy(exp, 5f);
-            Destroy(parts, 5f);
+
+            if (!infected)
+            {
+                source.PlayOneShot(deathSound);
+                var parts = Instantiate(partsParent, transform.position, Quaternion.identity);
+                parts.SetActive(true);
+                Destroy(parts, 5f);
+            }
 
             if (isEnemy)
             {

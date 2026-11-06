@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Enemy - Terrorbeast
   m_EditorClassIdentifier: CarGame::CarGame.EnemyData
   Id: d87b8c50-591d-445c-aeec-06dde41f7f10
-  Prefab: {fileID: 8133407921476846474, guid: bb9da01cb58985f428262f27b5297dcc, type: 3}
+  Prefab: {fileID: 8599284217579245417, guid: 421b9d07c05a7e040992a5d8af2e9fbe, type: 3}

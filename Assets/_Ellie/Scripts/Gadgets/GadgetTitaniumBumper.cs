@@ -36,7 +36,7 @@ namespace CarGame
 
         private Charge currentCharge;
 
-        public override void OnEquip(Player player)
+        public override void OnEquip(Player player, float equipCooldown)
         {
             this.player = player;
 
@@ -96,7 +96,7 @@ namespace CarGame
 
                     if (car.TryGetComponent<IDamageable>(out IDamageable c))
                     {
-                        c.TryDamage(GetDamage(), player.gameObject);
+                        c.TryDamage(GetDamage(), player);
                     }
 
                     SoundManager.PlayRandomSFX(hitSounds, transform.position);

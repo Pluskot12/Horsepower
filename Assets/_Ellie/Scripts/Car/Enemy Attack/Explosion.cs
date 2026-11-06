@@ -79,7 +79,7 @@ namespace CarGame
                 ApplyEffect(hit);
             }
 
-            noiseGenerator.GenerateNoise(1f);
+            noiseGenerator.GenerateNoise(1f, null);
         }
 
         private void ApplyEffect(IDamageable hit)
@@ -99,7 +99,8 @@ namespace CarGame
                 }
             }
 
-            target.TryDamage(damage, gameObject);
+            Debug.Log("TODO: Set attacker source on explosions");
+            target.TryDamage(damage, null);
 
         }
 

@@ -17,7 +17,7 @@ namespace CarGame
         [SerializeField] private AudioClip activateSound;
         [SerializeField] private AudioClip destroyedSound;
 
-        public override void OnEquip(Player player)
+        public override void OnEquip(Player player, float equipCooldown)
         {
             //player.SetShield(shield);
             forceShield.transform.localScale = Vector3.zero;

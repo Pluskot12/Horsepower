@@ -110,7 +110,7 @@ namespace CarGame
                 slot = slots.Length - 1;
 
 
-            if (canPlay && playSound)
+            if (canPlay && playSound && scrollSound)
             {
                 audioSource.PlayOneShot(scrollSound);
                 StartCoroutine(SoundCooldown());
